@@ -456,6 +456,7 @@ function parseRow(r) {
     chg3m: n.chg3m, ytd: n.ytd, chg1y: n.chg1y,
     aum: n.aum, aum_prev: n.aum_prev||'',
     rsi: n.rsi||'', bbp: n.bbp||'',
+    fund_flows: n.fund_flows||'',
   };
 
   // TradingView format
@@ -548,10 +549,13 @@ function hmClass(v) {
 }
 
 // ── FORMATTERS ────────────────────────────────
-function fHm(v) {
+function fHm(v, isYtd=false, is1y=false, is3m=false) {
   const n=pf(v);
   if(isNaN(n)) return `<td class="hm v-flat"><span>—</span></td>`;
-  return `<td class="hm ${hmClass(n)}"><span>${n>=0?'+':''}${n.toFixed(2)}%</span></td>`;
+  const cls = hmClass(n);
+  const orange = (isYtd && n >= 50) || (is1y && n >= 100) || (is3m && n >= 30);
+  const orangeStyle = orange ? 'color:#ff9900!important;font-weight:600!important' : '';
+  return `<td class="hm ${cls}"><span style="${orangeStyle}">${n>=0?'+':''}${n.toFixed(2)}%</span></td>`;
 }
 
 function fScore(sc) {
@@ -662,7 +666,7 @@ function renderThemes() {
     return `<tr>
       <td style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px">${i+1}</td>
       <td>${fThemePill(td.theme)}</td>
-      ${fHm(td.chg1d)}${fHm(td.chg1w)}${fHm(td.chg1m)}${fHm(td.chg3m)}${fHm(td.ytd)}${fHm(td.chg1y)}
+      ${fHm(td.chg1d)}${fHm(td.chg1w)}${fHm(td.chg1m)}${fHm(td.chg3m,false,false,true)}${fHm(td.ytd,true)}${fHm(td.chg1y,false,true)}
       <td>${fScore(td.sc)}</td>
       <td>${fRsi(td.rsi)}</td>
       <td>${fBbp(td.bbp)}</td>
@@ -686,7 +690,7 @@ function renderIndiv() {
       <td><span class="sym">${r.ticker}</span></td>
       <td><span class="etf-n">${r.name||r.ticker}</span></td>
       <td>${cat}</td>
-      ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m)}${fHm(r.ytd)}${fHm(r.chg1y)}
+      ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
       <td>${fScore(sc)}</td>
       <td>${fRsi(r.rsi)}</td>
       <td>${fBbp(r.bbp)}</td>
@@ -709,7 +713,7 @@ function renderGeo() {
       <td><span class="etf-n">${r.name||r.ticker}</span></td>
       <td>${fGeoBadge(r.geo)}</td>
       <td>${fGeoTypeBadge(r.geo,r.geo_type)}</td>
-      ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m)}${fHm(r.ytd)}${fHm(r.chg1y)}
+      ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
       <td>${fScore(sc)}</td>
       <td>${fRsi(r.rsi)}</td>
       <td>${fBbp(r.bbp)}</td>
