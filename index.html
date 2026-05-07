@@ -7,17 +7,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0b0b14; --s1:#12121f; --s2:#18182a; --s3:#202035;
-  --b1:#2e2e50; --b2:#3a3a60;
-  --text:#ffffff; --t2:#c8c8e8; --muted:#8888aa;
-  --accent:#7c5fff; --teal:#00e4b8; --up:#00e4b8; --dn:#ff4466;
+--bg:#0b0b14; --s1:#12121f; --s2:#18182a; --s3:#202035;
+--b1:#2e2e50; --b2:#3a3a60;
+--text:#ffffff; --t2:#c8c8e8; --muted:#8888aa;
+--accent:#7c5fff; --teal:#00e4b8; --up:#00e4b8; --dn:#ff4466;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(124,95,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,95,255,.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
-.wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto;padding:0 28px 80px}
-
+.wrap{position:relative;z-index:1;max-width:1800px;margin:0 auto;padding:0 28px 80px}
 /* HEADER */
 header{display:flex;align-items:center;justify-content:space-between;padding:28px 0 20px;border-bottom:1px solid var(--b1);margin-bottom:24px;flex-wrap:wrap;gap:14px}
 .logo h1{font-size:22px;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,#a07fff,#00e4b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -28,7 +27,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .upload-btn input{display:none}
 .badge{font-family:'DM Mono',monospace;font-size:11px;padding:6px 11px;border-radius:4px;background:var(--s2);border:1px solid var(--b1);color:var(--muted)}
 .badge.ok{border-color:var(--teal);color:var(--teal)}
-
 /* CSV INFO */
 .csv-box{margin-bottom:24px}
 .csv-toggle{background:none;border:none;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;display:block;margin-bottom:8px}
@@ -39,7 +37,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .csv-info table{width:100%;border-collapse:collapse;margin-top:10px;font-size:11px}
 .csv-info table th{text-align:left;padding:6px 10px;background:var(--s3);color:var(--t2);font-family:'DM Mono',monospace}
 .csv-info table td{padding:6px 10px;border-top:1px solid var(--b1);color:var(--text)}
-
 /* TABS */
 .tabs-bar{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid var(--b1)}
 .tab-btn{background:none;border:none;border-bottom:2px solid transparent;padding:10px 20px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;margin-bottom:-1px}
@@ -47,13 +44,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .tab-btn.active{color:var(--text);border-bottom-color:var(--accent)}
 .tab-pane{display:none}
 .tab-pane.active{display:block}
-
 /* SECTION */
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
 .section-head h2{font-size:16px;font-weight:700;color:var(--text)}
 .section-head p{font-size:12px;color:var(--muted)}
 .last-update{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px;text-align:right}
-
 /* TABLE */
 .tbl-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--b1)}
 table{width:100%;border-collapse:collapse}
@@ -66,40 +61,40 @@ tbody tr{border-bottom:1px solid var(--b1);transition:background .12s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover td{background:rgba(124,95,255,.07)!important}
 td{padding:10px 12px;white-space:nowrap;vertical-align:middle}
-
 /* HEATMAP */
 td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weight:500}
 .v-strong-up{background:rgba(0,200,90,.60)!important;color:#ccffe0!important}
-.v-up       {background:rgba(0,200,90,.35)!important;color:#99ffcc!important}
+.v-up {background:rgba(0,200,90,.35)!important;color:#99ffcc!important}
 .v-light-up {background:rgba(0,200,90,.18)!important;color:#66dd99!important}
-.v-flat     {color:var(--t2)}
+.v-flat {color:var(--t2)}
 .v-light-dn {background:rgba(230,50,70,.18)!important;color:#ffbbcc!important}
-.v-dn       {background:rgba(230,50,70,.38)!important;color:#ff8899!important}
+.v-dn {background:rgba(230,50,70,.38)!important;color:#ff8899!important}
 .v-strong-dn{background:rgba(230,50,70,.62)!important;color:#ffccdd!important}
-
 /* THEME PILL */
 .theme-pill{display:inline-flex;align-items:center;padding:4px 11px;border-radius:5px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap;letter-spacing:.2px}
-
 /* GEO BADGE */
 .geo-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700;white-space:nowrap}
-
 /* SCORE */
 .score-wrap{display:flex;align-items:center;gap:7px;min-width:90px}
 .score-bar-bg{flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
 .score-bar{height:100%;border-radius:3px}
 .score-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:32px;text-align:right}
-
+/* RSI */
+.rsi-wrap{display:flex;align-items:center;gap:6px;min-width:80px}
+.rsi-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:36px;text-align:right}
+.rsi-bar-bg{flex:1;height:4px;background:var(--b1);border-radius:2px;overflow:hidden;position:relative}
+.rsi-bar{height:100%;border-radius:2px;transition:width .3s}
+/* BBP */
+.bbp-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:600}
 /* TICKERS */
 .ticker-list{display:flex;gap:4px;flex-wrap:wrap;max-width:300px}
 .t-chip{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;border:1px solid var(--b2);color:var(--t2);background:var(--s2);white-space:nowrap;cursor:default;transition:all .15s}
 .t-chip:hover{border-color:var(--accent);color:#c0b0ff}
 .t-chip.best{border-color:rgba(124,95,255,.6);color:#c0b0ff;background:rgba(124,95,255,.15)}
-
 /* AUM */
 .aum-wrap{text-align:right}
 .aum-v{font-family:'DM Mono',monospace;font-size:12px;color:var(--t2)}
 .aum-c{font-family:'DM Mono',monospace;font-size:10px;margin-top:2px}
-
 /* FLOW */
 .flow{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;font-weight:600;border:1px solid transparent;white-space:nowrap}
 .flow.sb{background:rgba(0,255,150,.12);border-color:rgba(0,255,150,.35);color:#00ff96}
@@ -108,25 +103,21 @@ td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weigh
 .flow.s {background:rgba(255,70,100,.12);border-color:rgba(255,70,100,.35);color:#ff6688}
 .flow.ss{background:rgba(230,0,60,.12);border-color:rgba(230,0,60,.35);color:#ff3366}
 .flow.nd{color:var(--muted);font-size:10px}
-
 /* INDIVIDUAL ETF */
 .sym{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#b8a8ff}
 .etf-n{font-size:13px;font-weight:500;color:var(--text);max-width:240px;overflow:hidden;text-overflow:ellipsis;display:block}
 .etf-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:1px}
-
 .empty-row td{text-align:center;padding:50px;color:var(--muted);font-size:13px}
-
 #toast{position:fixed;bottom:24px;right:24px;background:var(--s3);border:1px solid var(--b2);border-radius:10px;padding:11px 18px;font-size:13px;font-weight:500;color:var(--text);z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
 #toast.show{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 <div class="wrap">
-
 <header>
   <div class="logo">
     <h1>ETF Theme Tracker</h1>
-    <p>Thematic · Geographic · AUM Flow Signal · Xetra / UCITS</p>
+    <p>Thematic · Geographic · RSI · Bull Bear Power · Xetra / UCITS</p>
   </div>
   <div class="header-right">
     <label class="upload-btn">📂 Upload CSV Data<input type="file" id="csvInput" accept=".csv,.txt"></label>
@@ -138,17 +129,18 @@ td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weigh
 <div class="csv-box">
   <button class="csv-toggle" onclick="toggleCsv()">▸ How to prepare your data file</button>
   <div class="csv-info" id="csvInfo">
-    <h4>Run the Python converter script daily, then upload the output here</h4>
-    The converted CSV will have these columns:
-    <div class="example">ticker,name,theme,geo,geo_type,chg1d,chg1w,chg1m,chg3m,ytd,chg1y,aum,aum_prev</div>
+    <h4>Export from TradingView Screener – include RSI and Bull Bear Power columns</h4>
+    The tracker accepts the raw TradingView CSV export directly. Make sure your screener includes:
+    <div class="example">Symbol, Description, Price, Assets under management, Price Change % 1 day,
+Performance % 1 week/1 month/3 months/Year to date/1 year,
+Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
     <table>
-      <tr><th>Column</th><th>Description</th><th>Example</th></tr>
-      <tr><td><code>ticker</code></td><td>Xetra ticker</td><td>AIAG</td></tr>
-      <tr><td><code>theme</code></td><td>Theme (empty for geo ETFs)</td><td>AI & Tech</td></tr>
-      <tr><td><code>geo</code></td><td>Geography (empty for theme ETFs)</td><td>Europe</td></tr>
-      <tr><td><code>ytd</code></td><td>Year-to-date performance %</td><td>18.5</td></tr>
-      <tr><td><code>chg1y</code></td><td>1-year performance %</td><td>42.3</td></tr>
-      <tr><td><code>aum / aum_prev</code></td><td>Today's and yesterday's AUM in EUR</td><td>4250000000</td></tr>
+      <tr><th>Column</th><th>Description</th></tr>
+      <tr><td><code>Symbol</code></td><td>Xetra ticker (SXRV, VVSM…)</td></tr>
+      <tr><td><code>Niche</code></td><td>Used for theme classification</td></tr>
+      <tr><td><code>Assets under management</code></td><td>AUM in EUR</td></tr>
+      <tr><td><code>Relative Strength Index (14) 1 day</code></td><td>RSI – overbought >70, oversold &lt;30</td></tr>
+      <tr><td><code>Bull Bear Power (13) 1 day</code></td><td>BBP – positive = bulls in control</td></tr>
     </table>
   </div>
 </div>
@@ -175,11 +167,13 @@ td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weigh
       <th onclick="sortT('themes',6)" class="r">YTD ↕</th>
       <th onclick="sortT('themes',7)" class="r">1Y ↕</th>
       <th onclick="sortT('themes',8)">Score ↕</th>
-      <th onclick="sortT('themes',9)" class="r">AUM ↕</th>
-      <th onclick="sortT('themes',10)">Flow Signal ↕</th>
+      <th onclick="sortT('themes',9)">RSI ↕</th>
+      <th onclick="sortT('themes',10)">BBP ↕</th>
+      <th onclick="sortT('themes',11)" class="r">AUM ↕</th>
+      <th onclick="sortT('themes',12)">Flow Signal ↕</th>
       <th>ETFs in Theme</th>
     </tr></thead>
-    <tbody id="themeBody"><tr class="empty-row"><td colspan="12">Upload a CSV file to display data</td></tr></tbody>
+    <tbody id="themeBody"><tr class="empty-row"><td colspan="14">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="themeUpdate"></div>
 </div>
@@ -202,10 +196,12 @@ td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weigh
       <th onclick="sortT('indiv',8)" class="r">YTD ↕</th>
       <th onclick="sortT('indiv',9)" class="r">1Y ↕</th>
       <th onclick="sortT('indiv',10)">Score ↕</th>
-      <th onclick="sortT('indiv',11)" class="r">AUM ↕</th>
-      <th onclick="sortT('indiv',12)">Flow Signal ↕</th>
+      <th onclick="sortT('indiv',11)">RSI ↕</th>
+      <th onclick="sortT('indiv',12)">BBP ↕</th>
+      <th onclick="sortT('indiv',13)" class="r">AUM ↕</th>
+      <th onclick="sortT('indiv',14)">Flow Signal ↕</th>
     </tr></thead>
-    <tbody id="indivBody"><tr class="empty-row"><td colspan="13">Upload a CSV file to display data</td></tr></tbody>
+    <tbody id="indivBody"><tr class="empty-row"><td colspan="15">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="indivUpdate"></div>
 </div>
@@ -229,10 +225,12 @@ td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weigh
       <th onclick="sortT('geo',9)" class="r">YTD ↕</th>
       <th onclick="sortT('geo',10)" class="r">1Y ↕</th>
       <th onclick="sortT('geo',11)">Score ↕</th>
-      <th onclick="sortT('geo',12)" class="r">AUM ↕</th>
-      <th onclick="sortT('geo',13)">Flow Signal ↕</th>
+      <th onclick="sortT('geo',12)">RSI ↕</th>
+      <th onclick="sortT('geo',13)">BBP ↕</th>
+      <th onclick="sortT('geo',14)" class="r">AUM ↕</th>
+      <th onclick="sortT('geo',15)">Flow Signal ↕</th>
     </tr></thead>
-    <tbody id="geoBody"><tr class="empty-row"><td colspan="14">Upload a CSV file to display data</td></tr></tbody>
+    <tbody id="geoBody"><tr class="empty-row"><td colspan="16">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="geoUpdate"></div>
 </div>
@@ -243,22 +241,12 @@ td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weigh
 <script>
 // ── THEME COLORS ──────────────────────────────
 const TC = {
-  'Semiconductors':    '#1a6abf',
-  'AI & Tech':         '#5535ef',
-  'Defense':           '#c04a00',
-  'Clean Energy':      '#1a8a40',
-  'Nuclear':           '#7a2090',
-  'Cybersecurity':     '#0a6090',
-  'Crypto':            '#c07000',
-  'Health & Biotech':  '#0a8870',
-  'Materials':         '#5a6a20',
-  'Gold':              '#a07800',
-  'Silver':            '#607080',
-  'Financials':        '#0a50a0',
-  'EV & Mobility':     '#186830',
-  'Momentum':          '#404090',
-  'Consumer':          '#a02860',
-  'Infrastructure':    '#6a2090',
+  'Semiconductors':'#1a6abf','AI & Tech':'#5535ef','Defense':'#c04a00',
+  'Clean Energy':'#1a8a40','Nuclear':'#7a2090','Cybersecurity':'#0a6090',
+  'Crypto':'#c07000','Health & Biotech':'#0a8870','Materials':'#5a6a20',
+  'Gold':'#a07800','Silver':'#607080','Financials':'#0a50a0',
+  'EV & Mobility':'#186830','Momentum':'#404090','Consumer':'#a02860',
+  'Infrastructure':'#6a2090','Oil & Gas':'#8a4020','Space':'#1a3080',
 };
 
 // ── GEO COLORS ────────────────────────────────
@@ -275,6 +263,87 @@ const GEO_STYLES = {
 let allRows=[], themeData=[], indivRows=[], geoRows=[];
 let sortState={themes:{col:8,dir:-1},indiv:{col:10,dir:-1},geo:{col:11,dir:-1}};
 
+// ── NICHE → THEME MAP (TradingView) ──────────
+const NICHE_THEME = {
+  'Robotics & AI':'AI & Tech','Broad technology':'AI & Tech',
+  'Semiconductors':'Semiconductors','Aerospace & defense':'Defense',
+  'Renewable energy':'Clean Energy','Low carbon':'Clean Energy',
+  'Nuclear energy':'Nuclear','Banks':'Financials','Blockchain':'Crypto',
+  'Gold miners':'Gold','Diversified metals & mining':'Materials',
+  'Oil & gas exploration & production':'Oil & Gas',
+  'Oil, gas & consumable fuels':'Oil & Gas','Space':'Space',
+  'Construction & engineering':'Infrastructure',
+};
+
+// ── GEO DETECTION ─────────────────────────────
+function detectGeo(r) {
+  const idx = (r['index tracked']||r['niche']||'').toLowerCase();
+  const name = (r['description']||r['name']||'').toLowerCase();
+  const combined = idx+' '+name;
+  if(/korea/.test(combined)) return {geo:'Asia',geo_type:'South Korea'};
+  if(/japan/.test(combined)) return {geo:'Asia',geo_type:'Japan'};
+  if(/china|hong kong/.test(combined)) return {geo:'Asia',geo_type:'China'};
+  if(/india/.test(combined)) return {geo:'Asia',geo_type:'India'};
+  if(/em asia|msci asia/.test(combined)) return {geo:'Asia',geo_type:'EM Asia'};
+  if(/s&p 500|nasdaq|russell|dow jones/.test(combined)) return {geo:'North America',geo_type:'USA'};
+  if(/stoxx europe|euro stoxx|dax|mdax|ftse|msci europe/.test(combined)) return {geo:'Europe',geo_type:'Europe'};
+  if(/acwi|all country world/.test(combined)) return {geo:'Global',geo_type:'Global'};
+  if(/msci world/.test(combined)) return {geo:'Global',geo_type:'World'};
+  if(/emerging market|msci em /.test(combined)) return {geo:'Emerging Markets',geo_type:'EM'};
+  if(/latin|brazil/.test(combined)) return {geo:'Americas',geo_type:'LatAm'};
+  return null;
+}
+
+// ── PARSE ROW (TradingView or pre-converted) ──
+function parseRow(r) {
+  // Normalize keys to lowercase
+  const n = {};
+  for(const [k,v] of Object.entries(r)) n[k.toLowerCase()] = v;
+
+  // Already converted format?
+  if(n['ticker']) return {
+    ticker: n.ticker, name: n.name||n.ticker,
+    theme: n.theme||'', geo: n.geo||'', geo_type: n.geo_type||'',
+    chg1d: n.chg1d, chg1w: n.chg1w, chg1m: n.chg1m,
+    chg3m: n.chg3m, ytd: n.ytd, chg1y: n.chg1y,
+    aum: n.aum, aum_prev: n.aum_prev||'',
+    rsi: n.rsi||'', bbp: n.bbp||'',
+  };
+
+  // TradingView format
+  const ticker = n['symbol']||'';
+  const name   = n['description']||ticker;
+  const niche  = (n['niche']||'').trim();
+  const desc   = name.toLowerCase();
+
+  let theme = NICHE_THEME[niche] || '';
+  let geo='', geo_type='';
+
+  // Physical commodities override
+  if(/gold/.test(desc) && !/miner/.test(desc)) theme='Gold';
+  else if(/silver/.test(desc)) theme='Silver';
+  else if(/crude|brent|wti/.test(desc)) theme='Oil & Gas';
+
+  if(!theme) {
+    const g = detectGeo(n);
+    if(g) { geo=g.geo; geo_type=g.geo_type; }
+  }
+
+  return {
+    ticker, name, theme, geo, geo_type,
+    chg1d: n['price change % 1 day']||'',
+    chg1w: n['performance % 1 week']||'',
+    chg1m: n['performance % 1 month']||'',
+    chg3m: n['performance % 3 months']||'',
+    ytd:   n['performance % year to date']||'',
+    chg1y: n['performance % 1 year']||'',
+    aum:   n['assets under management']||'',
+    aum_prev: '',
+    rsi: n['relative strength index (14) 1 day']||n['rsi']||'',
+    bbp: n['bull bear power (13) 1 day']||n['bbp']||'',
+  };
+}
+
 // ── HELPERS ───────────────────────────────────
 const pf = v => parseFloat(v);
 
@@ -289,21 +358,21 @@ function calcFlow(r) {
   const a=pf(r.aum),p=pf(r.aum_prev),w=pf(r.chg1w);
   if(isNaN(a)||isNaN(p)||p===0) return null;
   const ac=((a-p)/p)*100, diff=ac-(isNaN(w)?0:w);
-  if(diff>3)    return {label:'⬆ STRONG BUY',cls:'sb',diff};
-  if(diff>0.5)  return {label:'↑ BUY',       cls:'b', diff};
-  if(diff>-0.5) return {label:'— NEUTRAL',   cls:'n', diff};
-  if(diff>-3)   return {label:'↓ SELL',      cls:'s', diff};
-  return            {label:'⬇ STRONG SELL',cls:'ss',diff};
+  if(diff>3)   return {label:'⬆ STRONG BUY',cls:'sb',diff};
+  if(diff>0.5) return {label:'↑ BUY',        cls:'b', diff};
+  if(diff>-.5) return {label:'— NEUTRAL',    cls:'n', diff};
+  if(diff>-3)  return {label:'↓ SELL',        cls:'s', diff};
+  return            {label:'⬇ STRONG SELL',  cls:'ss',diff};
 }
 
 function hmClass(v) {
   const n=pf(v); if(isNaN(n)) return 'v-flat';
-  if(n>=5)   return 'v-strong-up';
-  if(n>=1.5) return 'v-up';
-  if(n>=0.3) return 'v-light-up';
-  if(n>-0.3) return 'v-flat';
-  if(n>-1.5) return 'v-light-dn';
-  if(n>-5)   return 'v-dn';
+  if(n>=5)  return 'v-strong-up';
+  if(n>=1.5)return 'v-up';
+  if(n>=0.3)return 'v-light-up';
+  if(n>-0.3)return 'v-flat';
+  if(n>-1.5)return 'v-light-dn';
+  if(n>-5)  return 'v-dn';
   return 'v-strong-dn';
 }
 
@@ -325,6 +394,26 @@ function fScore(sc) {
   </div>`;
 }
 
+function fRsi(v) {
+  const n=pf(v);
+  if(isNaN(n)) return '<span style="color:var(--muted)">—</span>';
+  const pct=Math.min(100,Math.max(0,n));
+  const color = n>=70?'#ff4466':n>=55?'#f5a623':n<=30?'#00e4b8':n<=45?'#7c5fff':'var(--t2)';
+  const label = n>=70?'OB':n<=30?'OS':'';
+  return `<div class="rsi-wrap">
+    <div class="rsi-bar-bg"><div class="rsi-bar" style="width:${pct}%;background:${color}"></div></div>
+    <span class="rsi-num" style="color:${color}">${n.toFixed(0)}${label?'<sup style="font-size:8px;margin-left:1px">'+label+'</sup>':''}</span>
+  </div>`;
+}
+
+function fBbp(v) {
+  const n=pf(v);
+  if(isNaN(n)) return '<span style="color:var(--muted)">—</span>';
+  const color = n>50?'var(--up)':n>0?'#7cffb0':n>-50?'#ff8899':'var(--dn)';
+  const arrow = n>0?'▲':'▼';
+  return `<span class="bbp-num" style="color:${color}">${arrow} ${n.toFixed(1)}</span>`;
+}
+
 function fAum(aum, aum_prev) {
   const a=pf(aum); if(isNaN(a)) return '<span style="color:var(--muted)">—</span>';
   const fmt=n=>n>=1e9?(n/1e9).toFixed(1)+'B':n>=1e6?(n/1e6).toFixed(0)+'M':n.toLocaleString();
@@ -336,8 +425,8 @@ function fAum(aum, aum_prev) {
 
 function fFlow(r) {
   const sig=calcFlow(r);
-  if(!sig) return '<span class="flow nd">— no AUM data</span>';
-  return `<span class="flow ${sig.cls}" title="AUM vs price diff: ${sig.diff>=0?'+':''}${sig.diff.toFixed(1)}%">${sig.label}</span>`;
+  if(!sig) return '<span class="flow nd">— no AUM prev</span>';
+  return `<span class="flow ${sig.cls}" title="diff: ${sig.diff>=0?'+':''}${sig.diff.toFixed(1)}%">${sig.label}</span>`;
 }
 
 function fThemePill(t) {
@@ -373,12 +462,14 @@ function buildThemeData() {
     const top=scored.slice(0,3).map(x=>x.r);
     const avg=key=>{const vs=top.map(r=>pf(r[key])).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
     const ag={chg1d:avg('chg1d'),chg1w:avg('chg1w'),chg1m:avg('chg1m'),chg3m:avg('chg3m'),ytd:avg('ytd'),chg1y:avg('chg1y')};
+    const avgRsi=()=>{const vs=rows.map(r=>pf(r.rsi)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+    const avgBbp=()=>{const vs=rows.map(r=>pf(r.bbp)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
     return {
-      theme, rows, top3:top,
-      ...ag,
-      sc: calcScore(ag),
-      aum: top.reduce((s,r)=>s+(pf(r.aum)||0),0),
-      aum_prev: top.reduce((s,r)=>s+(pf(r.aum_prev)||0),0),
+      theme, rows, top3:top, ...ag,
+      sc:calcScore(ag),
+      rsi:avgRsi(), bbp:avgBbp(),
+      aum:top.reduce((s,r)=>s+(pf(r.aum)||0),0),
+      aum_prev:top.reduce((s,r)=>s+(pf(r.aum_prev)||0),0),
     };
   });
   themeData.sort((a,b)=>(b.sc??-999)-(a.sc??-999));
@@ -387,7 +478,7 @@ function buildThemeData() {
 // ── RENDER THEMES ─────────────────────────────
 function renderThemes() {
   const tbody=document.getElementById('themeBody');
-  if(!themeData.length){tbody.innerHTML='<tr class="empty-row"><td colspan="12">No thematic data in CSV</td></tr>';return;}
+  if(!themeData.length){tbody.innerHTML='<tr class="empty-row"><td colspan="14">No thematic data in CSV</td></tr>';return;}
   tbody.innerHTML=themeData.map((td,i)=>{
     const sig=calcFlow({aum:td.aum,aum_prev:td.aum_prev,chg1w:td.chg1w});
     const tickers=td.rows.map((r,j)=>`<span class="t-chip${j<3?' best':''}">${r.ticker}</span>`).join('');
@@ -396,18 +487,20 @@ function renderThemes() {
       <td>${fThemePill(td.theme)}</td>
       ${fHm(td.chg1d)}${fHm(td.chg1w)}${fHm(td.chg1m)}${fHm(td.chg3m)}${fHm(td.ytd)}${fHm(td.chg1y)}
       <td>${fScore(td.sc)}</td>
+      <td>${fRsi(td.rsi)}</td>
+      <td>${fBbp(td.bbp)}</td>
       <td>${fAum(td.aum,td.aum_prev)}</td>
-      <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM</span>'}</td>
+      <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM prev</span>'}</td>
       <td><div class="ticker-list">${tickers}</div></td>
     </tr>`;
   }).join('');
-  document.getElementById('themeUpdate').textContent=`Last updated: ${new Date().toLocaleString('en-SE')}`;
+  document.getElementById('themeUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
 // ── RENDER INDIVIDUAL ─────────────────────────
 function renderIndiv() {
   const tbody=document.getElementById('indivBody');
-  if(!indivRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="13">No data in CSV</td></tr>';return;}
+  if(!indivRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="15">No data in CSV</td></tr>';return;}
   tbody.innerHTML=indivRows.map((r,i)=>{
     const sc=calcScore(r);
     const cat=r.theme?fThemePill(r.theme):r.geo?fGeoBadge(r.geo):'—';
@@ -418,17 +511,19 @@ function renderIndiv() {
       <td>${cat}</td>
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m)}${fHm(r.ytd)}${fHm(r.chg1y)}
       <td>${fScore(sc)}</td>
+      <td>${fRsi(r.rsi)}</td>
+      <td>${fBbp(r.bbp)}</td>
       <td>${fAum(r.aum,r.aum_prev)}</td>
       <td>${fFlow(r)}</td>
     </tr>`;
   }).join('');
-  document.getElementById('indivUpdate').textContent=`Last updated: ${new Date().toLocaleString('en-SE')}`;
+  document.getElementById('indivUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
 // ── RENDER GEO ────────────────────────────────
 function renderGeo() {
   const tbody=document.getElementById('geoBody');
-  if(!geoRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="14">No geographic data in CSV</td></tr>';return;}
+  if(!geoRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="16">No geographic data in CSV</td></tr>';return;}
   tbody.innerHTML=geoRows.map((r,i)=>{
     const sc=calcScore(r);
     return `<tr>
@@ -439,11 +534,13 @@ function renderGeo() {
       <td>${fGeoTypeBadge(r.geo,r.geo_type)}</td>
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m)}${fHm(r.ytd)}${fHm(r.chg1y)}
       <td>${fScore(sc)}</td>
+      <td>${fRsi(r.rsi)}</td>
+      <td>${fBbp(r.bbp)}</td>
       <td>${fAum(r.aum,r.aum_prev)}</td>
       <td>${fFlow(r)}</td>
     </tr>`;
   }).join('');
-  document.getElementById('geoUpdate').textContent=`Last updated: ${new Date().toLocaleString('en-SE')}`;
+  document.getElementById('geoUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
 // ── SORT ──────────────────────────────────────
@@ -453,9 +550,9 @@ function sortT(tbl,col) {
   const getV=(r,c,type)=>{
     if(type==='themes'){
       if(c===1) return r.theme;
-      const cols=[null,'theme','chg1d','chg1w','chg1m','chg3m','ytd','chg1y','sc','aum'];
-      if(c>=2&&c<=9) return r[['','','chg1d','chg1w','chg1m','chg3m','ytd','chg1y','sc','aum'][c]]??-999;
-      if(c===10){const sg=calcFlow({aum:r.aum,aum_prev:r.aum_prev,chg1w:r.chg1w});return sg?sg.diff:-999;}
+      const map={2:'chg1d',3:'chg1w',4:'chg1m',5:'chg3m',6:'ytd',7:'chg1y',8:'sc',9:'rsi',10:'bbp',11:'aum'};
+      if(map[c]!=null) return pf(r[map[c]])??-999;
+      if(c===12){const sg=calcFlow({aum:r.aum,aum_prev:r.aum_prev,chg1w:r.chg1w});return sg?sg.diff:-999;}
     }
     if(type==='indiv'){
       if(c===1) return r.ticker;
@@ -464,8 +561,10 @@ function sortT(tbl,col) {
       const map={4:'chg1d',5:'chg1w',6:'chg1m',7:'chg3m',8:'ytd',9:'chg1y'};
       if(map[c]) return pf(r[map[c]])||(-999);
       if(c===10) return calcScore(r)??(-999);
-      if(c===11) return pf(r.aum)||(-1);
-      if(c===12){const sg=calcFlow(r);return sg?sg.diff:-999;}
+      if(c===11) return pf(r.rsi)||(-1);
+      if(c===12) return pf(r.bbp)||(-9999);
+      if(c===13) return pf(r.aum)||(-1);
+      if(c===14){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     if(type==='geo'){
       if(c===1) return r.ticker;
@@ -475,8 +574,10 @@ function sortT(tbl,col) {
       const map={5:'chg1d',6:'chg1w',7:'chg1m',8:'chg3m',9:'ytd',10:'chg1y'};
       if(map[c]) return pf(r[map[c]])||(-999);
       if(c===11) return calcScore(r)??(-999);
-      if(c===12) return pf(r.aum)||(-1);
-      if(c===13){const sg=calcFlow(r);return sg?sg.diff:-999;}
+      if(c===12) return pf(r.rsi)||(-1);
+      if(c===13) return pf(r.bbp)||(-9999);
+      if(c===14) return pf(r.aum)||(-1);
+      if(c===15){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     return 0;
   };
@@ -493,24 +594,24 @@ document.getElementById('csvInput').addEventListener('change',function(e){
   reader.onload=ev=>{
     try{
       const lines=ev.target.result.trim().split('\n');
-      const hdr=lines[0].toLowerCase().replace(/\r/g,'').split(',').map(h=>h.trim());
-      const idx={}; hdr.forEach((h,i)=>idx[h]=i);
-      if(idx['ticker']===undefined){showToast('⚠ CSV missing column: ticker');return;}
+      const hdr=lines[0].replace(/\r/g,'').split(',').map(h=>h.trim());
       const rows=[];
       for(let i=1;i<lines.length;i++){
         const cols=lines[i].replace(/\r/g,'').split(',');
-        if(!cols[idx.ticker]?.trim()) continue;
-        const row={}; hdr.forEach((h,j)=>row[h]=cols[j]?.trim()||'');
-        rows.push(row);
+        if(!cols[0]?.trim()) continue;
+        const raw={};
+        hdr.forEach((h,j)=>raw[h]=cols[j]?.trim()||'');
+        const row=parseRow(raw);
+        if(row.ticker) rows.push(row);
       }
-      allRows   = rows;
-      indivRows = [...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
-      geoRows   = rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+      allRows=rows;
+      indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+      geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
       buildThemeData();
       renderThemes(); renderIndiv(); renderGeo();
       document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;
       document.getElementById('dataBadge').className='badge ok';
-      document.getElementById('dateBadge').textContent=new Date().toLocaleDateString('en-SE');
+      document.getElementById('dateBadge').textContent=new Date().toLocaleDateString('sv-SE');
       showToast(`✓ Loaded ${rows.length} ETFs`);
     }catch(err){showToast('⚠ Could not read CSV');console.error(err);}
   };
