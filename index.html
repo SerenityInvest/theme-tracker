@@ -263,35 +263,60 @@ const GEO_STYLES = {
 let allRows=[], themeData=[], indivRows=[], geoRows=[];
 let sortState={themes:{col:8,dir:-1},indiv:{col:10,dir:-1},geo:{col:11,dir:-1}};
 
-// ── NICHE → THEME MAP (TradingView) ──────────
-const NICHE_THEME = {
-  'Robotics & AI':'AI & Tech','Broad technology':'AI & Tech',
-  'Semiconductors':'Semiconductors','Aerospace & defense':'Defense',
-  'Renewable energy':'Clean Energy','Low carbon':'Clean Energy',
-  'Nuclear energy':'Nuclear','Banks':'Financials','Blockchain':'Crypto',
-  'Gold miners':'Gold','Diversified metals & mining':'Materials',
-  'Oil & gas exploration & production':'Oil & Gas',
-  'Oil, gas & consumable fuels':'Oil & Gas','Space':'Space',
-  'Construction & engineering':'Infrastructure',
-};
+// ── SMART THEME + GEO CLASSIFICATION ─────────
+// Regler: [keywords] → kategori. Specifika matchar före generella.
+const THEME_RULES = [
+  [['semiconductor','semi ','chip'],                                          'Semiconductors'],
+  [['artificial intelligence','ai and big data','ai & big data','robotics',
+    'automation','information technology',' it ','tech select',
+    'technology select','nasdaq 100','nasdaq-100','yewno'],                   'AI & Tech'],
+  [['defense','defence'],                                                     'Defense'],
+  [['nuclear','uranium'],                                                     'Nuclear'],
+  [['clean energy','renewable','solar','wind','low carbon','green'],          'Clean Energy'],
+  [['bitcoin','crypto','blockchain','digital asset','btc'],                   'Crypto'],
+  [['gold miner','gold bugs','gold producer','pure gold',
+    'lbma gold','gold price pm','physical gold'],                             'Gold'],
+  [['silver miner','global silver','lbma silver','silver price'],             'Silver'],
+  [['copper','rare earth','strategic metal'],                                 'Materials'],
+  [['oil','gas','crude','brent','wti','energy select','energy sector'],       'Oil & Gas'],
+  [['health care','healthcare','biotech','pharma','medical'],                 'Health & Biotech'],
+  [['bank','financials','financial sector'],                                  'Financials'],
+  [['space industry','space'],                                                'Space'],
+  [['construction','infrastructure','industrial goods'],                      'Infrastructure'],
+  [['electric vehicle','ev ','mobility','automotive'],                        'EV & Mobility'],
+  [['consumer','retail'],                                                     'Consumer'],
+  [['momentum'],                                                              'Momentum'],
+];
 
-// ── GEO DETECTION ─────────────────────────────
-function detectGeo(r) {
-  const idx = (r['index tracked']||r['niche']||'').toLowerCase();
-  const name = (r['description']||r['name']||'').toLowerCase();
-  const combined = idx+' '+name;
-  if(/korea/.test(combined)) return {geo:'Asia',geo_type:'South Korea'};
-  if(/japan/.test(combined)) return {geo:'Asia',geo_type:'Japan'};
-  if(/china|hong kong/.test(combined)) return {geo:'Asia',geo_type:'China'};
-  if(/india/.test(combined)) return {geo:'Asia',geo_type:'India'};
-  if(/em asia|msci asia/.test(combined)) return {geo:'Asia',geo_type:'EM Asia'};
-  if(/s&p 500|nasdaq|russell|dow jones/.test(combined)) return {geo:'North America',geo_type:'USA'};
-  if(/stoxx europe|euro stoxx|dax|mdax|ftse|msci europe/.test(combined)) return {geo:'Europe',geo_type:'Europe'};
-  if(/acwi|all country world/.test(combined)) return {geo:'Global',geo_type:'Global'};
-  if(/msci world/.test(combined)) return {geo:'Global',geo_type:'World'};
-  if(/emerging market|msci em /.test(combined)) return {geo:'Emerging Markets',geo_type:'EM'};
-  if(/latin|brazil/.test(combined)) return {geo:'Americas',geo_type:'LatAm'};
-  return null;
+const GEO_RULES = [
+  [['korea'],                                         'Asia',            'South Korea'],
+  [['japan'],                                         'Asia',            'Japan'],
+  [['china','hong kong'],                             'Asia',            'China'],
+  [['india'],                                         'Asia',            'India'],
+  [['em asia','msci asia'],                           'Asia',            'EM Asia'],
+  [['s&p 500','nasdaq','russell','dow jones',
+    'msci usa','s&p technology','s&p energy'],        'North America',   'USA'],
+  [['stoxx europe','euro stoxx','dax','mdax',
+    'msci europe','stoxx europe small'],              'Europe',          'Europe'],
+  [['acwi','all country world','ftse all-world',
+    'global markets large'],                          'Global',          'Global'],
+  [['msci world'],                                    'Global',          'World'],
+  [['emerging market','msci em ','em (emerging'],     'Emerging Markets','EM'],
+  [['latin','brazil'],                                'Americas',        'LatAm'],
+];
+
+function classifyETF(r) {
+  const name     = (r['description']||r['name']||'').toLowerCase();
+  const idx      = (r['index tracked']||'').toLowerCase();
+  const combined = name + ' ' + idx;
+
+  for(const [keywords, theme] of THEME_RULES) {
+    if(keywords.some(k => combined.includes(k))) return {theme, geo:'', geo_type:''};
+  }
+  for(const [keywords, geo, geo_type] of GEO_RULES) {
+    if(keywords.some(k => combined.includes(k))) return {theme:'', geo, geo_type};
+  }
+  return {theme:'', geo:'', geo_type:''};
 }
 
 // ── PARSE ROW (TradingView or pre-converted) ──
@@ -301,7 +326,7 @@ function parseRow(r) {
   for(const [k,v] of Object.entries(r)) n[k.toLowerCase()] = v;
 
   // Already converted format?
-  if(n['ticker']) return {
+  if(n['ticker'] && !n['symbol']) return {
     ticker: n.ticker, name: n.name||n.ticker,
     theme: n.theme||'', geo: n.geo||'', geo_type: n.geo_type||'',
     chg1d: n.chg1d, chg1w: n.chg1w, chg1m: n.chg1m,
@@ -313,21 +338,8 @@ function parseRow(r) {
   // TradingView format
   const ticker = n['symbol']||'';
   const name   = n['description']||ticker;
-  const niche  = (n['niche']||'').trim();
-  const desc   = name.toLowerCase();
-
-  let theme = NICHE_THEME[niche] || '';
-  let geo='', geo_type='';
-
-  // Physical commodities override
-  if(/gold/.test(desc) && !/miner/.test(desc)) theme='Gold';
-  else if(/silver/.test(desc)) theme='Silver';
-  else if(/crude|brent|wti/.test(desc)) theme='Oil & Gas';
-
-  if(!theme) {
-    const g = detectGeo(n);
-    if(g) { geo=g.geo; geo_type=g.geo_type; }
-  }
+  const cl = classifyETF(n);
+  const theme = cl.theme, geo = cl.geo, geo_type = cl.geo_type;
 
   return {
     ticker, name, theme, geo, geo_type,
@@ -341,6 +353,7 @@ function parseRow(r) {
     aum_prev: '',
     rsi: n['relative strength index (14) 1 day']||n['rsi']||'',
     bbp: n['bull bear power (13) 1 day']||n['bbp']||'',
+    _rawIdx: n['index tracked']||'',
   };
 }
 
@@ -363,6 +376,36 @@ function calcFlow(r) {
   if(diff>-.5) return {label:'— NEUTRAL',    cls:'n', diff};
   if(diff>-3)  return {label:'↓ SELL',        cls:'s', diff};
   return            {label:'⬇ STRONG SELL',  cls:'ss',diff};
+}
+
+// ── DEDUPLICATION ─────────────────────────────
+// Grupperar på samma index, behåller bäst score + störst AUM
+function deduplicateRows(rows) {
+  const indexMap = {};
+  const noIndex  = [];
+
+  for(const r of rows) {
+    const idx = (r['index tracked'] || r._rawIdx || '').trim();
+    if(!idx || idx === 'No Underlying Index') {
+      noIndex.push(r);
+      continue;
+    }
+    if(!indexMap[idx]) indexMap[idx] = [];
+    indexMap[idx].push(r);
+  }
+
+  const kept = [];
+  for(const [idx, group] of Object.entries(indexMap)) {
+    if(group.length === 1) { kept.push(group[0]); continue; }
+    // Sort by score desc, then AUM desc
+    group.sort((a,b) => {
+      const sa = calcScore(a) ?? -999, sb = calcScore(b) ?? -999;
+      if(Math.abs(sa-sb) > 0.05) return sb - sa;
+      return (pf(b.aum)||0) - (pf(a.aum)||0);
+    });
+    kept.push(group[0]); // keep winner only
+  }
+  return [...kept, ...noIndex];
 }
 
 function hmClass(v) {
@@ -587,6 +630,19 @@ function sortT(tbl,col) {
   else{geoRows.sort(cmp);renderGeo();}
 }
 
+// ── CSV PARSE HELPER (handles quoted fields with commas) ──
+function parseCsvLine(line) {
+  const result=[]; let cur='', inQ=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"'){ inQ=!inQ; }
+    else if(c===','&&!inQ){ result.push(cur.trim()); cur=''; }
+    else { cur+=c; }
+  }
+  result.push(cur.trim());
+  return result;
+}
+
 // ── CSV UPLOAD ────────────────────────────────
 document.getElementById('csvInput').addEventListener('change',function(e){
   const file=e.target.files[0]; if(!file) return;
@@ -594,25 +650,27 @@ document.getElementById('csvInput').addEventListener('change',function(e){
   reader.onload=ev=>{
     try{
       const lines=ev.target.result.trim().split('\n');
-      const hdr=lines[0].replace(/\r/g,'').split(',').map(h=>h.trim());
+      const hdr=parseCsvLine(lines[0].replace(/\r/g,''));
       const rows=[];
       for(let i=1;i<lines.length;i++){
-        const cols=lines[i].replace(/\r/g,'').split(',');
+        const cols=parseCsvLine(lines[i].replace(/\r/g,''));
         if(!cols[0]?.trim()) continue;
         const raw={};
         hdr.forEach((h,j)=>raw[h]=cols[j]?.trim()||'');
         const row=parseRow(raw);
         if(row.ticker) rows.push(row);
       }
-      allRows=rows;
-      indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
-      geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+      const dedupedRows = deduplicateRows(rows);
+      const removed = rows.length - dedupedRows.length;
+      allRows=dedupedRows;
+      indivRows=[...dedupedRows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+      geoRows=dedupedRows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
       buildThemeData();
       renderThemes(); renderIndiv(); renderGeo();
-      document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;
+      document.getElementById('dataBadge').textContent=`${dedupedRows.length} ETFs loaded`;
       document.getElementById('dataBadge').className='badge ok';
       document.getElementById('dateBadge').textContent=new Date().toLocaleDateString('sv-SE');
-      showToast(`✓ Loaded ${rows.length} ETFs`);
+      showToast(`✓ ${dedupedRows.length} ETFs loaded (${removed} duplicates removed)`);
     }catch(err){showToast('⚠ Could not read CSV');console.error(err);}
   };
   reader.readAsText(file);
