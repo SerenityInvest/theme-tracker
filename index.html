@@ -64,13 +64,15 @@ tbody tr:hover td{background:rgba(124,95,255,.07)!important}
 td{padding:10px 12px;white-space:nowrap;vertical-align:middle}
 /* HEATMAP */
 td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weight:500}
-.v-strong-up{background:rgba(0,200,90,.60)!important;color:#ccffe0!important}
-.v-up {background:rgba(0,200,90,.35)!important;color:#99ffcc!important}
-.v-light-up {background:rgba(0,200,90,.18)!important;color:#66dd99!important}
-.v-flat {color:var(--t2)}
-.v-light-dn {background:rgba(230,50,70,.18)!important;color:#ffbbcc!important}
-.v-dn {background:rgba(230,50,70,.38)!important;color:#ff8899!important}
-.v-strong-dn{background:rgba(230,50,70,.62)!important;color:#ffccdd!important}
+.v-mega-up  {background:rgba(0,255,200,.45)!important;color:#ffffff!important;font-weight:800!important;text-shadow:0 0 16px rgba(0,255,180,1)!important;letter-spacing:.3px!important}
+.v-strong-up{background:rgba(0,255,160,.28)!important;color:#00ffaa!important;font-weight:700!important;text-shadow:0 0 10px rgba(0,255,160,.5)!important}
+.v-up       {background:rgba(0,200,110,.18)!important;color:#00dd88!important;font-weight:600!important}
+.v-light-up {background:rgba(0,150,80,.09)!important;color:#44aa77!important}
+.v-flat     {color:var(--muted)}
+.v-light-dn {background:rgba(220,60,80,.09)!important;color:#bb5566!important}
+.v-dn       {background:rgba(220,40,60,.22)!important;color:#ff5566!important;font-weight:600!important}
+.v-strong-dn{background:rgba(200,0,40,.35)!important;color:#ff2244!important;font-weight:700!important;text-shadow:0 0 10px rgba(255,30,60,.5)!important}
+.v-mega-dn  {background:rgba(180,0,30,.55)!important;color:#ffffff!important;font-weight:800!important;text-shadow:0 0 16px rgba(255,0,40,1)!important;letter-spacing:.3px!important}
 /* THEME PILL */
 .theme-pill{display:inline-flex;align-items:center;padding:4px 11px;border-radius:5px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap;letter-spacing:.2px}
 /* GEO BADGE */
@@ -468,6 +470,7 @@ function parseRow(r) {
     chg1w: n['performance % 1 week']||'',
     chg1m: n['performance % 1 month']||'',
     chg3m: n['performance % 3 months']||'',
+    chg6m: n['performance % 6 months']||'',
     ytd:   n['performance % year to date']||'',
     chg1y: n['performance % 1 year']||'',
     aum:   n['assets under management']||'',
@@ -483,7 +486,7 @@ function parseRow(r) {
 const pf = v => parseFloat(v);
 
 function calcScore(r) {
-  const w={chg1d:.1,chg1w:.2,chg1m:.3,chg3m:.2,ytd:.1,chg1y:.1};
+  const w={chg1w:.1,chg1m:.3,chg3m:.3,chg6m:.3};
   let s=0,wt=0;
   for(const[k,v] of Object.entries(w)){const n=pf(r[k]);if(!isNaN(n)){s+=n*v;wt+=v;}}
   return wt>0?s/wt:null;
@@ -533,13 +536,15 @@ function deduplicateRows(rows) {
 
 function hmClass(v) {
   const n=pf(v); if(isNaN(n)) return 'v-flat';
-  if(n>=5)  return 'v-strong-up';
-  if(n>=1.5)return 'v-up';
-  if(n>=0.3)return 'v-light-up';
-  if(n>-0.3)return 'v-flat';
-  if(n>-1.5)return 'v-light-dn';
-  if(n>-5)  return 'v-dn';
-  return 'v-strong-dn';
+  if(n>=30) return 'v-mega-up';    // Extrem vinnare: 30%+
+  if(n>=15) return 'v-strong-up';  // Stark vinnare: 15-30%
+  if(n>=5)  return 'v-up';         // Bra trend: 5-15%
+  if(n>=1)  return 'v-light-up';   // Svagt positiv: 1-5%
+  if(n>-1)  return 'v-flat';       // Neutral
+  if(n>-5)  return 'v-light-dn';   // Svagt negativ: -5 till -1%
+  if(n>-15) return 'v-dn';         // Dålig: -15 till -5%
+  if(n>-30) return 'v-strong-dn';  // Mycket dålig: -30 till -15%
+  return 'v-mega-dn';              // Krasch: -30%+
 }
 
 // ── FORMATTERS ────────────────────────────────
