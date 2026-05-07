@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ETF Theme Tracker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -110,6 +111,31 @@ td.hm{text-align:right;font-family:'DM Mono',monospace;font-size:12px;font-weigh
 .empty-row td{text-align:center;padding:50px;color:var(--muted);font-size:13px}
 #toast{position:fixed;bottom:24px;right:24px;background:var(--s3);border:1px solid var(--b2);border-radius:10px;padding:11px 18px;font-size:13px;font-weight:500;color:var(--text);z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
 #toast.show{opacity:1;transform:translateY(0)}
+/* CHART */
+.chart-container{background:var(--s1);border:1px solid var(--b1);border-radius:12px;padding:20px;margin-bottom:20px}
+.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.chart-header h3{font-size:15px;font-weight:700}
+.chart-controls{display:flex;gap:6px;flex-wrap:wrap}
+.chart-btn{background:var(--s2);border:1px solid var(--b1);border-radius:5px;padding:5px 12px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;font-family:'DM Mono',monospace}
+.chart-btn:hover{border-color:var(--accent);color:var(--text)}
+.chart-btn.active{background:rgba(124,95,255,.2);border-color:var(--accent);color:var(--text)}
+.chart-select{background:var(--s2);border:1px solid var(--b1);border-radius:5px;padding:5px 10px;font-size:12px;color:var(--t2);font-family:'DM Mono',monospace;cursor:pointer}
+canvas{width:100%!important}
+.no-history{text-align:center;padding:60px 20px;color:var(--muted);font-size:13px}
+.no-history strong{display:block;font-size:15px;color:var(--t2);margin-bottom:8px}
+/* GITHUB SETTINGS */
+.gh-setup{background:var(--s1);border:1px solid var(--b1);border-radius:10px;padding:18px 22px;margin-bottom:20px;font-size:13px}
+.gh-setup h4{font-weight:700;margin-bottom:12px;color:var(--text)}
+.gh-row{display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.gh-row label{color:var(--muted);font-size:12px;min-width:120px;font-family:'DM Mono',monospace}
+.gh-input{background:var(--s2);border:1px solid var(--b1);border-radius:5px;padding:7px 11px;font-size:12px;color:var(--text);font-family:'DM Mono',monospace;flex:1;min-width:200px}
+.gh-input:focus{outline:none;border-color:var(--accent)}
+.gh-btn{background:var(--accent);border:none;border-radius:5px;padding:7px 16px;font-size:12px;font-weight:700;color:#fff;cursor:pointer;transition:opacity .2s}
+.gh-btn:hover{opacity:.85}
+.gh-btn.sec{background:var(--s2);border:1px solid var(--b1);color:var(--t2)}
+.gh-status{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border-radius:4px;background:var(--s3)}
+.gh-status.ok{color:var(--teal)} .gh-status.err{color:var(--dn)}
+.history-info{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
 </style>
 </head>
 <body>
@@ -149,6 +175,8 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
   <button class="tab-btn active" onclick="switchTab('themes',this)">🎯 Themes</button>
   <button class="tab-btn" onclick="switchTab('individual',this)">📋 Individual ETFs</button>
   <button class="tab-btn" onclick="switchTab('geo',this)">🌍 Geography</button>
+  <button class="tab-btn" onclick="switchTab('charts',this)">📊 Charts</button>
+  <button class="tab-btn" onclick="switchTab('settings',this)">⚙️ Settings</button>
 </div>
 
 <!-- ═══ THEMES ═══ -->
@@ -235,6 +263,96 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
   <div class="last-update" id="geoUpdate"></div>
 </div>
 
+<!-- ═══ CHARTS ═══ -->
+<div class="tab-pane" id="tab-charts">
+  <div class="section-head">
+    <div><h2>Historical Charts</h2><p>Performance &amp; AUM trends over time · upload daily to build history</p></div>
+    <div id="historyInfoBadge" class="history-info"></div>
+  </div>
+
+  <!-- Theme Charts -->
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>📊 Theme Performance Over Time</h3>
+      <div class="chart-controls">
+        <button class="chart-btn active" onclick="setChartMetric('theme','ytd',this)">YTD</button>
+        <button class="chart-btn" onclick="setChartMetric('theme','chg1m',this)">1M</button>
+        <button class="chart-btn" onclick="setChartMetric('theme','chg3m',this)">3M</button>
+        <button class="chart-btn" onclick="setChartMetric('theme','score',this)">Score</button>
+      </div>
+    </div>
+    <div id="themeChartWrap"><div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div></div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>💰 Theme AUM Trend</h3>
+      <div class="chart-controls">
+        <select class="chart-select" id="themeAumSelect" onchange="renderAumChart()">
+          <option value="all">All Themes</option>
+        </select>
+      </div>
+    </div>
+    <div id="aumChartWrap"><div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div></div>
+  </div>
+
+  <!-- Individual ETF Chart -->
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>📈 Individual ETF Chart</h3>
+      <div class="chart-controls">
+        <select class="chart-select" id="etfSelect" onchange="renderEtfChart()">
+          <option value="">— Select ETF —</option>
+        </select>
+        <button class="chart-btn active" onclick="setChartMetric('etf','ytd',this)">YTD</button>
+        <button class="chart-btn" onclick="setChartMetric('etf','chg1m',this)">1M</button>
+        <button class="chart-btn" onclick="setChartMetric('etf','chg3m',this)">3M</button>
+        <button class="chart-btn" onclick="setChartMetric('etf','aum',this)">AUM</button>
+      </div>
+    </div>
+    <div id="etfChartWrap"><div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div></div>
+  </div>
+</div>
+
+<!-- ═══ SETTINGS ═══ -->
+<div class="tab-pane" id="tab-settings">
+  <div class="section-head">
+    <div><h2>GitHub Settings</h2><p>Save history to your GitHub repo daily</p></div>
+  </div>
+  <div class="gh-setup">
+    <h4>🔑 GitHub Connection</h4>
+    <div class="gh-row">
+      <label>Personal Token</label>
+      <input class="gh-input" type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx">
+    </div>
+    <div class="gh-row">
+      <label>Repository</label>
+      <input class="gh-input" type="text" id="ghRepo" value="SerenityInvest/theme-tracker" placeholder="username/repo">
+    </div>
+    <div class="gh-row">
+      <label>History file</label>
+      <input class="gh-input" type="text" id="ghFile" value="history.json" placeholder="history.json">
+    </div>
+    <div class="gh-row">
+      <button class="gh-btn" onclick="testGithubConnection()">Test Connection</button>
+      <button class="gh-btn sec" onclick="saveGhSettings()">Save Settings</button>
+      <span class="gh-status" id="ghStatus">Not configured</span>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">
+      Create a token at github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens.<br>
+      Give it <strong>Contents: Read and Write</strong> permission for this repo only.
+    </p>
+  </div>
+  <div class="gh-setup">
+    <h4>📅 History Data</h4>
+    <div id="historyStats" style="color:var(--muted);font-size:13px">No history loaded yet.</div>
+    <div class="gh-row" style="margin-top:12px">
+      <button class="gh-btn sec" onclick="loadHistoryFromGithub()">🔄 Load History</button>
+      <button class="gh-btn sec" onclick="clearHistory()">🗑 Clear History</button>
+    </div>
+  </div>
+</div>
+
 </div>
 <div id="toast"></div>
 
@@ -261,6 +379,9 @@ const GEO_STYLES = {
 
 // ── STATE ─────────────────────────────────────
 let allRows=[], themeData=[], indivRows=[], geoRows=[];
+let history = []; // [{date, themes:{}, etfs:{}}]
+let chartMetric = {theme:'ytd', etf:'ytd'};
+let themeChart=null, aumChart=null, etfChart=null;
 let sortState={themes:{col:8,dir:-1},indiv:{col:10,dir:-1},geo:{col:11,dir:-1}};
 
 // ── SMART THEME + GEO CLASSIFICATION ─────────
@@ -353,6 +474,7 @@ function parseRow(r) {
     aum_prev: '',
     rsi: n['relative strength index (14) 1 day']||n['rsi']||'',
     bbp: n['bull bear power (13) 1 day']||n['bbp']||'',
+    fund_flows: n['fund flows 1 month']||n['fund_flows']||'',
     _rawIdx: n['index tracked']||'',
   };
 }
@@ -368,14 +490,15 @@ function calcScore(r) {
 }
 
 function calcFlow(r) {
-  const a=pf(r.aum),p=pf(r.aum_prev),w=pf(r.chg1w);
-  if(isNaN(a)||isNaN(p)||p===0) return null;
-  const ac=((a-p)/p)*100, diff=ac-(isNaN(w)?0:w);
-  if(diff>3)   return {label:'⬆ STRONG BUY',cls:'sb',diff};
-  if(diff>0.5) return {label:'↑ BUY',        cls:'b', diff};
-  if(diff>-.5) return {label:'— NEUTRAL',    cls:'n', diff};
-  if(diff>-3)  return {label:'↓ SELL',        cls:'s', diff};
-  return            {label:'⬇ STRONG SELL',  cls:'ss',diff};
+  const ff  = pf(r.fund_flows);
+  const aum = pf(r.aum);
+  if(isNaN(ff) || isNaN(aum) || aum === 0) return null;
+  const pct = (ff / aum) * 100; // fund flows som % av AUM
+  if(pct > 3)    return {label:'⬆ STRONG BUY',  cls:'sb', diff:pct};
+  if(pct > 0.5)  return {label:'↑ BUY',          cls:'b',  diff:pct};
+  if(pct > -0.5) return {label:'— NEUTRAL',      cls:'n',  diff:pct};
+  if(pct > -3)   return {label:'↓ SELL',          cls:'s',  diff:pct};
+  return                {label:'⬇ STRONG SELL',  cls:'ss', diff:pct};
 }
 
 // ── DEDUPLICATION ─────────────────────────────
@@ -468,8 +591,8 @@ function fAum(aum, aum_prev) {
 
 function fFlow(r) {
   const sig=calcFlow(r);
-  if(!sig) return '<span class="flow nd">— no AUM prev</span>';
-  return `<span class="flow ${sig.cls}" title="diff: ${sig.diff>=0?'+':''}${sig.diff.toFixed(1)}%">${sig.label}</span>`;
+  if(!sig) return '<span class="flow nd">— no flow data</span>';
+  return `<span class="flow ${sig.cls}" title="Fund flows 1M: ${sig.diff>=0?'+':''}${sig.diff.toFixed(2)}% of AUM">${sig.label}</span>`;
 }
 
 function fThemePill(t) {
@@ -671,10 +794,358 @@ document.getElementById('csvInput').addEventListener('change',function(e){
       document.getElementById('dataBadge').className='badge ok';
       document.getElementById('dateBadge').textContent=new Date().toLocaleDateString('sv-SE');
       showToast(`✓ ${dedupedRows.length} ETFs loaded (${removed} duplicates removed)`);
+      // Auto-spara till GitHub om token finns
+      const ghS = ghSettings();
+      if(ghS.token) {
+        setTimeout(() => saveHistoryToGithub(), 500);
+      } else {
+        showToast('✓ Data loaded · Go to Settings to enable history saving');
+      }
     }catch(err){showToast('⚠ Could not read CSV');console.error(err);}
   };
   reader.readAsText(file);
 });
+
+// ── GITHUB HISTORY ────────────────────────────
+function ghSettings() {
+  return {
+    token: localStorage.getItem('gh_token')||'',
+    repo:  localStorage.getItem('gh_repo') ||'SerenityInvest/theme-tracker',
+    file:  localStorage.getItem('gh_file') ||'history.json',
+  };
+}
+
+function saveGhSettings() {
+  localStorage.setItem('gh_token', document.getElementById('ghToken').value.trim());
+  localStorage.setItem('gh_repo',  document.getElementById('ghRepo').value.trim());
+  localStorage.setItem('gh_file',  document.getElementById('ghFile').value.trim());
+  showToast('✓ Settings saved');
+}
+
+function loadGhSettingsUI() {
+  const s = ghSettings();
+  document.getElementById('ghToken').value = s.token;
+  document.getElementById('ghRepo').value  = s.repo;
+  document.getElementById('ghFile').value  = s.file;
+}
+
+async function testGithubConnection() {
+  const s = ghSettings();
+  if(!s.token) { setGhStatus('No token', true); return; }
+  setGhStatus('Testing…', false);
+  try {
+    const r = await fetch(`https://api.github.com/repos/${s.repo}`, {
+      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
+    });
+    if(r.ok) setGhStatus('✓ Connected', false);
+    else setGhStatus('✗ ' + r.status + ' – check token/repo', true);
+  } catch(e) { setGhStatus('✗ Network error', true); }
+}
+
+function setGhStatus(msg, err) {
+  const el = document.getElementById('ghStatus');
+  el.textContent = msg;
+  el.className = 'gh-status ' + (err ? 'err' : 'ok');
+}
+
+async function loadHistoryFromGithub() {
+  const s = ghSettings();
+  if(!s.token) { showToast('⚠ No GitHub token – check Settings'); return; }
+  showToast('Loading history…');
+  try {
+    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`, {
+      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
+    });
+    if(r.status === 404) { showToast('No history file yet – upload CSV to create it'); return; }
+    const data = await r.json();
+    const json = JSON.parse(atob(data.content.replace(/
+/g,'')));
+    history = json;
+    showToast(`✓ Loaded ${history.length} days of history`);
+    updateHistoryUI();
+    renderAllCharts();
+  } catch(e) { showToast('⚠ Could not load history'); console.error(e); }
+}
+
+async function saveHistoryToGithub() {
+  const s = ghSettings();
+  if(!s.token) { showToast('⚠ No GitHub token – go to Settings tab'); return; }
+
+  // Bygg dagens snapshot
+  const today = new Date().toISOString().split('T')[0];
+  const existing = history.findIndex(h => h.date === today);
+
+  // Tema-snapshot
+  const themesSnap = {};
+  themeData.forEach(t => {
+    themesSnap[t.theme] = {
+      ytd: t.ytd, chg1m: t.chg1m, chg3m: t.chg3m,
+      chg1w: t.chg1w, score: t.sc, aum: t.aum,
+    };
+  });
+
+  // ETF-snapshot
+  const etfsSnap = {};
+  allRows.forEach(r => {
+    etfsSnap[r.ticker] = {
+      ytd: pf(r.ytd)||0, chg1m: pf(r.chg1m)||0,
+      chg3m: pf(r.chg3m)||0, aum: pf(r.aum)||0,
+      score: calcScore(r)||0,
+    };
+  });
+
+  const snap = {date: today, themes: themesSnap, etfs: etfsSnap};
+  if(existing >= 0) history[existing] = snap;
+  else history.push(snap);
+  history.sort((a,b) => a.date.localeCompare(b.date));
+
+  // Hämta nuvarande SHA (behövs för update)
+  let sha = '';
+  try {
+    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`, {
+      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
+    });
+    if(r.ok) { const d = await r.json(); sha = d.sha; }
+  } catch(e) {}
+
+  // Spara
+  const body = {
+    message: `Update history ${today}`,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(history, null, 2)))),
+    ...(sha ? {sha} : {})
+  };
+
+  try {
+    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`, {
+      method: 'PUT',
+      headers:{
+        'Authorization':`token ${s.token}`,
+        'Accept':'application/vnd.github.v3+json',
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if(r.ok) {
+      showToast(`✓ History saved to GitHub (${history.length} days)`);
+      updateHistoryUI();
+      renderAllCharts();
+    } else {
+      const err = await r.json();
+      showToast('⚠ Save failed: ' + (err.message||r.status));
+    }
+  } catch(e) { showToast('⚠ Network error saving history'); }
+}
+
+function clearHistory() {
+  if(!confirm('Clear all history? This cannot be undone.')) return;
+  history = [];
+  updateHistoryUI();
+  renderAllCharts();
+  showToast('History cleared');
+}
+
+function updateHistoryUI() {
+  const el = document.getElementById('historyStats');
+  const badge = document.getElementById('historyInfoBadge');
+  if(!history.length) {
+    el.textContent = 'No history loaded yet.';
+    if(badge) badge.textContent = '';
+    return;
+  }
+  const dates = history.map(h=>h.date);
+  el.innerHTML = `<span style="color:var(--teal)">${history.length} days</span> of history · 
+    <span style="color:var(--t2)">${dates[0]}</span> → 
+    <span style="color:var(--t2)">${dates[dates.length-1]}</span>`;
+  if(badge) badge.textContent = `${history.length} days history`;
+
+  // Populera ETF-dropdown
+  const etfSel = document.getElementById('etfSelect');
+  if(etfSel) {
+    const tickers = [...new Set(history.flatMap(h => Object.keys(h.etfs||{})))].sort();
+    etfSel.innerHTML = '<option value="">— Select ETF —</option>' +
+      tickers.map(t => `<option value="${t}">${t}</option>`).join('');
+  }
+
+  // Populera tema AUM-dropdown
+  const themeSel = document.getElementById('themeAumSelect');
+  if(themeSel) {
+    const themes = [...new Set(history.flatMap(h => Object.keys(h.themes||{})))].sort();
+    themeSel.innerHTML = '<option value="all">All Themes</option>' +
+      themes.map(t => `<option value="${t}">${t}</option>`).join('');
+  }
+}
+
+// ── CHARTS ────────────────────────────────────
+const CHART_COLORS = [
+  '#7c5fff','#00e4b8','#ff4466','#f5a623','#00b8ff',
+  '#ff6b9d','#54d66b','#ffcc00','#c084fc','#fb923c',
+  '#34d399','#f87171','#a78bfa','#38bdf8','#fbbf24',
+];
+
+function chartDefaults() {
+  return {
+    responsive: true,
+    interaction: {mode:'index', intersect:false},
+    plugins: {
+      legend:{labels:{color:'#c8c8e8',font:{family:'DM Mono, monospace',size:11}}},
+      tooltip:{
+        backgroundColor:'#12121f',borderColor:'#2e2e50',borderWidth:1,
+        titleColor:'#fff',bodyColor:'#c8c8e8',
+        callbacks:{label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(2)}`}
+      }
+    },
+    scales:{
+      x:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'}},
+      y:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'},
+         position:'right'}
+    }
+  };
+}
+
+function setChartMetric(type, metric, btn) {
+  chartMetric[type] = metric;
+  const group = btn.parentElement.querySelectorAll('.chart-btn');
+  group.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if(type === 'theme') renderThemeChart();
+  if(type === 'etf')   renderEtfChart();
+}
+
+function renderAllCharts() {
+  renderThemeChart();
+  renderAumChart();
+  renderEtfChart();
+}
+
+function renderThemeChart() {
+  const wrap = document.getElementById('themeChartWrap');
+  if(!history.length) {
+    wrap.innerHTML = '<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';
+    return;
+  }
+  const metric = chartMetric.theme;
+  const dates = history.map(h => h.date);
+  const themes = [...new Set(history.flatMap(h => Object.keys(h.themes||{})))];
+
+  const datasets = themes.map((theme, i) => ({
+    label: theme,
+    data: history.map(h => {
+      const v = h.themes?.[theme]?.[metric];
+      return v != null ? parseFloat(v) : null;
+    }),
+    borderColor: CHART_COLORS[i % CHART_COLORS.length],
+    backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '22',
+    borderWidth: 2, pointRadius: 3, pointHoverRadius: 5,
+    tension: 0.3, spanGaps: true,
+  }));
+
+  wrap.innerHTML = '<canvas id="themeChartCanvas"></canvas>';
+  if(themeChart) themeChart.destroy();
+  const ctx = document.getElementById('themeChartCanvas').getContext('2d');
+  themeChart = new Chart(ctx, {
+    type: 'line',
+    data: {labels: dates, datasets},
+    options: {
+      ...chartDefaults(),
+      plugins: {
+        ...chartDefaults().plugins,
+        title:{display:true,text:`Theme ${metric.toUpperCase()} %`,color:'#c8c8e8',font:{size:12}}
+      }
+    }
+  });
+}
+
+function renderAumChart() {
+  const wrap = document.getElementById('aumChartWrap');
+  if(!history.length) {
+    wrap.innerHTML = '<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';
+    return;
+  }
+  const sel = document.getElementById('themeAumSelect')?.value || 'all';
+  const dates = history.map(h => h.date);
+  let themes = [...new Set(history.flatMap(h => Object.keys(h.themes||{})))];
+  if(sel !== 'all') themes = themes.filter(t => t === sel);
+
+  const datasets = themes.map((theme, i) => ({
+    label: theme,
+    data: history.map(h => {
+      const v = h.themes?.[theme]?.aum;
+      return v != null ? parseFloat(v) / 1e9 : null;
+    }),
+    borderColor: CHART_COLORS[i % CHART_COLORS.length],
+    backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '22',
+    borderWidth: 2, pointRadius: 3, pointHoverRadius: 5,
+    tension: 0.3, spanGaps: true,
+    fill: sel !== 'all' ? false : false,
+  }));
+
+  wrap.innerHTML = '<canvas id="aumChartCanvas"></canvas>';
+  if(aumChart) aumChart.destroy();
+  const ctx = document.getElementById('aumChartCanvas').getContext('2d');
+  aumChart = new Chart(ctx, {
+    type: 'line',
+    data: {labels: dates, datasets},
+    options: {
+      ...chartDefaults(),
+      plugins: {
+        ...chartDefaults().plugins,
+        title:{display:true,text:'AUM (EUR Billion)',color:'#c8c8e8',font:{size:12}}
+      },
+      scales: {
+        ...chartDefaults().scales,
+        y: {...chartDefaults().scales.y,
+          ticks:{...chartDefaults().scales.y.ticks, callback: v => v.toFixed(1)+'B'}}
+      }
+    }
+  });
+}
+
+function renderEtfChart() {
+  const wrap = document.getElementById('etfChartWrap');
+  const ticker = document.getElementById('etfSelect')?.value;
+  if(!history.length || !ticker) {
+    wrap.innerHTML = '<div class="no-history"><strong>No history yet</strong>Select an ETF and upload daily to build history</div>';
+    return;
+  }
+  const metric = chartMetric.etf;
+  const dates = history.map(h => h.date);
+  const isAum = metric === 'aum';
+
+  const data = history.map(h => {
+    const v = h.etfs?.[ticker]?.[metric];
+    return v != null ? (isAum ? parseFloat(v)/1e9 : parseFloat(v)) : null;
+  });
+
+  wrap.innerHTML = '<canvas id="etfChartCanvas"></canvas>';
+  if(etfChart) etfChart.destroy();
+  const ctx = document.getElementById('etfChartCanvas').getContext('2d');
+  etfChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
+        label: `${ticker} ${metric.toUpperCase()}`,
+        data, borderColor: '#7c5fff',
+        backgroundColor: 'rgba(124,95,255,.15)',
+        borderWidth: 2, pointRadius: 4, pointHoverRadius: 6,
+        tension: 0.3, spanGaps: true, fill: true,
+      }]
+    },
+    options: {
+      ...chartDefaults(),
+      plugins: {
+        ...chartDefaults().plugins,
+        title:{display:true,text:`${ticker} – ${metric.toUpperCase()}${isAum?' (EUR B)':' %'}`,color:'#c8c8e8',font:{size:12}}
+      },
+      scales: {
+        ...chartDefaults().scales,
+        y: {...chartDefaults().scales.y,
+          ticks:{...chartDefaults().scales.y.ticks,
+            callback: v => isAum ? v.toFixed(2)+'B' : v.toFixed(2)+'%'}}
+      }
+    }
+  });
+}
 
 // ── TABS ──────────────────────────────────────
 function switchTab(id,btn){
@@ -694,8 +1165,16 @@ function toggleCsv(){
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
+  setTimeout(()=>t.classList.remove('show'),3500);
 }
+
+// ── INIT ──────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  loadGhSettingsUI();
+  // Försök ladda historik automatiskt om token finns
+  const s = ghSettings();
+  if(s.token) loadHistoryFromGithub();
+});
 </script>
 </body>
 </html>
