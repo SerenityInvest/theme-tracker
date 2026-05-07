@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETF Theme Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07070f;
+  --s1: #0e0e1c;
+  --s2: #14142a;
+  --s3: #1c1c32;
+  --b1: #222238;
+  --b2: #2e2e48;
+  --text: #ddddf5;
+  --t2: #9090b8;
+  --muted: #505070;
+  --accent: #6c4fff;
+  --teal: #00d4aa;
+  --up: #00d4aa;
+  --dn: #ff3f60;
+  --warn: #f5a623;
+  --s-strong: #00ff88;
+  --s-buy: #00d4aa;
+  --s-neu: #505070;
+  --s-sell: #ff3f60;
+  --s-strong-sell: #ff0040;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(108,79,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(108,79,255,.04) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:-180px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(108,79,255,.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:0 28px 80px}
+
+header{display:flex;align-items:center;justify-content:space-between;padding:36px 0 28px;border-bottom:1px solid var(--b1);margin-bottom:36px;flex-wrap:wrap;gap:16px}
+.logo h1{font-size:26px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,#8c6fff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo p{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.header-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.upload-btn{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px dashed var(--b2);border-radius:8px;padding:9px 16px;cursor:pointer;font-family:'Syne',sans-serif;font-size:12px;color:var(--t2);transition:all .2s}
+.upload-btn:hover{border-color:var(--accent);color:var(--text)}
+.upload-btn input{display:none}
+.aum-badge{font-family:'Space Mono',monospace;font-size:10px;padding:5px 11px;border-radius:4px;background:var(--s2);border:1px solid var(--b1);color:var(--muted)}
+.aum-badge.ok{border-color:var(--teal);color:var(--teal)}
+.refresh-btn{background:var(--accent);color:#fff;border:none;border-radius:7px;padding:9px 22px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .2s,transform .1s}
+.refresh-btn:hover{opacity:.85}
+.refresh-btn:active{transform:scale(.97)}
+.refresh-btn:disabled{opacity:.35;cursor:not-allowed}
+
+.legend{display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap}
+.lchip{display:flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--t2);background:var(--s1);border:1px solid var(--b1);border-radius:20px;padding:4px 10px}
+.ldot{width:7px;height:7px;border-radius:50%}
+
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.section-head h2{font-size:18px;font-weight:800;letter-spacing:-.5px}
+.section-head p{font-size:12px;color:var(--muted)}
+.section-divider{margin:48px 0 36px;border:none;border-top:1px solid var(--b1)}
+
+.tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.tab{background:none;border:1px solid var(--b1);border-radius:6px;padding:7px 14px;font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab:hover:not(.active){border-color:var(--b2);color:var(--t2)}
+
+.tbl-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--b1)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{background:var(--s1);border-bottom:1px solid var(--b1)}
+thead th{padding:12px 14px;text-align:left;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s}
+thead th:hover{color:var(--t2)}
+thead th.sorted{color:var(--accent)}
+tbody tr{border-bottom:1px solid var(--b1);transition:background .15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--s2)}
+td{padding:11px 14px;white-space:nowrap}
+.etf-name{font-weight:600;font-size:13px;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+.etf-ticker{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px}
+.tag{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--s3);color:var(--t2);border:1px solid var(--b2)}
+
+.perf{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;text-align:right;display:block}
+.perf.up{color:var(--up)}
+.perf.dn{color:var(--dn)}
+.perf.na{color:var(--muted)}
+
+.score-cell{display:flex;align-items:center;gap:8px;min-width:90px}
+.score-bar-bg{flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
+.score-bar{height:100%;border-radius:3px;transition:width .5s ease}
+.score-val{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;min-width:28px;text-align:right}
+
+.aum-cell{font-family:'Space Mono',monospace;font-size:11px;color:var(--t2);text-align:right}
+.aum-chg{font-size:10px;margin-top:2px}
+
+.flow-sig{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.3px;border:1px solid transparent;white-space:nowrap}
+.flow-sig.strong-buy{background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.3);color:var(--s-strong)}
+.flow-sig.buy{background:rgba(0,212,170,.1);border-color:rgba(0,212,170,.3);color:var(--s-buy)}
+.flow-sig.neutral{background:rgba(80,80,112,.1);border-color:rgba(80,80,112,.3);color:var(--s-neu)}
+.flow-sig.sell{background:rgba(255,63,96,.1);border-color:rgba(255,63,96,.3);color:var(--s-sell)}
+.flow-sig.strong-sell{background:rgba(255,0,64,.1);border-color:rgba(255,0,64,.3);color:var(--s-strong-sell)}
+.flow-sig.no-data{color:var(--muted);background:none;border:none;padding:0;font-size:11px}
+
+.loading-row td,.empty-row td{text-align:center;padding:48px 16px;color:var(--muted);font-size:13px}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--b2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:8px;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+.last-update{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:10px;text-align:right}
+
+.csv-info-wrap{margin-bottom:28px}
+.csv-toggle{background:none;border:none;color:var(--accent);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;padding:0;margin-bottom:8px;text-decoration:underline}
+.csv-info{background:var(--s1);border:1px solid var(--b1);border-radius:10px;padding:16px 20px;font-size:12px;color:var(--t2);line-height:1.9;display:none}
+.csv-info h4{font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px}
+.csv-info code{font-family:'Space Mono',monospace;background:var(--s3);padding:1px 6px;border-radius:3px;color:var(--accent)}
+
+#toast{position:fixed;bottom:28px;right:28px;background:var(--s3);border:1px solid var(--b2);border-radius:10px;padding:12px 20px;font-size:13px;color:var(--text);z-index:9999;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none}
+#toast.show{opacity:1;transform:translateY(0)}
+
+[data-tip]{position:relative;cursor:help}
+[data-tip]::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--s3);border:1px solid var(--b2);color:var(--t2);font-family:'Space Mono',monospace;font-size:10px;padding:5px 10px;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;z-index:100}
+[data-tip]:hover::after{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="logo">
+    <h1>ETF Theme Tracker</h1>
+    <p>Teman · Geografi · AUM Flow Signal · Xetra / UCITS</p>
+  </div>
+  <div class="header-actions">
+    <label class="upload-btn">
+      <span>📂</span> Ladda upp AUM CSV
+      <input type="file" id="csvInput" accept=".csv,.txt">
+    </label>
+    <div class="aum-badge" id="aumBadge">AUM: ej inläst</div>
+    <button class="refresh-btn" id="refreshBtn" onclick="loadAllData()">⟳ Uppdatera data</button>
+  </div>
+</header>
+
+<div class="legend">
+  <div class="lchip"><div class="ldot" style="background:#00ff88"></div>STARK KÖPSIGNAL — AUM ökar mycket snabbare än pris</div>
+  <div class="lchip"><div class="ldot" style="background:#00d4aa"></div>KÖPSIGNAL — AUM ökar snabbare än pris</div>
+  <div class="lchip"><div class="ldot" style="background:#505070"></div>NEUTRAL</div>
+  <div class="lchip"><div class="ldot" style="background:#ff3f60"></div>SÄLJSIGNAL — pris stiger men AUM faller</div>
+  <div class="lchip"><div class="ldot" style="background:#ff0040"></div>STARK SÄLJSIGNAL</div>
+</div>
+
+<div class="csv-info-wrap">
+  <button class="csv-toggle" onclick="toggleCsvInfo()">▸ Visa hur du exporterar AUM från TradingView</button>
+  <div class="csv-info" id="csvInfo">
+    <h4>CSV-format för AUM-data</h4>
+    Skapa en fil med dessa tre kolumner (exakt dessa rubriker på rad 1):<br><br>
+    <code>ticker,aum,aum_prev</code><br><br>
+    Exempel på innehåll:<br>
+    <code>AIAG.DE,4250000000,4100000000</code><br>
+    <code>DFND.DE,980000000,960000000</code><br><br>
+    <b>ticker</b> = Xetra-tickern &nbsp;|&nbsp; <b>aum</b> = dagens AUM i EUR/USD &nbsp;|&nbsp; <b>aum_prev</b> = gårdagens AUM<br>
+    Spara som <code>aum_data.csv</code> och ladda upp dagligen via knappen ovan.
+  </div>
+</div>
+
+<!-- TEMA -->
+<div class="section-head">
+  <h2>🎯 Tematiska ETFs</h2>
+  <p>AI · Försvar · Energi · Hälsa · Finans · Infrastruktur · Råvaror · Konsument</p>
+</div>
+
+<div class="tabs" id="themeTabs">
+  <button class="tab active" onclick="setThemeFilter('all',this)">Alla</button>
+  <button class="tab" onclick="setThemeFilter('AI & Tech',this)">🤖 AI & Tech</button>
+  <button class="tab" onclick="setThemeFilter('Försvar',this)">🛡 Försvar</button>
+  <button class="tab" onclick="setThemeFilter('Energi',this)">⚡ Energi</button>
+  <button class="tab" onclick="setThemeFilter('Hälsa & Biotech',this)">🧬 Hälsa</button>
+  <button class="tab" onclick="setThemeFilter('Finans',this)">💳 Finans</button>
+  <button class="tab" onclick="setThemeFilter('Infrastruktur',this)">🏗 Infra</button>
+  <button class="tab" onclick="setThemeFilter('Råvaror',this)">🪨 Råvaror</button>
+  <button class="tab" onclick="setThemeFilter('Konsument',this)">🛍 Konsument</button>
+</div>
+
+<div class="tbl-wrap">
+  <table>
+    <thead><tr>
+      <th onclick="sortTable('theme',0)">#</th>
+      <th onclick="sortTable('theme',1)">ETF ↕</th>
+      <th onclick="sortTable('theme',2)">Tema ↕</th>
+      <th onclick="sortTable('theme',3)" style="text-align:right">1D ↕</th>
+      <th onclick="sortTable('theme',4)" style="text-align:right">1V ↕</th>
+      <th onclick="sortTable('theme',5)" style="text-align:right">1M ↕</th>
+      <th onclick="sortTable('theme',6)" style="text-align:right">3M ↕</th>
+      <th onclick="sortTable('theme',7)">Score ↕</th>
+      <th onclick="sortTable('theme',8)" style="text-align:right">AUM ↕</th>
+      <th onclick="sortTable('theme',9)" data-tip="AUM-förändring % minus prisrörelse % — din flow-signal">Flow Signal ↕</th>
+    </tr></thead>
+    <tbody id="themeBody"><tr class="loading-row"><td colspan="10"><span class="spinner"></span>Hämtar data…</td></tr></tbody>
+  </table>
+</div>
+<div class="last-update" id="themeUpdate"></div>
+
+<hr class="section-divider">
+
+<!-- GEO -->
+<div class="section-head">
+  <h2>🌍 Geografiska ETFs</h2>
+  <p>Regioner &amp; Länder — Europa · Asien · EM · Latam · Nordamerika</p>
+</div>
+
+<div class="tabs" id="geoTabs">
+  <button class="tab active" onclick="setGeoFilter('all',this)">Alla</button>
+  <button class="tab" onclick="setGeoFilter('Region',this)">🗺 Breda regioner</button>
+  <button class="tab" onclick="setGeoFilter('Europa',this)">🇪🇺 Europa</button>
+  <button class="tab" onclick="setGeoFilter('Asien',this)">🌏 Asien</button>
+  <button class="tab" onclick="setGeoFilter('Emerging Markets',this)">📈 EM</button>
+  <button class="tab" onclick="setGeoFilter('Americas',this)">🌎 Americas</button>
+</div>
+
+<div class="tbl-wrap">
+  <table>
+    <thead><tr>
+      <th onclick="sortTable('geo',0)">#</th>
+      <th onclick="sortTable('geo',1)">ETF ↕</th>
+      <th onclick="sortTable('geo',2)">Region ↕</th>
+      <th onclick="sortTable('geo',3)">Land/Typ ↕</th>
+      <th onclick="sortTable('geo',4)" style="text-align:right">1D ↕</th>
+      <th onclick="sortTable('geo',5)" style="text-align:right">1V ↕</th>
+      <th onclick="sortTable('geo',6)" style="text-align:right">1M ↕</th>
+      <th onclick="sortTable('geo',7)" style="text-align:right">3M ↕</th>
+      <th onclick="sortTable('geo',8)">Score ↕</th>
+      <th onclick="sortTable('geo',9)" style="text-align:right">AUM ↕</th>
+      <th onclick="sortTable('geo',10)" data-tip="AUM-förändring % minus prisrörelse % — din flow-signal">Flow Signal ↕</th>
+    </tr></thead>
+    <tbody id="geoBody"><tr class="loading-row"><td colspan="11"><span class="spinner"></span>Hämtar data…</td></tr></tbody>
+  </table>
+</div>
+<div class="last-update" id="geoUpdate"></div>
+
+</div>
+<div id="toast"></div>
+
+<script>
+// ── ETF LISTS ──────────────────────────────────
+const THEME_ETFS = [
+  {ticker:'WTAI.DE',  name:'WisdomTree AI',              theme:'AI & Tech'},
+  {ticker:'AIAG.DE',  name:'Xtrackers AI & Big Data',    theme:'AI & Tech'},
+  {ticker:'RBOD.DE',  name:'iShares Automation & Rob.',  theme:'AI & Tech'},
+  {ticker:'RBOT.DE',  name:'Xtrackers Robotics',         theme:'AI & Tech'},
+  {ticker:'QDVE.DE',  name:'iShares S&P 500 IT Sector',  theme:'AI & Tech'},
+  {ticker:'CSNDX.DE', name:'iShares NASDAQ 100 UCITS',   theme:'AI & Tech'},
+  {ticker:'EQQQ.DE',  name:'Invesco NASDAQ 100',         theme:'AI & Tech'},
+  {ticker:'SXRV.DE',  name:'iShares Semiconductor',      theme:'AI & Tech'},
+  {ticker:'DFND.DE',  name:'VanEck Defense ETF',         theme:'Försvar'},
+  {ticker:'EUDF.DE',  name:'HANetf Future of Defence',   theme:'Försvar'},
+  {ticker:'ASWC.DE',  name:'Invesco Defence Innovation', theme:'Försvar'},
+  {ticker:'NATO.DE',  name:'VanEck NATO ETF',            theme:'Försvar'},
+  {ticker:'IQQH.DE',  name:'iShares Global Clean Energy',theme:'Energi'},
+  {ticker:'RENW.DE',  name:'HANetf Solar Energy',        theme:'Energi'},
+  {ticker:'ISDE.DE',  name:'iShares Oil & Gas Expl.',    theme:'Energi'},
+  {ticker:'NUCL.DE',  name:'VanEck Uranium & Nuclear',   theme:'Energi'},
+  {ticker:'ENER.DE',  name:'Invesco Energy Transition',  theme:'Energi'},
+  {ticker:'IQQL.DE',  name:'iShares Healthcare Innov.',  theme:'Hälsa & Biotech'},
+  {ticker:'XDWH.DE',  name:'Xtrackers MSCI World Health',theme:'Hälsa & Biotech'},
+  {ticker:'HTEC.DE',  name:'HANetf Healthcare Tech',     theme:'Hälsa & Biotech'},
+  {ticker:'AGED.DE',  name:'iShares Ageing Population',  theme:'Hälsa & Biotech'},
+  {ticker:'IQQF.DE',  name:'iShares S&P 500 Financials', theme:'Finans'},
+  {ticker:'XDWF.DE',  name:'Xtrackers MSCI World Fin.',  theme:'Finans'},
+  {ticker:'KOIN.DE',  name:'VanEck Crypto & Blockchain', theme:'Finans'},
+  {ticker:'FING.DE',  name:'HANetf Future of Fintech',   theme:'Finans'},
+  {ticker:'INFR.DE',  name:'iShares Global Infrastructure',theme:'Infrastruktur'},
+  {ticker:'IQQN.DE',  name:'iShares Digital Security',   theme:'Infrastruktur'},
+  {ticker:'DGTL.DE',  name:'WisdomTree Digital Security',theme:'Infrastruktur'},
+  {ticker:'SGLD.DE',  name:'Invesco Physical Gold',      theme:'Råvaror'},
+  {ticker:'PHAU.DE',  name:'WisdomTree Physical Gold',   theme:'Råvaror'},
+  {ticker:'SLVR.DE',  name:'WisdomTree Physical Silver', theme:'Råvaror'},
+  {ticker:'COPA.DE',  name:'WisdomTree Copper',          theme:'Råvaror'},
+  {ticker:'AIGA.DE',  name:'WisdomTree Agriculture',     theme:'Råvaror'},
+  {ticker:'CMOD.DE',  name:'iShares Diversified Comm.',  theme:'Råvaror'},
+  {ticker:'XDWC.DE',  name:'Xtrackers MSCI World Cons.', theme:'Konsument'},
+  {ticker:'QDVD.DE',  name:'iShares S&P 500 Cons. Disc.',theme:'Konsument'},
+  {ticker:'LUXE.DE',  name:'Amundi S&P Global Luxury',   theme:'Konsument'},
+  {ticker:'FOOD.DE',  name:'VanEck Future of Food',      theme:'Konsument'},
+];
+
+const GEO_ETFS = [
+  {ticker:'EXSA.DE',   name:'iShares Core MSCI Europe',     geo:'Europa',          type:'Region'},
+  {ticker:'IQQE.DE',   name:'iShares MSCI Europe',          geo:'Europa',          type:'Region'},
+  {ticker:'SMEA.DE',   name:'iShares MSCI Europe Small Cap',geo:'Europa',          type:'Region'},
+  {ticker:'CSPX.DE',   name:'iShares Core S&P 500',         geo:'Nordamerika',     type:'Region'},
+  {ticker:'XDWD.DE',   name:'Xtrackers MSCI World',         geo:'Global',          type:'Region'},
+  {ticker:'IWDA.DE',   name:'iShares Core MSCI World',      geo:'Global',          type:'Region'},
+  {ticker:'EIMI.DE',   name:'iShares Core MSCI EM',         geo:'Emerging Markets',type:'Region'},
+  {ticker:'XMME.DE',   name:'Xtrackers MSCI EM',            geo:'Emerging Markets',type:'Region'},
+  {ticker:'IQQY.DE',   name:'iShares MSCI Asia ex-Japan',   geo:'Asien',           type:'Region'},
+  {ticker:'LATM.DE',   name:'iShares MSCI EM Latin America',geo:'Americas',        type:'Region'},
+  {ticker:'EXI3.DE',   name:'iShares MSCI Germany',         geo:'Europa',          type:'🇩🇪 Tyskland'},
+  {ticker:'IUSE.DE',   name:'iShares MSCI USA',             geo:'Nordamerika',     type:'🇺🇸 USA'},
+  {ticker:'IJPN.DE',   name:'iShares MSCI Japan',           geo:'Asien',           type:'🇯🇵 Japan'},
+  {ticker:'XCHN.DE',   name:'Xtrackers MSCI China',         geo:'Asien',           type:'🇨🇳 Kina'},
+  {ticker:'NDIA.DE',   name:'iShares MSCI India',           geo:'Asien',           type:'🇮🇳 Indien'},
+  {ticker:'EWZ.DE',    name:'iShares MSCI Brazil',          geo:'Americas',        type:'🇧🇷 Brasilien'},
+  {ticker:'IMXI.DE',   name:'iShares MSCI Mexico',          geo:'Americas',        type:'🇲🇽 Mexiko'},
+  {ticker:'IKRW.DE',   name:'iShares MSCI South Korea',     geo:'Asien',           type:'🇰🇷 Sydkorea'},
+  {ticker:'ISAU.DE',   name:'iShares MSCI Australia',       geo:'Asien',           type:'🇦🇺 Australien'},
+  {ticker:'ISAFR.DE',  name:'iShares MSCI South Africa',    geo:'Emerging Markets',type:'🇿🇦 Sydafrika'},
+  {ticker:'ISAE.DE',   name:'iShares MSCI Saudi Arabia',    geo:'Emerging Markets',type:'🇸🇦 Saudiarabien'},
+  {ticker:'ISVX.DE',   name:'iShares MSCI Sweden',          geo:'Europa',          type:'🇸🇪 Sverige'},
+  {ticker:'IFRA.DE',   name:'iShares MSCI France',          geo:'Europa',          type:'🇫🇷 Frankrike'},
+  {ticker:'IITL.DE',   name:'iShares MSCI Italy',           geo:'Europa',          type:'🇮🇹 Italien'},
+  {ticker:'IESP.DE',   name:'iShares MSCI Spain',           geo:'Europa',          type:'🇪🇸 Spanien'},
+  {ticker:'IPOL.DE',   name:'iShares MSCI Poland',          geo:'Europa',          type:'🇵🇱 Polen'},
+  {ticker:'XDJP.DE',   name:'Xtrackers Nikkei 225',         geo:'Asien',           type:'🇯🇵 Japan'},
+  {ticker:'TVIET.DE',  name:'VanEck Vietnam ETF',           geo:'Asien',           type:'🇻🇳 Vietnam'},
+  {ticker:'TIPH.DE',   name:'iShares MSCI Philippines',     geo:'Asien',           type:'🇵🇭 Filippinerna'},
+];
+
+// ── STATE ──────────────────────────────────────
+let aumData = {};
+let themeRows = [];
+let geoRows   = [];
+let themeFilter = 'all';
+let geoFilter   = 'all';
+let sortState   = {theme:{col:7,dir:-1}, geo:{col:8,dir:-1}};
+
+// ── YAHOO FINANCE ──────────────────────────────
+async function fetchYahoo(tickers) {
+  const out = {};
+  const batchSize = 8;
+  for (let i = 0; i < tickers.length; i += batchSize) {
+    const batch = tickers.slice(i, i + batchSize);
+    await Promise.all(batch.map(async ticker => {
+      try {
+        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?interval=1d&range=4mo`;
+        const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+        const res = await fetch(proxy, {signal: AbortSignal.timeout(9000)});
+        const wrapped = await res.json();
+        const data = JSON.parse(wrapped.contents);
+        const result = data?.chart?.result?.[0];
+        if (!result) { out[ticker] = null; return; }
+        const meta = result.meta;
+        const closes = result.indicators?.quote?.[0]?.close || [];
+        const timestamps = result.timestamp || [];
+        const current = meta.regularMarketPrice || closes.filter(Boolean).pop();
+        if (!current) { out[ticker] = null; return; }
+        const getClose = (daysBack) => {
+          const target = Date.now()/1000 - daysBack*86400;
+          let best = null, bestDiff = Infinity;
+          timestamps.forEach((ts,j)=>{
+            if(closes[j]==null) return;
+            const d = Math.abs(ts - target);
+            if(d < bestDiff){ bestDiff=d; best=closes[j]; }
+          });
+          return best;
+        };
+        const pct = (from) => from && current ? ((current-from)/from)*100 : null;
+        out[ticker] = {
+          price: current,
+          chg1d: pct(getClose(1)),
+          chg1w: pct(getClose(7)),
+          chg1m: pct(getClose(30)),
+          chg3m: pct(getClose(90)),
+        };
+      } catch(e){ out[ticker] = null; }
+    }));
+    if(i+batchSize < tickers.length) await new Promise(r=>setTimeout(r,400));
+  }
+  return out;
+}
+
+// ── CALCULATIONS ───────────────────────────────
+function calcScore(d) {
+  if(!d) return null;
+  const w = {chg1d:.15,chg1w:.25,chg1m:.35,chg3m:.25};
+  let s=0, wt=0;
+  for(const[k,v] of Object.entries(w)) if(d[k]!=null){s+=d[k]*v;wt+=v;}
+  return wt>0 ? s/wt : null;
+}
+
+function calcFlowSignal(ticker, priceChg1w) {
+  const a = aumData[ticker];
+  if(!a||!a.aum||!a.aum_prev) return null;
+  const aumChg = ((a.aum - a.aum_prev) / a.aum_prev) * 100;
+  const diff = aumChg - (priceChg1w||0);
+  if(diff > 3)    return {label:'⬆ STARK KÖP', cls:'strong-buy',  diff};
+  if(diff > 0.5)  return {label:'↑ KÖP',        cls:'buy',         diff};
+  if(diff > -0.5) return {label:'— NEUTRAL',     cls:'neutral',     diff};
+  if(diff > -3)   return {label:'↓ SÄLJ',        cls:'sell',        diff};
+  return              {label:'⬇ STARK SÄLJ',  cls:'strong-sell', diff};
+}
+
+// ── FORMATTERS ─────────────────────────────────
+function fmtPct(v) {
+  if(v==null) return '<span class="perf na">—</span>';
+  const s = v>=0?'up':'dn', sign=v>=0?'+':'';
+  return `<span class="perf ${s}">${sign}${v.toFixed(2)}%</span>`;
+}
+
+function fmtScore(score) {
+  if(score==null) return '<span class="perf na">—</span>';
+  const clamp = Math.max(-5,Math.min(5,score));
+  const pct = ((clamp+5)/10)*100;
+  const color = score>=1?'var(--up)':score<=-1?'var(--dn)':'var(--warn)';
+  return `<div class="score-cell">
+    <div class="score-bar-bg"><div class="score-bar" style="width:${pct}%;background:${color}"></div></div>
+    <span class="score-val" style="color:${color}">${score.toFixed(1)}</span>
+  </div>`;
+}
+
+function fmtAum(ticker) {
+  const a = aumData[ticker];
+  if(!a||!a.aum) return '<span class="perf na">—</span>';
+  const fmt=n=>n>=1e9?(n/1e9).toFixed(1)+'B':n>=1e6?(n/1e6).toFixed(0)+'M':n.toLocaleString();
+  let chgHtml='';
+  if(a.aum_prev){
+    const c=((a.aum-a.aum_prev)/a.aum_prev)*100;
+    const color=c>=0?'var(--up)':'var(--dn)';
+    chgHtml=`<div class="aum-chg" style="color:${color}">${c>=0?'+':''}${c.toFixed(2)}%</div>`;
+  }
+  return `<div class="aum-cell">${fmt(a.aum)}${chgHtml}</div>`;
+}
+
+function fmtSignal(sig) {
+  if(!sig) return '<span class="flow-sig no-data">— ladda AUM</span>';
+  const d=sig.diff>=0?`+${sig.diff.toFixed(1)}%`:`${sig.diff.toFixed(1)}%`;
+  return `<span class="flow-sig ${sig.cls}" title="AUM vs pris: ${d}">${sig.label}</span>`;
+}
+
+// ── RENDER ─────────────────────────────────────
+function renderTheme() {
+  const tbody = document.getElementById('themeBody');
+  let rows = themeFilter==='all' ? themeRows : themeRows.filter(r=>r.etf.theme===themeFilter);
+  if(!rows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="10">Ingen data</td></tr>';return;}
+  tbody.innerHTML = rows.map((r,i)=>{
+    const sig = calcFlowSignal(r.etf.ticker, r.data?.chg1w);
+    return `<tr>
+      <td><span class="perf na">${i+1}</span></td>
+      <td><div class="etf-name">${r.etf.name}</div><div class="etf-ticker">${r.etf.ticker}</div></td>
+      <td><span class="tag">${r.etf.theme}</span></td>
+      <td>${fmtPct(r.data?.chg1d)}</td>
+      <td>${fmtPct(r.data?.chg1w)}</td>
+      <td>${fmtPct(r.data?.chg1m)}</td>
+      <td>${fmtPct(r.data?.chg3m)}</td>
+      <td>${fmtScore(r.data?calcScore(r.data):null)}</td>
+      <td>${fmtAum(r.etf.ticker)}</td>
+      <td>${fmtSignal(sig)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderGeo() {
+  const tbody = document.getElementById('geoBody');
+  let rows = geoRows;
+  if(geoFilter==='Region') rows=rows.filter(r=>r.etf.type==='Region');
+  else if(geoFilter!=='all') rows=rows.filter(r=>r.etf.geo===geoFilter);
+  if(!rows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="11">Ingen data</td></tr>';return;}
+  tbody.innerHTML = rows.map((r,i)=>{
+    const sig = calcFlowSignal(r.etf.ticker, r.data?.chg1w);
+    return `<tr>
+      <td><span class="perf na">${i+1}</span></td>
+      <td><div class="etf-name">${r.etf.name}</div><div class="etf-ticker">${r.etf.ticker}</div></td>
+      <td><span class="tag">${r.etf.geo}</span></td>
+      <td><span class="tag" style="color:var(--t2);border-color:var(--b1)">${r.etf.type}</span></td>
+      <td>${fmtPct(r.data?.chg1d)}</td>
+      <td>${fmtPct(r.data?.chg1w)}</td>
+      <td>${fmtPct(r.data?.chg1m)}</td>
+      <td>${fmtPct(r.data?.chg3m)}</td>
+      <td>${fmtScore(r.data?calcScore(r.data):null)}</td>
+      <td>${fmtAum(r.etf.ticker)}</td>
+      <td>${fmtSignal(sig)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── LOAD ───────────────────────────────────────
+async function loadAllData() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled=true; btn.textContent='⟳ Hämtar…';
+  document.getElementById('themeBody').innerHTML='<tr class="loading-row"><td colspan="10"><span class="spinner"></span>Hämtar prisdata från Yahoo Finance…</td></tr>';
+  document.getElementById('geoBody').innerHTML  ='<tr class="loading-row"><td colspan="11"><span class="spinner"></span>Hämtar prisdata från Yahoo Finance…</td></tr>';
+  try {
+    const [tRes, gRes] = await Promise.all([
+      fetchYahoo(THEME_ETFS.map(e=>e.ticker)),
+      fetchYahoo(GEO_ETFS.map(e=>e.ticker)),
+    ]);
+    themeRows = THEME_ETFS.map(etf=>({etf,data:tRes[etf.ticker]}));
+    geoRows   = GEO_ETFS.map(etf=>({etf,data:gRes[etf.ticker]}));
+    const byScore=(a,b)=>(b.data?calcScore(b.data)??-999:-999)-(a.data?calcScore(a.data)??-999:-999);
+    themeRows.sort(byScore); geoRows.sort(byScore);
+    renderTheme(); renderGeo();
+    const now=new Date().toLocaleString('sv-SE');
+    document.getElementById('themeUpdate').textContent=`Senast uppdaterad: ${now}`;
+    document.getElementById('geoUpdate').textContent  =`Senast uppdaterad: ${now}`;
+    showToast('✓ Data uppdaterad!');
+  } catch(e){
+    console.error(e);
+    showToast('⚠ Fel vid datahämtning — försök igen');
+    document.getElementById('themeBody').innerHTML='<tr class="empty-row"><td colspan="10">Misslyckades — klicka Uppdatera igen</td></tr>';
+    document.getElementById('geoBody').innerHTML  ='<tr class="empty-row"><td colspan="11">Misslyckades — klicka Uppdatera igen</td></tr>';
+  }
+  btn.disabled=false; btn.textContent='⟳ Uppdatera data';
+}
+
+// ── AUM CSV ────────────────────────────────────
+document.getElementById('csvInput').addEventListener('change', function(e) {
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try {
+      const lines=ev.target.result.trim().split('\n');
+      const hdr=lines[0].toLowerCase().replace(/\s/g,'').split(',');
+      const ti=hdr.indexOf('ticker'), ai=hdr.indexOf('aum'), ap=hdr.indexOf('aum_prev');
+      if(ti<0||ai<0){showToast('⚠ CSV saknar kolumner: ticker, aum');return;}
+      aumData={};
+      let count=0;
+      for(let i=1;i<lines.length;i++){
+        const cols=lines[i].split(',');
+        if(!cols[ti]?.trim()) continue;
+        const t=cols[ti].trim().toUpperCase();
+        aumData[t]={aum:parseFloat(cols[ai])||null, aum_prev:ap>=0?parseFloat(cols[ap]):null};
+        count++;
+      }
+      document.getElementById('aumBadge').textContent=`AUM: ${count} ETFs`;
+      document.getElementById('aumBadge').className='aum-badge ok';
+      renderTheme(); renderGeo();
+      showToast(`✓ AUM inläst för ${count} ETFs`);
+    } catch(err){ showToast('⚠ Kunde inte läsa CSV'); console.error(err); }
+  };
+  reader.readAsText(file);
+});
+
+// ── SORT ───────────────────────────────────────
+function sortTable(tbl, col) {
+  const s=sortState[tbl];
+  if(s.col===col) s.dir*=-1; else {s.col=col;s.dir=-1;}
+  const rows = tbl==='theme'?themeRows:geoRows;
+  const isGeo = tbl==='geo';
+  rows.sort((a,b)=>{
+    const v=r=>{
+      // theme cols: 0#,1name,2theme,3=1d,4=1w,5=1m,6=3m,7=score,8=aum,9=signal
+      // geo cols:   0#,1name,2geo,3type,4=1d,5=1w,6=1m,7=3m,8=score,9=aum,10=signal
+      const d1=isGeo?4:3, d7=isGeo?5:4, d30=isGeo?6:5, d90=isGeo?7:6;
+      const sc=isGeo?8:7, au=isGeo?9:8, si=isGeo?10:9;
+      if(col===1) return r.etf.name;
+      if(col===2) return isGeo?r.etf.geo:r.etf.theme;
+      if(col===3&&isGeo) return r.etf.type;
+      if(col===d1) return r.data?.chg1d??-999;
+      if(col===d7) return r.data?.chg1w??-999;
+      if(col===d30)return r.data?.chg1m??-999;
+      if(col===d90)return r.data?.chg3m??-999;
+      if(col===sc) return r.data?calcScore(r.data)??-999:-999;
+      if(col===au) return aumData[r.etf.ticker]?.aum??-1;
+      if(col===si){ const sg=calcFlowSignal(r.etf.ticker,r.data?.chg1w); return sg?sg.diff:-999; }
+      return 0;
+    };
+    const va=v(a),vb=v(b);
+    return typeof va==='string'?va.localeCompare(vb)*s.dir:(va-vb)*s.dir;
+  });
+  if(tbl==='theme') renderTheme(); else renderGeo();
+}
+
+// ── FILTERS ────────────────────────────────────
+function setThemeFilter(f,btn){
+  themeFilter=f;
+  document.querySelectorAll('#themeTabs .tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderTheme();
+}
+function setGeoFilter(f,btn){
+  geoFilter=f;
+  document.querySelectorAll('#geoTabs .tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderGeo();
+}
+
+// ── TOAST ──────────────────────────────────────
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ── CSV INFO ───────────────────────────────────
+function toggleCsvInfo(){
+  const el=document.getElementById('csvInfo');
+  const btn=document.querySelector('.csv-toggle');
+  const open=el.style.display==='block';
+  el.style.display=open?'none':'block';
+  btn.textContent=open?'▸ Visa hur du exporterar AUM från TradingView':'▾ Dölj CSV-format';
+}
+
+// ── INIT ───────────────────────────────────────
+loadAllData();
+</script>
+</body>
+</html>
