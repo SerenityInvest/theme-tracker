@@ -858,8 +858,7 @@ async function loadHistoryFromGithub() {
     });
     if(r.status === 404) { showToast('No history file yet – upload CSV to create it'); return; }
     const data = await r.json();
-    const json = JSON.parse(atob(data.content.replace(/
-/g,'')));
+    const json = JSON.parse(atob(data.content.split('\n').join('')));
     history = json;
     showToast(`✓ Loaded ${history.length} days of history`);
     updateHistoryUI();
