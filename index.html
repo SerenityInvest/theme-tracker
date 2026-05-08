@@ -16,7 +16,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:13px;min-height:100vh;overflow-x:hidden}
-.wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 24px 80px}
+.wrap{position:relative;z-index:1;max-width:100%;margin:0 auto;padding:0 16px 80px}
 /* HEADER */
 header{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:20px;flex-wrap:wrap;gap:12px}
 .logo h1{font-size:18px;font-weight:700;letter-spacing:-.3px;color:var(--text)}
@@ -53,14 +53,14 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 .tbl-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--b1)}
 table{width:100%;border-collapse:collapse}
 thead tr{background:var(--s1);border-bottom:1px solid var(--b1)}
-thead th{padding:10px 14px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s}
+thead th{padding:8px 10px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s}
 thead th:hover{color:var(--text)}
 thead th.active{color:var(--text)}
 thead th.r{text-align:right}
 tbody tr{border-bottom:1px solid #1e1e1e;transition:background .1s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover td{background:rgba(255,255,255,.03)!important}
-td{padding:11px 14px;white-space:nowrap;vertical-align:middle;font-size:13px}
+td{padding:9px 10px;white-space:nowrap;vertical-align:middle;font-size:13px}
 /* HEATMAP */
 td.hm{text-align:right;font-size:12px;font-weight:500;padding:0!important}
 td.hm span{display:block;padding:11px 14px;font-weight:600}
@@ -197,7 +197,7 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('themes',6)" class="r">YTD ↕</th>
       <th onclick="sortT('themes',7)" class="r">1Y ↕</th>
       <th onclick="sortT('themes',8)">Score ↕</th>
-      <th>1M trend</th>
+      <th>Score trend</th>
       <th onclick="sortT('themes',9)">RSI ↕</th>
       <th onclick="sortT('themes',10)" class="r">AUM ↕</th>
       <th onclick="sortT('themes',12)">Flow Signal ↕</th>
@@ -604,6 +604,7 @@ function getThemeHistory(theme, metric) {
     const t = h.themes?.[theme];
     if(!t) return null;
     if(metric === 'perf1m') return parseFloat(t.chg1m ?? '') || null;
+    if(metric === 'score') return parseFloat(t.score ?? '') || null;
     if(metric === 'aum_diff') {
       const a = parseFloat(t.aum_perf_1m ?? '');
       const p = parseFloat(t.chg1m ?? '');
@@ -743,7 +744,7 @@ function renderThemes() {
       <td>${fThemePill(td.theme)}</td>
       ${fHm(td.chg1d)}${fHm(td.chg1w)}${fHm(td.chg1m)}${fHm(td.chg3m,false,false,true)}${fHm(td.ytd,true)}${fHm(td.chg1y,false,true)}
       <td>${fScore(td.sc)}</td>
-      <td>${fSparkline(getThemeHistory(td.theme,'perf1m'))}</td>
+      <td>${fSparkline(getThemeHistory(td.theme,'score'))}</td>
       <td>${fRsi(td.rsi)}</td>
       <td>${fAumBar(td.aum, maxAum)}</td>
       <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM prev</span>'}</td>
