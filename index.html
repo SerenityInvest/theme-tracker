@@ -963,6 +963,30 @@ async function saveLatestToGithub(rows) {
   } catch(e) { console.error('Could not save latest.json', e); }
 }
 
+async function loadPublicData() {
+  // Hämtar latest.json direkt från GitHub utan token (publik data)
+  const s = ghSettings();
+  const repo = s.repo || 'SerenityInvest/theme-tracker';
+  try {
+    const url = `https://raw.githubusercontent.com/${repo}/main/latest.json`;
+    const r = await fetch(url);
+    if(!r.ok) return false;
+    const payload = await r.json();
+    const rows = payload.rows;
+    allRows = rows;
+    indivRows = [...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+    geoRows = rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+    buildThemeData();
+    renderThemes(); renderIndiv(); renderGeo();
+    document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;
+    document.getElementById('dataBadge').className='badge ok';
+    document.getElementById('dateBadge').textContent=payload.date||'';
+    return true;
+  } catch(e) {
+    return false;
+  }
+}
+
 async function loadLatestFromGithub() {
   const s = ghSettings();
   if(!s.token) return false;
@@ -1310,7 +1334,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     if(!loaded) showToast('Enter your GitHub token in Settings to load data');
     loadHistoryFromGithub();
   } else {
-    showToast('Enter your GitHub token in Settings to auto-load data');
+    // Ingen token – försök ladda publik data ändå
+    const loaded = await loadPublicData();
+    if(loaded) showToast('✓ Data loaded (read-only mode)');
   }
 });
 </script>
