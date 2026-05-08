@@ -201,9 +201,10 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('themes',10)">BBP ↕</th>
       <th onclick="sortT('themes',11)" class="r">AUM ↕</th>
       <th onclick="sortT('themes',12)">Flow Signal ↕</th>
+      <th onclick="sortT('themes',13)">AUM vs 1M ↕</th>
       <th>ETFs in Theme</th>
     </tr></thead>
-    <tbody id="themeBody"><tr class="empty-row"><td colspan="14">Upload a CSV file to display data</td></tr></tbody>
+    <tbody id="themeBody"><tr class="empty-row"><td colspan="15">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="themeUpdate"></div>
 </div>
@@ -466,6 +467,8 @@ function parseRow(r) {
     aum: n.aum, aum_prev: n.aum_prev||'',
     rsi: n.rsi||'', bbp: n.bbp||'',
     fund_flows: n.fund_flows||'',
+    aum_perf_1m: n.aum_perf_1m||'',
+    aum_perf_3m: n.aum_perf_3m||'',
   };
 
   // TradingView format
@@ -488,6 +491,8 @@ function parseRow(r) {
     rsi: n['relative strength index (14) 1 day']||n['rsi']||'',
     bbp: n['bull bear power (13) 1 day']||n['bbp']||'',
     fund_flows: n['fund flows 1 month']||n['fund_flows']||'',
+    aum_perf_1m: n['aum performance % 1 month']||n['aum_perf_1m']||'',
+    aum_perf_3m: n['aum performance % 3 months']||n['aum_perf_3m']||'',
     _rawIdx: n['index tracked']||'',
   };
 }
@@ -593,6 +598,15 @@ function fRsi(v) {
   </div>`;
 }
 
+function fFlowDiff(aumPerf, perf) {
+  const a = pf(aumPerf), p = pf(perf);
+  if(isNaN(a) || isNaN(p)) return '<span style="color:var(--muted)">—</span>';
+  const diff = a - p;
+  const color = diff > 2 ? '#00cc66' : diff > 0 ? '#44aa66' : diff > -2 ? '#888888' : '#dd3344';
+  const arrow = diff > 0 ? '▲' : '▼';
+  return `<span style="font-family:'DM Mono',monospace;font-size:12px;color:${color}">${arrow} ${diff>=0?'+':''}${diff.toFixed(1)}%</span>`;
+}
+
 function fBbp(v) {
   const n=pf(v);
   if(isNaN(n)) return '<span style="color:var(--muted)">—</span>';
@@ -653,6 +667,8 @@ function buildThemeData() {
     const avgBbp=()=>{const vs=rows.map(r=>pf(r.bbp)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
     // Summera fund_flows för alla ETF:er i temat
     const totalFundFlows = rows.reduce((s,r)=>s+(pf(r.fund_flows)||0),0);
+    const avgAumPerf1m = ()=>{const vs=rows.map(r=>pf(r.aum_perf_1m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+    const avgAumPerf3m = ()=>{const vs=rows.map(r=>pf(r.aum_perf_3m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
     return {
       theme, rows, top3:top, ...ag,
       sc:calcScore(ag),
@@ -660,6 +676,8 @@ function buildThemeData() {
       aum:top.reduce((s,r)=>s+(pf(r.aum)||0),0),
       aum_prev:top.reduce((s,r)=>s+(pf(r.aum_prev)||0),0),
       fund_flows: totalFundFlows,
+      aum_perf_1m: avgAumPerf1m(),
+      aum_perf_3m: avgAumPerf3m(),
     };
   });
   themeData.sort((a,b)=>(b.sc??-999)-(a.sc??-999));
@@ -681,6 +699,7 @@ function renderThemes() {
       <td>${fBbp(td.bbp)}</td>
       <td>${fAum(td.aum,td.aum_prev)}</td>
       <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM prev</span>'}</td>
+      <td>${fFlowDiff(td.aum_perf_1m, td.chg1m)}</td>
       <td><div class="ticker-list">${tickers}</div></td>
     </tr>`;
   }).join('');
