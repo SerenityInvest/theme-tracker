@@ -353,6 +353,15 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <button class="gh-btn sec" onclick="clearHistory()">🗑 Clear History</button>
     </div>
   </div>
+  <div class="gh-setup">
+    <h4>📱 Din personliga länk</h4>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Spara denna länk i WhatsApp eller som bokmärke – datan laddas automatiskt utan att du behöver ange token.</p>
+    <div class="gh-row">
+      <input class="gh-input" type="text" id="personalLink" readonly placeholder="Spara settings först...">
+      <button class="gh-btn" onclick="copyPersonalLink()">📋 Kopiera</button>
+    </div>
+    <p style="font-size:11px;color:#aa6600;margin-top:8px">⚠️ Dela inte denna länk med andra – den innehåller ditt GitHub-token.</p>
+  </div>
 </div>
 
 </div>
@@ -812,7 +821,10 @@ document.getElementById('csvInput').addEventListener('change',function(e){
       // Auto-spara till GitHub om token finns
       const ghS = ghSettings();
       if(ghS.token) {
-        setTimeout(() => saveHistoryToGithub(), 500);
+        setTimeout(async () => {
+          await saveLatestToGithub(dedupedRows);
+          await saveHistoryToGithub();
+        }, 500);
       } else {
         showToast('✓ Data loaded · Go to Settings to enable history saving');
       }
@@ -834,7 +846,35 @@ function saveGhSettings() {
   localStorage.setItem('gh_token', document.getElementById('ghToken').value.trim());
   localStorage.setItem('gh_repo',  document.getElementById('ghRepo').value.trim());
   localStorage.setItem('gh_file',  document.getElementById('ghFile').value.trim());
+  updatePersonalLink();
   showToast('✓ Settings saved');
+}
+
+function updatePersonalLink() {
+  const s = ghSettings();
+  const linkEl = document.getElementById('personalLink');
+  if(!linkEl) return;
+  if(s.token) {
+    const base = window.location.origin + window.location.pathname;
+    linkEl.value = `${base}?token=${s.token}`;
+  } else {
+    linkEl.value = 'Spara settings med token först...';
+  }
+}
+
+function copyPersonalLink() {
+  const linkEl = document.getElementById('personalLink');
+  if(!linkEl || !linkEl.value.startsWith('http')) {
+    showToast('⚠ Spara settings med token först');
+    return;
+  }
+  navigator.clipboard.writeText(linkEl.value).then(() => {
+    showToast('✓ Länk kopierad – klistra in i WhatsApp!');
+  }).catch(() => {
+    linkEl.select();
+    document.execCommand('copy');
+    showToast('✓ Länk kopierad!');
+  });
 }
 
 function loadGhSettingsUI() {
@@ -879,6 +919,77 @@ async function loadHistoryFromGithub() {
     updateHistoryUI();
     renderAllCharts();
   } catch(e) { showToast('⚠ Could not load history'); console.error(e); }
+}
+
+async function saveLatestToGithub(rows) {
+  const s = ghSettings();
+  if(!s.token) return;
+  // Spara en kompakt version av senaste rader
+  const data = rows.map(r => ({
+    ticker:r.ticker, name:r.name, theme:r.theme, geo:r.geo, geo_type:r.geo_type,
+    chg1d:r.chg1d, chg1w:r.chg1w, chg1m:r.chg1m, chg3m:r.chg3m,
+    chg6m:r.chg6m||'', ytd:r.ytd, chg1y:r.chg1y,
+    aum:r.aum, aum_prev:r.aum_prev||'',
+    rsi:r.rsi, bbp:r.bbp, fund_flows:r.fund_flows||'',
+    _rawIdx:r._rawIdx||'',
+  }));
+  const today = new Date().toISOString().split('T')[0];
+  const payload = {date: today, rows: data};
+
+  let sha = '';
+  try {
+    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`, {
+      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
+    });
+    if(r.ok) { const d = await r.json(); sha = d.sha; }
+  } catch(e) {}
+
+  const body = {
+    message: `Update latest ${today}`,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(payload)))),
+    ...(sha ? {sha} : {})
+  };
+
+  try {
+    await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`, {
+      method:'PUT',
+      headers:{
+        'Authorization':`token ${s.token}`,
+        'Accept':'application/vnd.github.v3+json',
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+  } catch(e) { console.error('Could not save latest.json', e); }
+}
+
+async function loadLatestFromGithub() {
+  const s = ghSettings();
+  if(!s.token) return false;
+  try {
+    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`, {
+      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
+    });
+    if(!r.ok) return false;
+    const data = await r.json();
+    const payload = JSON.parse(atob(data.content.split('\n').join('')));
+    const rows = payload.rows;
+
+    allRows = rows;
+    indivRows = [...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+    geoRows = rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+    buildThemeData();
+    renderThemes(); renderIndiv(); renderGeo();
+
+    document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;
+    document.getElementById('dataBadge').className='badge ok';
+    document.getElementById('dateBadge').textContent=payload.date||'';
+    showToast(`✓ Loaded ${rows.length} ETFs from GitHub (${payload.date})`);
+    return true;
+  } catch(e) {
+    console.error('Could not load latest.json', e);
+    return false;
+  }
 }
 
 async function saveHistoryToGithub() {
@@ -1183,11 +1294,24 @@ function showToast(msg){
 }
 
 // ── INIT ──────────────────────────────────────
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
+  // Läs token från URL-parameter om den finns: ?token=xxx
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlToken = urlParams.get('token');
+  if(urlToken) {
+    localStorage.setItem('gh_token', urlToken);
+  }
+
   loadGhSettingsUI();
-  // Försök ladda historik automatiskt om token finns
+  updatePersonalLink();
   const s = ghSettings();
-  if(s.token) loadHistoryFromGithub();
+  if(s.token) {
+    const loaded = await loadLatestFromGithub();
+    if(!loaded) showToast('Enter your GitHub token in Settings to load data');
+    loadHistoryFromGithub();
+  } else {
+    showToast('Enter your GitHub token in Settings to auto-load data');
+  }
 });
 </script>
 </body>
