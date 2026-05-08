@@ -199,8 +199,7 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('themes',8)">Score ↕</th>
       <th>1M trend</th>
       <th onclick="sortT('themes',9)">RSI ↕</th>
-      <th onclick="sortT('themes',10)">BBP ↕</th>
-      <th onclick="sortT('themes',11)" class="r">AUM ↕</th>
+      <th onclick="sortT('themes',10)" class="r">AUM ↕</th>
       <th onclick="sortT('themes',12)">Flow Signal ↕</th>
       <th onclick="sortT('themes',13)">AUM vs 1M ↕</th>
       <th>AUM trend</th>
@@ -230,8 +229,7 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('indiv',9)" class="r">1Y ↕</th>
       <th onclick="sortT('indiv',10)">Score ↕</th>
       <th onclick="sortT('indiv',11)">RSI ↕</th>
-      <th onclick="sortT('indiv',12)">BBP ↕</th>
-      <th onclick="sortT('indiv',13)" class="r">AUM ↕</th>
+      <th onclick="sortT('indiv',12)" class="r">AUM ↕</th>
       <th onclick="sortT('indiv',14)">Flow Signal ↕</th>
     </tr></thead>
     <tbody id="indivBody"><tr class="empty-row"><td colspan="15">Upload a CSV file to display data</td></tr></tbody>
@@ -259,8 +257,7 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('geo',10)" class="r">1Y ↕</th>
       <th onclick="sortT('geo',11)">Score ↕</th>
       <th onclick="sortT('geo',12)">RSI ↕</th>
-      <th onclick="sortT('geo',13)">BBP ↕</th>
-      <th onclick="sortT('geo',14)" class="r">AUM ↕</th>
+      <th onclick="sortT('geo',13)" class="r">AUM ↕</th>
       <th onclick="sortT('geo',15)">Flow Signal ↕</th>
     </tr></thead>
     <tbody id="geoBody"><tr class="empty-row"><td colspan="16">Upload a CSV file to display data</td></tr></tbody>
@@ -514,11 +511,11 @@ function calcFlow(r) {
   const aum = pf(r.aum);
   if(isNaN(ff) || isNaN(aum) || aum === 0) return null;
   const pct = (ff / aum) * 100; // fund flows som % av AUM
-  if(pct > 3)    return {label:'⬆ STRONG BUY',  cls:'sb', diff:pct};
-  if(pct > 0.5)  return {label:'↑ BUY',          cls:'b',  diff:pct};
-  if(pct > -0.5) return {label:'— NEUTRAL',      cls:'n',  diff:pct};
-  if(pct > -3)   return {label:'↓ SELL',          cls:'s',  diff:pct};
-  return                {label:'⬇ STRONG SELL',  cls:'ss', diff:pct};
+  if(pct > 10)   return {label:'⬆ BIG INFLOWS',  cls:'sb', diff:pct};
+  if(pct > 2)    return {label:'↑ INFLOWS',       cls:'b',  diff:pct};
+  if(pct > -2)   return {label:'— NEUTRAL',       cls:'n',  diff:pct};
+  if(pct > -10)  return {label:'↓ OUTFLOWS',      cls:'s',  diff:pct};
+  return                {label:'⬇ BIG OUTFLOWS',  cls:'ss', diff:pct};
 }
 
 // ── DEDUPLICATION ─────────────────────────────
@@ -652,6 +649,19 @@ function fBbp(v) {
   return `<span class="bbp-num" style="color:${color}">${arrow} ${n.toFixed(1)}</span>`;
 }
 
+function fAumBar(aum, maxAum) {
+  const a = pf(aum);
+  if(isNaN(a) || !maxAum) return '<span style="color:var(--muted)">—</span>';
+  const pct = Math.min(100, (a / maxAum) * 100);
+  const fmt = a >= 1e9 ? (a/1e9).toFixed(1)+'B' : a >= 1e6 ? (a/1e6).toFixed(0)+'M' : a.toLocaleString();
+  return `<div style="display:flex;align-items:center;gap:6px;min-width:100px">
+    <div style="flex:1;height:6px;background:var(--b1);border-radius:3px;overflow:hidden;min-width:60px">
+      <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#7c5fff,#00e4b8);border-radius:3px"></div>
+    </div>
+    <span style="font-size:11px;color:var(--t2);min-width:36px;text-align:right">${fmt}</span>
+  </div>`;
+}
+
 function fAum(aum, aum_prev) {
   const a=pf(aum); if(isNaN(a)) return '<span style="color:var(--muted)">—</span>';
   const fmt=n=>n>=1e9?(n/1e9).toFixed(1)+'B':n>=1e6?(n/1e6).toFixed(0)+'M':n.toLocaleString();
@@ -724,6 +734,7 @@ function buildThemeData() {
 function renderThemes() {
   const tbody=document.getElementById('themeBody');
   if(!themeData.length){tbody.innerHTML='<tr class="empty-row"><td colspan="14">No thematic data in CSV</td></tr>';return;}
+  const maxAum = Math.max(...themeData.map(td=>pf(td.aum)||0));
   tbody.innerHTML=themeData.map((td,i)=>{
     const sig=calcFlow({aum:td.aum,fund_flows:td.fund_flows});
     const tickers=td.rows.map((r,j)=>`<span class="t-chip${j<3?' best':''}">${r.ticker}</span>`).join('');
@@ -734,8 +745,7 @@ function renderThemes() {
       <td>${fScore(td.sc)}</td>
       <td>${fSparkline(getThemeHistory(td.theme,'perf1m'))}</td>
       <td>${fRsi(td.rsi)}</td>
-      <td>${fBbp(td.bbp)}</td>
-      <td>${fAum(td.aum,td.aum_prev)}</td>
+      <td>${fAumBar(td.aum, maxAum)}</td>
       <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM prev</span>'}</td>
       <td>${fFlowDiff(td.aum_perf_1m, td.chg1m)}</td>
       <td>${fSparkline(getThemeHistory(td.theme,'aum_diff'))}</td>
@@ -748,7 +758,8 @@ function renderThemes() {
 // ── RENDER INDIVIDUAL ─────────────────────────
 function renderIndiv() {
   const tbody=document.getElementById('indivBody');
-  if(!indivRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="15">No data in CSV</td></tr>';return;}
+  if(!indivRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="14">No data in CSV</td></tr>';return;}
+  const maxAumIndiv = Math.max(...indivRows.map(r=>pf(r.aum)||0));
   tbody.innerHTML=indivRows.map((r,i)=>{
     const sc=calcScore(r);
     const cat=r.theme?fThemePill(r.theme):r.geo?fGeoBadge(r.geo):'—';
@@ -760,8 +771,7 @@ function renderIndiv() {
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
       <td>${fScore(sc)}</td>
       <td>${fRsi(r.rsi)}</td>
-      <td>${fBbp(r.bbp)}</td>
-      <td>${fAum(r.aum,r.aum_prev)}</td>
+      <td>${fAumBar(r.aum, maxAumIndiv)}</td>
       <td>${fFlow(r)}</td>
     </tr>`;
   }).join('');
@@ -771,7 +781,8 @@ function renderIndiv() {
 // ── RENDER GEO ────────────────────────────────
 function renderGeo() {
   const tbody=document.getElementById('geoBody');
-  if(!geoRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="16">No geographic data in CSV</td></tr>';return;}
+  if(!geoRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="15">No geographic data in CSV</td></tr>';return;}
+  const maxAumGeo = Math.max(...geoRows.map(r=>pf(r.aum)||0));
   tbody.innerHTML=geoRows.map((r,i)=>{
     const sc=calcScore(r);
     return `<tr>
@@ -783,8 +794,7 @@ function renderGeo() {
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
       <td>${fScore(sc)}</td>
       <td>${fRsi(r.rsi)}</td>
-      <td>${fBbp(r.bbp)}</td>
-      <td>${fAum(r.aum,r.aum_prev)}</td>
+      <td>${fAumBar(r.aum, maxAumGeo)}</td>
       <td>${fFlow(r)}</td>
     </tr>`;
   }).join('');
