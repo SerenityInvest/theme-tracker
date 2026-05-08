@@ -197,14 +197,16 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('themes',6)" class="r">YTD ↕</th>
       <th onclick="sortT('themes',7)" class="r">1Y ↕</th>
       <th onclick="sortT('themes',8)">Score ↕</th>
+      <th>1M trend</th>
       <th onclick="sortT('themes',9)">RSI ↕</th>
       <th onclick="sortT('themes',10)">BBP ↕</th>
       <th onclick="sortT('themes',11)" class="r">AUM ↕</th>
       <th onclick="sortT('themes',12)">Flow Signal ↕</th>
       <th onclick="sortT('themes',13)">AUM vs 1M ↕</th>
+      <th>AUM trend</th>
       <th>ETFs in Theme</th>
     </tr></thead>
-    <tbody id="themeBody"><tr class="empty-row"><td colspan="15">Upload a CSV file to display data</td></tr></tbody>
+    <tbody id="themeBody"><tr class="empty-row"><td colspan="17">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="themeUpdate"></div>
 </div>
@@ -598,6 +600,41 @@ function fRsi(v) {
   </div>`;
 }
 
+// ── SPARKLINES ───────────────────────────────
+function getThemeHistory(theme, metric) {
+  if(!history || !history.length) return [];
+  return history.slice(-10).map(h => {
+    const t = h.themes?.[theme];
+    if(!t) return null;
+    if(metric === 'perf1m') return parseFloat(t.chg1m ?? '') || null;
+    if(metric === 'aum_diff') {
+      const a = parseFloat(t.aum_perf_1m ?? '');
+      const p = parseFloat(t.chg1m ?? '');
+      return (!isNaN(a) && !isNaN(p)) ? a - p : null;
+    }
+    return null;
+  });
+}
+
+function fSparkline(values) {
+  // values = array med tal eller null, senaste 10 dagar
+  if(!values || values.filter(v=>v!==null).length < 2) {
+    return '<span style="color:var(--muted);font-size:10px">no history</span>';
+  }
+  const dots = values.map((v, i) => {
+    if(v === null) return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#333;margin:0 1px;vertical-align:middle"></span>';
+    const prev = values.slice(0, i).filter(x => x !== null).pop();
+    let color;
+    if(prev === undefined) color = '#555';
+    else if(v > prev) color = '#00cc66';
+    else if(v < prev) color = '#dd3344';
+    else color = '#666';
+    const size = i === values.length - 1 ? '10px' : '7px'; // sista pricken större
+    return `<span title="${v?.toFixed(2)}" style="display:inline-block;width:${size};height:${size};border-radius:50%;background:${color};margin:0 1px;vertical-align:middle"></span>`;
+  });
+  return `<div style="display:flex;align-items:center;gap:1px">${dots.join('')}</div>`;
+}
+
 function fFlowDiff(aumPerf, perf) {
   const a = pf(aumPerf), p = pf(perf);
   if(isNaN(a) || isNaN(p)) return '<span style="color:var(--muted)">—</span>';
@@ -695,11 +732,13 @@ function renderThemes() {
       <td>${fThemePill(td.theme)}</td>
       ${fHm(td.chg1d)}${fHm(td.chg1w)}${fHm(td.chg1m)}${fHm(td.chg3m,false,false,true)}${fHm(td.ytd,true)}${fHm(td.chg1y,false,true)}
       <td>${fScore(td.sc)}</td>
+      <td>${fSparkline(getThemeHistory(td.theme,'perf1m'))}</td>
       <td>${fRsi(td.rsi)}</td>
       <td>${fBbp(td.bbp)}</td>
       <td>${fAum(td.aum,td.aum_prev)}</td>
       <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM prev</span>'}</td>
       <td>${fFlowDiff(td.aum_perf_1m, td.chg1m)}</td>
+      <td>${fSparkline(getThemeHistory(td.theme,'aum_diff'))}</td>
       <td><div class="ticker-list">${tickers}</div></td>
     </tr>`;
   }).join('');
@@ -1049,6 +1088,7 @@ async function saveHistoryToGithub() {
     themesSnap[t.theme] = {
       ytd: t.ytd, chg1m: t.chg1m, chg3m: t.chg3m,
       chg1w: t.chg1w, score: t.sc, aum: t.aum,
+      aum_perf_1m: t.aum_perf_1m,
     };
   });
 
