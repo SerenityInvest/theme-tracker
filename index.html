@@ -144,6 +144,9 @@ canvas{width:100%!important}
 .gh-status{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border-radius:4px;background:var(--s3)}
 .gh-status.ok{color:var(--teal)}.gh-status.err{color:var(--dn)}
 .history-info{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
+th[title]{cursor:help;}
+th[title]{border-bottom:1px dashed var(--b2);}
+th[title]:hover{color:var(--text);}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .modal-overlay.hidden{display:none}
 .modal-box{background:var(--s1);border:1px solid var(--b2);border-radius:14px;padding:28px 32px;min-width:340px;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
@@ -213,12 +216,13 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('themes',6)" class="r">YTD ↕</th><th onclick="sortT('themes',7)" class="r">1Y ↕</th>
       <th onclick="sortT('themes',8)">Score ↕</th><th>Score trend</th>
       <th onclick="sortT('themes',9)">RSI ↕</th><th onclick="sortT('themes',10)" class="r">AUM ↕</th>
-      <th onclick="sortT('themes',12)">Flow Signal ↕</th><th onclick="sortT('themes',13)">AUM vs 1M ↕</th>
-      <th>AUM trend</th><th>ETFs in Theme</th>
+      <th onclick="sortT('themes',12)" title="Investor Flow Signal: fund flows over last month as % of total AUM. Measures whether investors are buying or selling this theme.">Investor Flows ↕ ℹ</th><th onclick="sortT('themes',13)" title="AUM Growth vs Price: AUM % change minus price % change over 1 month. Positive = AUM grew faster than price (net inflows). Negative = AUM lagged price (net outflows or redemptions).">AUM vs Price 1M ↕ ℹ</th>
+      <th title="AUM vs Price trend over last 10 days of history">AUM trend</th><th>ETFs in Theme</th>
     </tr></thead>
     <tbody id="themeBody"><tr class="empty-row"><td colspan="17">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="themeUpdate"></div>
+  <div id="themeLegend" style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.8;padding:8px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;display:none"></div>
 </div>
 
 <!-- INDIVIDUAL -->
@@ -623,7 +627,7 @@ function fAumBar(aum,maxAum) {
 function fFlow(r) {
   const sig=calcFlow(r);
   if(!sig)return '<span class="flow nd">— no flow data</span>';
-  return `<span class="flow ${sig.cls}" title="Fund flows 1M: ${sig.diff>=0?'+':''}${sig.diff.toFixed(2)}% of AUM">${sig.label}</span>`;
+  return `<span class="flow ${sig.cls}" title="Investor Flow Signal: fund flows last month = ${sig.diff>=0?'+':''}${sig.diff.toFixed(2)}% of AUM. This measures net investor buying/selling (new money in or out), NOT price movement.">${sig.label}</span>`;
 }
 
 function fThemePill(t) {
@@ -655,14 +659,15 @@ function buildThemeData() {
     const maxA=Math.max(...scored.map(x=>x.aum))||1;
     scored.forEach(x=>{x.rank=x.sc*0.6+(x.aum/maxA)*5*0.4;});
     scored.sort((a,b)=>b.rank-a.rank);
+    const top8=scored.slice(0,8).map(x=>x.r);
     const top=scored.slice(0,3).map(x=>x.r);
     const avg=key=>{const vs=top.map(r=>pf(r[key])).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
     const ag={chg1d:avg('chg1d'),chg1w:avg('chg1w'),chg1m:avg('chg1m'),chg3m:avg('chg3m'),ytd:avg('ytd'),chg1y:avg('chg1y')};
-    const avgRsi=()=>{const vs=rows.map(r=>pf(r.rsi)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
-    const totalFF=rows.reduce((s,r)=>s+(pf(r.fund_flows)||0),0);
-    const avgAP1m=()=>{const vs=rows.map(r=>pf(r.aum_perf_1m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
-    const avgAP3m=()=>{const vs=rows.map(r=>pf(r.aum_perf_3m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
-    return {theme,rows,top3:top,...ag,sc:calcScore(ag),rsi:avgRsi(),
+    const avgRsi=()=>{const vs=top8.map(r=>pf(r.rsi)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+    const totalFF=top8.reduce((s,r)=>s+(pf(r.fund_flows)||0),0);
+    const avgAP1m=()=>{const vs=top8.map(r=>pf(r.aum_perf_1m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+    const avgAP3m=()=>{const vs=top8.map(r=>pf(r.aum_perf_3m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+    return {theme,rows:top8,top3:top,...ag,sc:calcScore(ag),rsi:avgRsi(),
       aum:top.reduce((s,r)=>s+(pf(r.aum)||0),0),
       aum_prev:top.reduce((s,r)=>s+(pf(r.aum_prev)||0),0),
       fund_flows:totalFF,aum_perf_1m:avgAP1m(),aum_perf_3m:avgAP3m()};
@@ -685,13 +690,17 @@ function renderThemes() {
       <td>${fSparkline(getThemeHistory(td.theme,'score'))}</td>
       <td>${fRsi(td.rsi)}</td>
       <td>${fAumBar(td.aum,maxAum)}</td>
-      <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM prev</span>'}</td>
-      <td>${fFlowDiff(td.aum_perf_1m,td.chg1m)}</td>
+      <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd" title="Fund flows data not available in CSV">— no flow data</span>'}</td>
+      <td title="AUM Growth vs Price: positive means AUM grew faster than price (net new money). Negative means price rose faster than AUM (redemptions or no new inflows).">${fFlowDiff(td.aum_perf_1m,td.chg1m)}</td>
       <td>${fSparkline(getThemeHistory(td.theme,'aum_diff'))}</td>
       <td><div class="ticker-list">${tickers}</div></td>
     </tr>`;
   }).join('');
   document.getElementById('themeUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
+  const legendEl=document.getElementById('themeLegend');legendEl.style.display='block';legendEl.innerHTML=`
+    <span style="margin-right:16px">ℹ <strong>Investor Flows</strong>: fund flows ÷ AUM — are investors buying or selling?</span>
+    <span>ℹ <strong>AUM vs Price 1M</strong>: AUM growth % minus price % — if positive, new money is coming in beyond price appreciation. If negative, AUM grew slower than price (outflows or no new buyers).</span>
+  `;
 }
 
 function renderIndiv() {
