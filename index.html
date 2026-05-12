@@ -144,6 +144,21 @@ canvas{width:100%!important}
 .gh-status{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border-radius:4px;background:var(--s3)}
 .gh-status.ok{color:var(--teal)}.gh-status.err{color:var(--dn)}
 .history-info{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.modal-overlay.hidden{display:none}
+.modal-box{background:var(--s1);border:1px solid var(--b2);border-radius:14px;padding:28px 32px;min-width:340px;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.modal-box h3{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.modal-box p{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6}
+.modal-date-input{width:100%;background:var(--s2);border:1px solid var(--b2);border-radius:7px;padding:10px 14px;font-size:14px;font-family:'DM Mono',monospace;color:var(--text);margin-bottom:8px;outline:none;transition:border-color .2s}
+.modal-date-input:focus{border-color:var(--accent)}
+.modal-warning{font-size:11px;color:#f5a623;margin-bottom:18px;padding:8px 12px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);border-radius:6px;display:none}
+.modal-warning.show{display:block}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end}
+.modal-btn{border:none;border-radius:7px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .2s}
+.modal-btn.primary{background:var(--accent);color:#fff}
+.modal-btn.primary:hover{opacity:.85}
+.modal-btn.cancel{background:var(--s2);border:1px solid var(--b1);color:var(--t2)}
+.modal-btn.cancel:hover{border-color:var(--b2);color:var(--text)}
 </style>
 </head>
 <body>
@@ -335,6 +350,21 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
 </div>
 
 </div>
+
+<!-- DATE PICKER MODAL -->
+<div class="modal-overlay hidden" id="dateModal">
+  <div class="modal-box">
+    <h3>📅 Select data date</h3>
+    <p>Choose the date this CSV data represents.<br>TradingView data downloaded in the morning usually reflects <strong>yesterday's closing prices</strong>.</p>
+    <input class="modal-date-input" type="date" id="modalDateInput">
+    <div class="modal-warning" id="modalWarning"></div>
+    <div class="modal-btns">
+      <button class="modal-btn cancel" onclick="cancelDateModal()">Cancel (don't save)</button>
+      <button class="modal-btn primary" onclick="confirmDateModal()">✓ Save with this date</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
 <script>
 
@@ -855,6 +885,9 @@ function parseCsvLine(line) {
   return result;
 }
 
+// Pending save state — populated after CSV parse, before date confirmed
+let _pendingSaveRows = null;
+
 document.getElementById('csvInput').addEventListener('change',function(e){
   const file=e.target.files[0];if(!file)return;
   const reader=new FileReader();
@@ -878,18 +911,62 @@ document.getElementById('csvInput').addEventListener('change',function(e){
       renderThemes();renderIndiv();renderGeo();
       document.getElementById('dataBadge').textContent=`${deduped.length} ETFs loaded`;
       document.getElementById('dataBadge').className='badge ok';
-      document.getElementById('dateBadge').textContent=new Date().toLocaleDateString('sv-SE');
       showToast(`✓ ${deduped.length} ETFs loaded (${removed} duplicates removed)`);
+
       const ghS=ghSettings();
       if(ghS.token){
-        setTimeout(async()=>{await saveLatestToGithub(deduped);await saveHistoryToGithub();},500);
+        // Show date picker modal — pre-fill with yesterday
+        _pendingSaveRows = deduped;
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate()-1);
+        const yStr = yesterday.toISOString().split('T')[0];
+        const input = document.getElementById('modalDateInput');
+        input.value = yStr;
+        checkModalWarning(yStr);
+        document.getElementById('dateModal').classList.remove('hidden');
       } else {
+        document.getElementById('dateBadge').textContent=new Date().toLocaleDateString('sv-SE');
         showToast('✓ Data loaded · Go to Settings to enable history saving');
       }
     }catch(err){showToast('⚠ Could not read CSV');console.error(err);}
   };
   reader.readAsText(file);
 });
+
+function checkModalWarning(dateStr) {
+  const warn = document.getElementById('modalWarning');
+  if(!dateStr){warn.classList.remove('show');return;}
+  const existing = history.find(h=>h.date===dateStr);
+  if(existing){
+    warn.textContent=`⚠ A snapshot for ${dateStr} already exists — saving will overwrite it.`;
+    warn.classList.add('show');
+  } else {
+    warn.classList.remove('show');
+  }
+}
+
+document.getElementById('modalDateInput').addEventListener('input', function(){
+  checkModalWarning(this.value);
+});
+
+function cancelDateModal(){
+  document.getElementById('dateModal').classList.add('hidden');
+  _pendingSaveRows = null;
+  document.getElementById('dateBadge').textContent = '(not saved)';
+  showToast('Data loaded in memory · not saved to GitHub');
+}
+
+async function confirmDateModal(){
+  const dateStr = document.getElementById('modalDateInput').value;
+  if(!dateStr){showToast('⚠ Please pick a date');return;}
+  document.getElementById('dateModal').classList.add('hidden');
+  document.getElementById('dateBadge').textContent = dateStr;
+  const rows = _pendingSaveRows;
+  _pendingSaveRows = null;
+  showToast('Saving to GitHub…');
+  await saveLatestToGithub(rows, dateStr);
+  await saveHistoryToGithub(dateStr);
+}
 
 function ghSettings(){return{token:localStorage.getItem('gh_token')||'',repo:localStorage.getItem('gh_repo')||'SerenityInvest/theme-tracker',file:localStorage.getItem('gh_file')||'history.json'};}
 function saveGhSettings(){localStorage.setItem('gh_token',document.getElementById('ghToken').value.trim());localStorage.setItem('gh_repo',document.getElementById('ghRepo').value.trim());localStorage.setItem('gh_file',document.getElementById('ghFile').value.trim());updatePersonalLink();showToast('✓ Settings saved');}
@@ -899,10 +976,10 @@ function loadGhSettingsUI(){const s=ghSettings();document.getElementById('ghToke
 async function testGithubConnection(){const s=ghSettings();if(!s.token){setGhStatus('No token',true);return;}setGhStatus('Testing…',false);try{const r=await fetch(`https://api.github.com/repos/${s.repo}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok)setGhStatus('✓ Connected',false);else setGhStatus('✗ '+r.status+' – check token/repo',true);}catch(e){setGhStatus('✗ Network error',true);}}
 function setGhStatus(msg,err){const el=document.getElementById('ghStatus');el.textContent=msg;el.className='gh-status '+(err?'err':'ok');}
 async function loadHistoryFromGithub(){const s=ghSettings();if(!s.token){showToast('⚠ No GitHub token – check Settings');return;}showToast('Loading history…');try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.status===404){showToast('No history file yet – upload CSV to create it');return;}const data=await r.json();const json=JSON.parse(atob(data.content.split('\n').join('')));history=json;showToast(`✓ Loaded ${history.length} days of history`);updateHistoryUI();renderAllCharts();}catch(e){showToast('⚠ Could not load history');console.error(e);}}
-async function saveLatestToGithub(rows){const s=ghSettings();if(!s.token)return;const data=rows.map(r=>({ticker:r.ticker,name:r.name,theme:r.theme,geo:r.geo,geo_type:r.geo_type,chg1d:r.chg1d,chg1w:r.chg1w,chg1m:r.chg1m,chg3m:r.chg3m,chg6m:r.chg6m||'',ytd:r.ytd,chg1y:r.chg1y,aum:r.aum,aum_prev:r.aum_prev||'',rsi:r.rsi,bbp:r.bbp,fund_flows:r.fund_flows||'',_rawIdx:r._rawIdx||''}));const today=new Date().toISOString().split('T')[0];const payload={date:today,rows:data};let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update latest ${today}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(payload)))),...(sha?{sha}:{})};try{await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});}catch(e){console.error('Could not save latest.json',e);}}
+async function saveLatestToGithub(rows, dateStr){const s=ghSettings();if(!s.token)return;const data=rows.map(r=>({ticker:r.ticker,name:r.name,theme:r.theme,geo:r.geo,geo_type:r.geo_type,chg1d:r.chg1d,chg1w:r.chg1w,chg1m:r.chg1m,chg3m:r.chg3m,chg6m:r.chg6m||'',ytd:r.ytd,chg1y:r.chg1y,aum:r.aum,aum_prev:r.aum_prev||'',rsi:r.rsi,bbp:r.bbp,fund_flows:r.fund_flows||'',_rawIdx:r._rawIdx||''}));const payload={date:dateStr,rows:data};let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update latest ${dateStr}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(payload)))),...(sha?{sha}:{})};try{await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});}catch(e){console.error('Could not save latest.json',e);}}
 async function loadPublicData(){const s=ghSettings();const repo=s.repo||'SerenityInvest/theme-tracker';try{const url=`https://raw.githubusercontent.com/${repo}/main/latest.json`;const r=await fetch(url);if(!r.ok)return false;const payload=await r.json();const rows=payload.rows;allRows=rows;indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));buildThemeData();renderThemes();renderIndiv();renderGeo();document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;document.getElementById('dataBadge').className='badge ok';document.getElementById('dateBadge').textContent=payload.date||'';return true;}catch(e){return false;}}
 async function loadLatestFromGithub(){const s=ghSettings();if(!s.token)return false;try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(!r.ok)return false;const data=await r.json();const payload=JSON.parse(atob(data.content.split('\n').join('')));const rows=payload.rows;allRows=rows;indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));buildThemeData();renderThemes();renderIndiv();renderGeo();document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;document.getElementById('dataBadge').className='badge ok';document.getElementById('dateBadge').textContent=payload.date||'';showToast(`✓ Loaded ${rows.length} ETFs from GitHub (${payload.date})`);return true;}catch(e){console.error('Could not load latest.json',e);return false;}}
-async function saveHistoryToGithub(){const s=ghSettings();if(!s.token){showToast('⚠ No GitHub token – go to Settings tab');return;}const today=new Date().toISOString().split('T')[0];const existing=history.findIndex(h=>h.date===today);const themesSnap={};themeData.forEach(t=>{themesSnap[t.theme]={ytd:t.ytd,chg1m:t.chg1m,chg3m:t.chg3m,chg1w:t.chg1w,score:t.sc,aum:t.aum,aum_perf_1m:t.aum_perf_1m};});const etfsSnap={};allRows.forEach(r=>{etfsSnap[r.ticker]={ytd:pf(r.ytd)||0,chg1m:pf(r.chg1m)||0,chg3m:pf(r.chg3m)||0,aum:pf(r.aum)||0,score:calcScore(r)||0};});const snap={date:today,themes:themesSnap,etfs:etfsSnap};if(existing>=0)history[existing]=snap;else history.push(snap);history.sort((a,b)=>a.date.localeCompare(b.date));let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update history ${today}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(history,null,2)))),...(sha?{sha}:{})};try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(r.ok){showToast(`✓ History saved to GitHub (${history.length} days)`);updateHistoryUI();renderAllCharts();}else{const err=await r.json();showToast('⚠ Save failed: '+(err.message||r.status));}}catch(e){showToast('⚠ Network error saving history');}}
+async function saveHistoryToGithub(dateStr){const s=ghSettings();if(!s.token){showToast('⚠ No GitHub token – go to Settings tab');return;}const existing=history.findIndex(h=>h.date===dateStr);const themesSnap={};themeData.forEach(t=>{themesSnap[t.theme]={ytd:t.ytd,chg1m:t.chg1m,chg3m:t.chg3m,chg1w:t.chg1w,score:t.sc,aum:t.aum,aum_perf_1m:t.aum_perf_1m};});const etfsSnap={};allRows.forEach(r=>{etfsSnap[r.ticker]={ytd:pf(r.ytd)||0,chg1m:pf(r.chg1m)||0,chg3m:pf(r.chg3m)||0,aum:pf(r.aum)||0,score:calcScore(r)||0};});const snap={date:dateStr,themes:themesSnap,etfs:etfsSnap};if(existing>=0)history[existing]=snap;else history.push(snap);history.sort((a,b)=>a.date.localeCompare(b.date));let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update history ${dateStr}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(history,null,2)))),...(sha?{sha}:{})};try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(r.ok){showToast(`✓ Saved as ${dateStr} · ${history.length} days in history`);updateHistoryUI();renderAllCharts();}else{const err=await r.json();showToast('⚠ Save failed: '+(err.message||r.status));}}catch(e){showToast('⚠ Network error saving history');}}
 function clearHistory(){if(!confirm('Clear all history? This cannot be undone.'))return;history=[];updateHistoryUI();renderAllCharts();showToast('History cleared');}
 function updateHistoryUI(){const el=document.getElementById('historyStats');const badge=document.getElementById('historyInfoBadge');if(!history.length){el.textContent='No history loaded yet.';if(badge)badge.textContent='';return;}const dates=history.map(h=>h.date);el.innerHTML=`<span style="color:var(--teal)">${history.length} days</span> of history · <span style="color:var(--t2)">${dates[0]}</span> → <span style="color:var(--t2)">${dates[dates.length-1]}</span>`;if(badge)badge.textContent=`${history.length} days history`;const etfSel=document.getElementById('etfSelect');if(etfSel){const tickers=[...new Set(history.flatMap(h=>Object.keys(h.etfs||{})))].sort();etfSel.innerHTML='<option value="">— Select ETF —</option>'+tickers.map(t=>`<option value="${t}">${t}</option>`).join('');}const themeSel=document.getElementById('themeAumSelect');if(themeSel){const themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))].sort();themeSel.innerHTML='<option value="all">All Themes</option>'+themes.map(t=>`<option value="${t}">${t}</option>`).join('');}}
 
