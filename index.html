@@ -743,7 +743,7 @@ function renderGeoPanels() {
   const rowMap={};
   allRows.forEach(r=>{rowMap[r.ticker]=r;});
 
-  // TOP 10 COUNTRIES
+  // TOP 10 COUNTRIES — heatmap table style
   const singleCountryTypes=new Set(['South Korea','Japan','China','India','Taiwan','Australia',
     'Canada','Brazil','LatAm','Mexico','USA','DAX','MDAX','Euro Stoxx 50','Euro Stoxx 600','EM ex-China','EM Asia']);
   const countryMap={};
@@ -755,50 +755,64 @@ function renderGeoPanels() {
   const top10=Object.values(countryMap).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999)).slice(0,10);
   const top10Grid=document.getElementById('top10Grid');
   if(!top10.length){
-    top10Grid.innerHTML='<div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">No country data found</div>';
+    top10Grid.innerHTML='<div style="color:var(--muted);font-size:13px;padding:20px 0">No country data found</div>';
   } else {
-    top10Grid.innerHTML=top10.map((r,i)=>{
-      const flag=COUNTRY_FLAGS[r.geo_type]||COUNTRY_FLAGS[r.geo]||'🏳';
-      const rank=i<3?`<span style="font-size:9px;background:var(--accent);color:#fff;padding:2px 5px;border-radius:3px;margin-left:4px">#${i+1}</span>`:'';
-      const gs=GEO_STYLES[r.geo];
-      const bc=gs?gs.border:'var(--b1)';
-      return makeEtfCard(r,flag,`${r.geo_type}${rank}`,r.ticker,`border-color:${bc}`);
-    }).join('');
+    const maxAumTop=Math.max(...top10.map(r=>pf(r.aum)||0));
+    top10Grid.innerHTML=`<div class="tbl-wrap" style="width:100%"><table>
+      <thead><tr>
+        <th>#</th><th>Country</th><th>Ticker</th>
+        <th class="r">1W</th><th class="r">1M</th><th class="r">3M</th><th class="r">YTD</th><th class="r">1Y</th>
+        <th>Score</th><th>AUM</th>
+      </tr></thead>
+      <tbody>${top10.map((r,i)=>{
+        const flag=COUNTRY_FLAGS[r.geo_type]||COUNTRY_FLAGS[r.geo]||'\u{1F3F3}';
+        const gs=GEO_STYLES[r.geo];
+        const sc=calcScore(r);
+        const rankBadge=i<3?`<span style="font-size:9px;background:var(--accent);color:#fff;padding:2px 5px;border-radius:3px;margin-right:5px">#${i+1}</span>`:'';
+        const countryCell=gs
+          ?`<span class="geo-badge" style="background:${gs.bg};border:1px solid ${gs.border};color:${gs.text}">${flag} ${r.geo_type}</span>`
+          :`${flag} ${r.geo_type}`;
+        return `<tr>
+          <td style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px">${rankBadge}${i+1}</td>
+          <td>${countryCell}</td>
+          <td><span class="sym">${r.ticker}</span></td>
+          ${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
+          <td>${fScore(sc)}</td>
+          <td>${fAumBar(r.aum,maxAumTop)}</td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>`;
   }
 
-  // WORLD INDEXES
+  // WORLD INDEXES — heatmap table
   const indexesGrid=document.getElementById('indexesGrid');
-  indexesGrid.innerHTML=WORLD_INDEX_CONFIG.map(cfg=>{
-    const r=rowMap[cfg.ticker];
-    if(!r)return `<div class="index-card" style="opacity:.4"><div class="index-card-header"><span class="index-label">${cfg.label}</span><span class="index-flag">${cfg.flag}</span></div><div class="index-ticker">${cfg.ticker}</div><div class="index-name" style="color:var(--muted)">Not in CSV</div></div>`;
-    const sc=calcScore(r);
-    const perfs=[{l:'1W',v:r.chg1w},{l:'1M',v:r.chg1m},{l:'3M',v:r.chg3m},{l:'YTD',v:r.ytd}];
-    const perfHtml=perfs.map(p=>{
-      const pv=fPerfVal(p.v);
-      const txt=pv.html.replace(/<[^>]+>/g,'');
-      return `<div class="index-perf-item"><span class="index-perf-label">${p.l}</span><span class="index-perf-val" style="color:${pv.color}">${txt}</span></div>`;
-    }).join('');
-    const aum=pf(r.aum);
-    const aumFmt=!isNaN(aum)?(aum>=1e9?(aum/1e9).toFixed(1)+'B':aum>=1e6?(aum/1e6).toFixed(0)+'M':'—'):'—';
-    const scTxt=fScore(sc).replace(/<[^>]+>/g,'');
-    return `<div class="index-card">
-      <div class="index-card-header"><span class="index-label">${cfg.label}</span><span class="index-flag">${cfg.flag}</span></div>
-      <div class="index-ticker">${cfg.ticker}</div>
-      <div class="index-name">${r.name||cfg.ticker}</div>
-      <div class="index-perf-row">${perfHtml}</div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--b1)">
-        <span style="font-size:11px;color:var(--muted)">Score: ${scTxt}</span>
-        <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)">${aumFmt}</span>
-      </div>
-    </div>`;
-  }).join('');
+  const indexRows=WORLD_INDEX_CONFIG.map(cfg=>({cfg,r:rowMap[cfg.ticker]}));
+  const maxAumIdx=Math.max(...indexRows.map(({r})=>pf(r?.aum)||0));
+  indexesGrid.innerHTML=`<div class="tbl-wrap" style="width:100%"><table>
+    <thead><tr>
+      <th>Index</th><th>Ticker</th>
+      <th class="r">1W</th><th class="r">1M</th><th class="r">3M</th><th class="r">YTD</th><th class="r">1Y</th>
+      <th>Score</th><th>AUM</th>
+    </tr></thead>
+    <tbody>${indexRows.map(({cfg,r})=>{
+      if(!r)return `<tr><td>${cfg.flag} ${cfg.label}</td><td><span class="sym">${cfg.ticker}</span></td><td colspan="7" style="color:var(--muted);font-size:12px">Not in CSV</td></tr>`;
+      const sc=calcScore(r);
+      return `<tr>
+        <td><span style="font-size:15px;margin-right:6px">${cfg.flag}</span><span style="font-weight:600;color:var(--text)">${cfg.label}</span></td>
+        <td><span class="sym">${cfg.ticker}</span></td>
+        ${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
+        <td>${fScore(sc)}</td>
+        <td>${fAumBar(r.aum,maxAumIdx)}</td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table></div>`;
 
-  // EUROPE CURATED: best DAX by AUM + best Euro Stoxx 600 by AUM + top 4 trending EU countries
+  // EUROPE CURATED — heatmap table: best DAX + best Euro Stoxx 600 + top 4 trending EU countries
   const europeCurated=[];
   const daxEtfs=geoRows.filter(r=>r.geo_type==='DAX').sort((a,b)=>(pf(b.aum)||0)-(pf(a.aum)||0));
-  if(daxEtfs.length)europeCurated.push({r:daxEtfs[0],label:'DAX',flag:'🇩🇪'});
+  if(daxEtfs.length)europeCurated.push({r:daxEtfs[0],label:'DAX',flag:'\u{1F1E9}\u{1F1EA}'});
   const stoxx=geoRows.filter(r=>r.geo_type==='Euro Stoxx 600').sort((a,b)=>(pf(b.aum)||0)-(pf(a.aum)||0));
-  if(stoxx.length)europeCurated.push({r:stoxx[0],label:'Euro Stoxx 600',flag:'🇪🇺'});
+  if(stoxx.length)europeCurated.push({r:stoxx[0],label:'Euro Stoxx 600',flag:'\u{1F1EA}\u{1F1FA}'});
   const euCMap={};
   geoRows.filter(r=>r.geo==='Europe'&&!['Europe','DAX','MDAX','Euro Stoxx 50','Euro Stoxx 600'].includes(r.geo_type))
     .forEach(r=>{
@@ -806,14 +820,29 @@ function renderGeoPanels() {
       if(!euCMap[r.geo_type]||sc>(calcScore(euCMap[r.geo_type])??-999))euCMap[r.geo_type]=r;
     });
   Object.values(euCMap).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999)).slice(0,4)
-    .forEach(r=>europeCurated.push({r,label:r.geo_type,flag:COUNTRY_FLAGS[r.geo_type]||'🇪🇺'}));
+    .forEach(r=>europeCurated.push({r,label:r.geo_type,flag:COUNTRY_FLAGS[r.geo_type]||'\u{1F1EA}\u{1F1FA}'}));
   const europeGrid=document.getElementById('europeGrid');
   if(!europeCurated.length){
-    europeGrid.innerHTML='<div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">No European data found</div>';
+    europeGrid.innerHTML='<div style="color:var(--muted);font-size:13px;padding:20px 0">No European data found</div>';
   } else {
-    europeGrid.innerHTML=europeCurated.map(({r,label,flag})=>
-      makeEtfCard(r,flag,label,r.ticker,'border-color:rgba(80,140,255,.4)')
-    ).join('');
+    const maxAumEu=Math.max(...europeCurated.map(({r})=>pf(r.aum)||0));
+    europeGrid.innerHTML=`<div class="tbl-wrap" style="width:100%"><table>
+      <thead><tr>
+        <th>Index / Country</th><th>Ticker</th>
+        <th class="r">1W</th><th class="r">1M</th><th class="r">3M</th><th class="r">YTD</th><th class="r">1Y</th>
+        <th>Score</th><th>AUM</th>
+      </tr></thead>
+      <tbody>${europeCurated.map(({r,label,flag})=>{
+        const sc=calcScore(r);
+        return `<tr>
+          <td><span style="font-size:15px;margin-right:6px">${flag}</span><span style="font-weight:600;color:var(--text)">${label}</span></td>
+          <td><span class="sym">${r.ticker}</span></td>
+          ${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
+          <td>${fScore(sc)}</td>
+          <td>${fAumBar(r.aum,maxAumEu)}</td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>`;
   }
 }
 
