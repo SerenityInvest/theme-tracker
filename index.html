@@ -17,7 +17,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:13px;min-height:100vh;overflow-x:hidden}
 .wrap{position:relative;z-index:1;max-width:100%;margin:0 auto;padding:0 16px 80px}
-/* HEADER */
 header{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:20px;flex-wrap:wrap;gap:12px}
 .logo h1{font-size:18px;font-weight:700;letter-spacing:-.3px;color:var(--text)}
 .logo p{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
@@ -27,7 +26,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 .upload-btn input{display:none}
 .badge{font-family:'DM Mono',monospace;font-size:11px;padding:6px 11px;border-radius:4px;background:var(--s2);border:1px solid var(--b1);color:var(--muted)}
 .badge.ok{border-color:var(--teal);color:var(--teal)}
-/* CSV INFO */
 .csv-box{margin-bottom:24px}
 .csv-toggle{background:none;border:none;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;display:block;margin-bottom:8px}
 .csv-info{display:none;background:var(--s1);border:1px solid var(--b1);border-radius:10px;padding:18px 22px;font-size:12px;color:var(--t2);line-height:2}
@@ -37,19 +35,44 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 .csv-info table{width:100%;border-collapse:collapse;margin-top:10px;font-size:11px}
 .csv-info table th{text-align:left;padding:6px 10px;background:var(--s3);color:var(--t2);font-family:'DM Mono',monospace}
 .csv-info table td{padding:6px 10px;border-top:1px solid var(--b1);color:var(--text)}
-/* TABS */
 .tabs-bar{display:flex;gap:2px;margin-bottom:20px;border-bottom:1px solid var(--b1)}
 .tab-btn{background:none;border:none;border-bottom:2px solid transparent;padding:10px 18px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;margin-bottom:-1px;letter-spacing:.3px}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--text)}
 .tab-pane{display:none}
 .tab-pane.active{display:block}
-/* SECTION */
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
 .section-head h2{font-size:16px;font-weight:700;color:var(--text)}
 .section-head p{font-size:12px;color:var(--muted)}
 .last-update{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px;text-align:right}
-/* TABLE */
+.geo-panel{background:var(--s1);border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin-bottom:22px}
+.geo-panel-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.geo-panel-title span{font-size:11px;color:var(--muted);font-weight:400}
+.countries-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.country-card{background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:12px 14px;transition:border-color .2s}
+.country-card:hover{border-color:var(--b2)}
+.country-card-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.country-flag{font-size:20px;line-height:1}
+.country-name{font-size:13px;font-weight:700;color:var(--text)}
+.country-ticker{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:1px}
+.country-perf-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.country-perf-item{display:flex;flex-direction:column;align-items:center;background:var(--s3);border-radius:4px;padding:4px 7px;min-width:46px}
+.country-perf-label{font-size:9px;color:var(--muted);margin-bottom:2px;text-transform:uppercase;letter-spacing:.4px}
+.country-score-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid var(--b1)}
+.indexes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.index-card{background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:12px 14px;transition:border-color .2s}
+.index-card:hover{border-color:var(--accent)}
+.index-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.index-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.index-flag{font-size:16px}
+.index-ticker{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#b8a8ff;margin-bottom:2px}
+.index-name{font-size:11px;color:var(--t2);margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.index-perf-row{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.index-perf-item{background:var(--s3);border-radius:4px;padding:4px 6px;text-align:center}
+.index-perf-label{font-size:9px;color:var(--muted);display:block;text-transform:uppercase;letter-spacing:.4px}
+.index-perf-val{font-family:'DM Mono',monospace;font-size:12px;font-weight:700}
+.europe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.subsection-title{font-size:13px;font-weight:700;color:var(--t2);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:6px}
 .tbl-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--b1)}
 table{width:100%;border-collapse:collapse}
 thead tr{background:var(--s1);border-bottom:1px solid var(--b1)}
@@ -61,7 +84,6 @@ tbody tr{border-bottom:1px solid #1e1e1e;transition:background .1s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover td{background:rgba(255,255,255,.03)!important}
 td{padding:9px 10px;white-space:nowrap;vertical-align:middle;font-size:13px}
-/* HEATMAP */
 td.hm{text-align:right;font-size:12px;font-weight:500;padding:0!important}
 td.hm span{display:block;padding:11px 14px;font-weight:600}
 .v-mega-up  {background:#0d6e35!important;color:#ffffff!important;font-weight:400!important}
@@ -73,47 +95,32 @@ td.hm span{display:block;padding:11px 14px;font-weight:600}
 .v-dn       {background:#5c1a1e!important;color:#ffaaaa!important;font-weight:400!important}
 .v-strong-dn{background:#8a1018!important;color:#ffffff!important;font-weight:400!important}
 .v-mega-dn  {background:#aa1020!important;color:#ffffff!important;font-weight:400!important}
-/* THEME PILL */
 .theme-pill{display:inline-flex;align-items:center;padding:4px 11px;border-radius:5px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap;letter-spacing:.2px}
-/* GEO BADGE */
 .geo-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700;white-space:nowrap}
-/* SCORE */
-.score-wrap{display:flex;align-items:center;gap:7px;min-width:90px}
-.score-bar-bg{flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
-.score-bar{height:100%;border-radius:3px}
-.score-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:32px;text-align:right}
-/* RSI */
 .rsi-wrap{display:flex;align-items:center;gap:6px;min-width:80px}
 .rsi-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:36px;text-align:right}
 .rsi-bar-bg{flex:1;height:4px;background:var(--b1);border-radius:2px;overflow:hidden;position:relative}
 .rsi-bar{height:100%;border-radius:2px;transition:width .3s}
-/* BBP */
 .bbp-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:600}
-/* TICKERS */
 .ticker-list{display:flex;gap:4px;flex-wrap:wrap;max-width:300px}
 .t-chip{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;border:1px solid var(--b2);color:var(--t2);background:var(--s2);white-space:nowrap;cursor:default;transition:all .15s}
 .t-chip:hover{border-color:var(--accent);color:#c0b0ff}
 .t-chip.best{border-color:rgba(124,95,255,.6);color:#c0b0ff;background:rgba(124,95,255,.15)}
-/* AUM */
 .aum-wrap{text-align:right}
 .aum-v{font-family:'DM Mono',monospace;font-size:12px;color:var(--t2)}
 .aum-c{font-family:'DM Mono',monospace;font-size:10px;margin-top:2px}
-/* FLOW */
 .flow{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;font-weight:600;border:1px solid transparent;white-space:nowrap}
 .flow.sb{background:rgba(0,255,150,.12);border-color:rgba(0,255,150,.35);color:#00ff96}
-.flow.b {background:rgba(0,220,180,.12);border-color:rgba(0,220,180,.35);color:#00e4b8}
-.flow.n {background:rgba(120,120,180,.12);border-color:rgba(120,120,180,.35);color:#a0a0cc}
-.flow.s {background:rgba(255,70,100,.12);border-color:rgba(255,70,100,.35);color:#ff6688}
+.flow.b{background:rgba(0,220,180,.12);border-color:rgba(0,220,180,.35);color:#00e4b8}
+.flow.n{background:rgba(120,120,180,.12);border-color:rgba(120,120,180,.35);color:#a0a0cc}
+.flow.s{background:rgba(255,70,100,.12);border-color:rgba(255,70,100,.35);color:#ff6688}
 .flow.ss{background:rgba(230,0,60,.12);border-color:rgba(230,0,60,.35);color:#ff3366}
 .flow.nd{color:var(--muted);font-size:10px}
-/* INDIVIDUAL ETF */
 .sym{font-size:13px;font-weight:700;color:#b8a8ff}
 .etf-n{font-size:13px;font-weight:500;color:var(--text);max-width:240px;overflow:hidden;text-overflow:ellipsis;display:block}
-.etf-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:1px}
 .empty-row td{text-align:center;padding:50px;color:var(--muted);font-size:13px}
 #toast{position:fixed;bottom:24px;right:24px;background:var(--s3);border:1px solid var(--b2);border-radius:10px;padding:11px 18px;font-size:13px;font-weight:500;color:var(--text);z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
 #toast.show{opacity:1;transform:translateY(0)}
-/* CHART */
 .chart-container{background:var(--s1);border:1px solid var(--b1);border-radius:12px;padding:20px;margin-bottom:20px}
 .chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .chart-header h3{font-size:15px;font-weight:700}
@@ -125,7 +132,6 @@ td.hm span{display:block;padding:11px 14px;font-weight:600}
 canvas{width:100%!important}
 .no-history{text-align:center;padding:60px 20px;color:var(--muted);font-size:13px}
 .no-history strong{display:block;font-size:15px;color:var(--t2);margin-bottom:8px}
-/* GITHUB SETTINGS */
 .gh-setup{background:var(--s1);border:1px solid var(--b1);border-radius:10px;padding:18px 22px;margin-bottom:20px;font-size:13px}
 .gh-setup h4{font-weight:700;margin-bottom:12px;color:var(--text)}
 .gh-row{display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
@@ -136,7 +142,7 @@ canvas{width:100%!important}
 .gh-btn:hover{opacity:.85}
 .gh-btn.sec{background:var(--s2);border:1px solid var(--b1);color:var(--t2)}
 .gh-status{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border-radius:4px;background:var(--s3)}
-.gh-status.ok{color:var(--teal)} .gh-status.err{color:var(--dn)}
+.gh-status.ok{color:var(--teal)}.gh-status.err{color:var(--dn)}
 .history-info{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
 </style>
 </head>
@@ -167,7 +173,7 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <tr><td><code>Symbol</code></td><td>Xetra ticker (SXRV, VVSM…)</td></tr>
       <tr><td><code>Niche</code></td><td>Used for theme classification</td></tr>
       <tr><td><code>Assets under management</code></td><td>AUM in EUR</td></tr>
-      <tr><td><code>Relative Strength Index (14) 1 day</code></td><td>RSI – overbought >70, oversold &lt;30</td></tr>
+      <tr><td><code>Relative Strength Index (14) 1 day</code></td><td>RSI – overbought &gt;70, oversold &lt;30</td></tr>
       <tr><td><code>Bull Bear Power (13) 1 day</code></td><td>BBP – positive = bulls in control</td></tr>
     </table>
   </div>
@@ -181,101 +187,90 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
   <button class="tab-btn" onclick="switchTab('settings',this)">⚙️ Settings</button>
 </div>
 
-<!-- ═══ THEMES ═══ -->
+<!-- THEMES -->
 <div class="tab-pane active" id="tab-themes">
-  <div class="section-head">
-    <div><h2>Thematic ETF Heatmap</h2><p>Top ETFs per theme · averaged performance · click columns to sort</p></div>
-  </div>
+  <div class="section-head"><div><h2>Thematic ETF Heatmap</h2><p>Top ETFs per theme · averaged performance · click columns to sort</p></div></div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th onclick="sortT('themes',0)">#</th>
-      <th onclick="sortT('themes',1)">Theme ↕</th>
-      <th onclick="sortT('themes',2)" class="r">1D ↕</th>
-      <th onclick="sortT('themes',3)" class="r">1W ↕</th>
-      <th onclick="sortT('themes',4)" class="r">1M ↕</th>
-      <th onclick="sortT('themes',5)" class="r">3M ↕</th>
-      <th onclick="sortT('themes',6)" class="r">YTD ↕</th>
-      <th onclick="sortT('themes',7)" class="r">1Y ↕</th>
-      <th onclick="sortT('themes',8)">Score ↕</th>
-      <th>Score trend</th>
-      <th onclick="sortT('themes',9)">RSI ↕</th>
-      <th onclick="sortT('themes',10)" class="r">AUM ↕</th>
-      <th onclick="sortT('themes',12)">Flow Signal ↕</th>
-      <th onclick="sortT('themes',13)">AUM vs 1M ↕</th>
-      <th>AUM trend</th>
-      <th>ETFs in Theme</th>
+      <th onclick="sortT('themes',0)">#</th><th onclick="sortT('themes',1)">Theme ↕</th>
+      <th onclick="sortT('themes',2)" class="r">1D ↕</th><th onclick="sortT('themes',3)" class="r">1W ↕</th>
+      <th onclick="sortT('themes',4)" class="r">1M ↕</th><th onclick="sortT('themes',5)" class="r">3M ↕</th>
+      <th onclick="sortT('themes',6)" class="r">YTD ↕</th><th onclick="sortT('themes',7)" class="r">1Y ↕</th>
+      <th onclick="sortT('themes',8)">Score ↕</th><th>Score trend</th>
+      <th onclick="sortT('themes',9)">RSI ↕</th><th onclick="sortT('themes',10)" class="r">AUM ↕</th>
+      <th onclick="sortT('themes',12)">Flow Signal ↕</th><th onclick="sortT('themes',13)">AUM vs 1M ↕</th>
+      <th>AUM trend</th><th>ETFs in Theme</th>
     </tr></thead>
     <tbody id="themeBody"><tr class="empty-row"><td colspan="17">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="themeUpdate"></div>
 </div>
 
-<!-- ═══ INDIVIDUAL ═══ -->
+<!-- INDIVIDUAL -->
 <div class="tab-pane" id="tab-individual">
-  <div class="section-head">
-    <div><h2>Individual ETFs</h2><p>All ETFs sorted by trend score · click columns to sort</p></div>
-  </div>
+  <div class="section-head"><div><h2>Individual ETFs</h2><p>All ETFs sorted by trend score · click columns to sort</p></div></div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th onclick="sortT('indiv',0)">#</th>
-      <th onclick="sortT('indiv',1)">Ticker ↕</th>
-      <th onclick="sortT('indiv',2)">Name ↕</th>
-      <th onclick="sortT('indiv',3)">Theme / Geo ↕</th>
-      <th onclick="sortT('indiv',4)" class="r">1D ↕</th>
-      <th onclick="sortT('indiv',5)" class="r">1W ↕</th>
-      <th onclick="sortT('indiv',6)" class="r">1M ↕</th>
-      <th onclick="sortT('indiv',7)" class="r">3M ↕</th>
-      <th onclick="sortT('indiv',8)" class="r">YTD ↕</th>
-      <th onclick="sortT('indiv',9)" class="r">1Y ↕</th>
-      <th onclick="sortT('indiv',10)">Score ↕</th>
-      <th onclick="sortT('indiv',11)">RSI ↕</th>
-      <th onclick="sortT('indiv',12)" class="r">AUM ↕</th>
-      <th onclick="sortT('indiv',14)">Flow Signal ↕</th>
+      <th onclick="sortT('indiv',0)">#</th><th onclick="sortT('indiv',1)">Ticker ↕</th>
+      <th onclick="sortT('indiv',2)">Name ↕</th><th onclick="sortT('indiv',3)">Theme / Geo ↕</th>
+      <th onclick="sortT('indiv',4)" class="r">1D ↕</th><th onclick="sortT('indiv',5)" class="r">1W ↕</th>
+      <th onclick="sortT('indiv',6)" class="r">1M ↕</th><th onclick="sortT('indiv',7)" class="r">3M ↕</th>
+      <th onclick="sortT('indiv',8)" class="r">YTD ↕</th><th onclick="sortT('indiv',9)" class="r">1Y ↕</th>
+      <th onclick="sortT('indiv',10)">Score ↕</th><th onclick="sortT('indiv',11)">RSI ↕</th>
+      <th onclick="sortT('indiv',12)" class="r">AUM ↕</th><th onclick="sortT('indiv',14)">Flow Signal ↕</th>
     </tr></thead>
     <tbody id="indivBody"><tr class="empty-row"><td colspan="15">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="indivUpdate"></div>
 </div>
 
-<!-- ═══ GEO ═══ -->
+<!-- GEO -->
 <div class="tab-pane" id="tab-geo">
-  <div class="section-head">
-    <div><h2>Geographic ETFs</h2><p>Regions &amp; Countries · color-coded by region</p></div>
+  <div class="section-head"><div><h2>Geographic ETFs</h2><p>Countries · Regions · Indexes · color-coded by region</p></div></div>
+
+  <div class="geo-panel">
+    <div class="geo-panel-title">🏆 Top 10 Trending Countries <span>ranked by trend score</span></div>
+    <div class="countries-grid" id="top10Grid">
+      <div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">Upload a CSV file to display data</div>
+    </div>
   </div>
+
+  <div class="geo-panel">
+    <div class="geo-panel-title">📊 Major World Indexes <span>key benchmarks</span></div>
+    <div class="indexes-grid" id="indexesGrid">
+      <div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">Upload a CSV file to display data</div>
+    </div>
+  </div>
+
+  <div class="geo-panel">
+    <div class="geo-panel-title">🇪🇺 Europe Focus <span>DAX · Euro Stoxx 600 · top trending countries</span></div>
+    <div class="europe-grid" id="europeGrid">
+      <div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">Upload a CSV file to display data</div>
+    </div>
+  </div>
+
+  <div class="subsection-title">🌍 All Geographic ETFs <span style="font-size:11px;color:var(--muted);font-weight:400;margin-left:4px">click columns to sort</span></div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th onclick="sortT('geo',0)">#</th>
-      <th onclick="sortT('geo',1)">Ticker ↕</th>
-      <th onclick="sortT('geo',2)">Name ↕</th>
-      <th onclick="sortT('geo',3)">Region ↕</th>
+      <th onclick="sortT('geo',0)">#</th><th onclick="sortT('geo',1)">Ticker ↕</th>
+      <th onclick="sortT('geo',2)">Name ↕</th><th onclick="sortT('geo',3)">Region ↕</th>
       <th onclick="sortT('geo',4)">Country ↕</th>
-      <th onclick="sortT('geo',5)" class="r">1D ↕</th>
-      <th onclick="sortT('geo',6)" class="r">1W ↕</th>
-      <th onclick="sortT('geo',7)" class="r">1M ↕</th>
-      <th onclick="sortT('geo',8)" class="r">3M ↕</th>
-      <th onclick="sortT('geo',9)" class="r">YTD ↕</th>
-      <th onclick="sortT('geo',10)" class="r">1Y ↕</th>
-      <th onclick="sortT('geo',11)">Score ↕</th>
-      <th onclick="sortT('geo',12)">RSI ↕</th>
-      <th onclick="sortT('geo',13)" class="r">AUM ↕</th>
-      <th onclick="sortT('geo',15)">Flow Signal ↕</th>
+      <th onclick="sortT('geo',5)" class="r">1D ↕</th><th onclick="sortT('geo',6)" class="r">1W ↕</th>
+      <th onclick="sortT('geo',7)" class="r">1M ↕</th><th onclick="sortT('geo',8)" class="r">3M ↕</th>
+      <th onclick="sortT('geo',9)" class="r">YTD ↕</th><th onclick="sortT('geo',10)" class="r">1Y ↕</th>
+      <th onclick="sortT('geo',11)">Score ↕</th><th onclick="sortT('geo',12)">RSI ↕</th>
+      <th onclick="sortT('geo',13)" class="r">AUM ↕</th><th onclick="sortT('geo',15)">Flow Signal ↕</th>
     </tr></thead>
     <tbody id="geoBody"><tr class="empty-row"><td colspan="16">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="geoUpdate"></div>
 </div>
 
-<!-- ═══ CHARTS ═══ -->
+<!-- CHARTS -->
 <div class="tab-pane" id="tab-charts">
-  <div class="section-head">
-    <div><h2>Historical Charts</h2><p>Performance &amp; AUM trends over time · upload daily to build history</p></div>
-    <div id="historyInfoBadge" class="history-info"></div>
-  </div>
-
-  <!-- Theme Charts -->
+  <div class="section-head"><div><h2>Historical Charts</h2><p>Performance &amp; AUM trends over time · upload daily to build history</p></div><div id="historyInfoBadge" class="history-info"></div></div>
   <div class="chart-container">
-    <div class="chart-header">
-      <h3>📊 Theme Performance Over Time</h3>
+    <div class="chart-header"><h3>📊 Theme Performance Over Time</h3>
       <div class="chart-controls">
         <button class="chart-btn active" onclick="setChartMetric('theme','ytd',this)">YTD</button>
         <button class="chart-btn" onclick="setChartMetric('theme','chg1m',this)">1M</button>
@@ -285,65 +280,40 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
     </div>
     <div id="themeChartWrap"><div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div></div>
   </div>
-
   <div class="chart-container">
-    <div class="chart-header">
-      <h3>💰 Theme AUM Trend</h3>
-      <div class="chart-controls">
-        <select class="chart-select" id="themeAumSelect" onchange="renderAumChart()">
-          <option value="all">All Themes</option>
-        </select>
-      </div>
+    <div class="chart-header"><h3>💰 Theme AUM Trend</h3>
+      <div class="chart-controls"><select class="chart-select" id="themeAumSelect" onchange="renderAumChart()"><option value="all">All Themes</option></select></div>
     </div>
     <div id="aumChartWrap"><div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div></div>
   </div>
-
-  <!-- Individual ETF Chart -->
   <div class="chart-container">
-    <div class="chart-header">
-      <h3>📈 Individual ETF Chart</h3>
+    <div class="chart-header"><h3>📈 Individual ETF Chart</h3>
       <div class="chart-controls">
-        <select class="chart-select" id="etfSelect" onchange="renderEtfChart()">
-          <option value="">— Select ETF —</option>
-        </select>
+        <select class="chart-select" id="etfSelect" onchange="renderEtfChart()"><option value="">— Select ETF —</option></select>
         <button class="chart-btn active" onclick="setChartMetric('etf','ytd',this)">YTD</button>
         <button class="chart-btn" onclick="setChartMetric('etf','chg1m',this)">1M</button>
         <button class="chart-btn" onclick="setChartMetric('etf','chg3m',this)">3M</button>
         <button class="chart-btn" onclick="setChartMetric('etf','aum',this)">AUM</button>
       </div>
     </div>
-    <div id="etfChartWrap"><div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div></div>
+    <div id="etfChartWrap"><div class="no-history"><strong>No history yet</strong>Select an ETF and upload daily to build history</div></div>
   </div>
 </div>
 
-<!-- ═══ SETTINGS ═══ -->
+<!-- SETTINGS -->
 <div class="tab-pane" id="tab-settings">
-  <div class="section-head">
-    <div><h2>GitHub Settings</h2><p>Save history to your GitHub repo daily</p></div>
-  </div>
+  <div class="section-head"><div><h2>GitHub Settings</h2><p>Save history to your GitHub repo daily</p></div></div>
   <div class="gh-setup">
     <h4>🔑 GitHub Connection</h4>
-    <div class="gh-row">
-      <label>Personal Token</label>
-      <input class="gh-input" type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx">
-    </div>
-    <div class="gh-row">
-      <label>Repository</label>
-      <input class="gh-input" type="text" id="ghRepo" value="SerenityInvest/theme-tracker" placeholder="username/repo">
-    </div>
-    <div class="gh-row">
-      <label>History file</label>
-      <input class="gh-input" type="text" id="ghFile" value="history.json" placeholder="history.json">
-    </div>
+    <div class="gh-row"><label>Personal Token</label><input class="gh-input" type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx"></div>
+    <div class="gh-row"><label>Repository</label><input class="gh-input" type="text" id="ghRepo" value="SerenityInvest/theme-tracker" placeholder="username/repo"></div>
+    <div class="gh-row"><label>History file</label><input class="gh-input" type="text" id="ghFile" value="history.json" placeholder="history.json"></div>
     <div class="gh-row">
       <button class="gh-btn" onclick="testGithubConnection()">Test Connection</button>
       <button class="gh-btn sec" onclick="saveGhSettings()">Save Settings</button>
       <span class="gh-status" id="ghStatus">Not configured</span>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:10px">
-      Create a token at github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens.<br>
-      Give it <strong>Contents: Read and Write</strong> permission for this repo only.
-    </p>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">Create a token at github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens.<br>Give it <strong>Contents: Read and Write</strong> permission for this repo only.</p>
   </div>
   <div class="gh-setup">
     <h4>📅 History Data</h4>
@@ -366,9 +336,8 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
 
 </div>
 <div id="toast"></div>
-
 <script>
-// ── THEME COLORS ──────────────────────────────
+
 const TC = {
   'Semiconductors':'#1a6abf','AI & Tech':'#5535ef','Defense':'#c04a00',
   'Clean Energy':'#1a8a40','Nuclear':'#7a2090','Cybersecurity':'#0a6090',
@@ -377,127 +346,128 @@ const TC = {
   'EV & Mobility':'#186830','Momentum':'#404090','Consumer':'#a02860',
   'Infrastructure':'#6a2090','Oil & Gas':'#8a4020','Space':'#1a3080',
 };
-
-// ── GEO COLORS ────────────────────────────────
 const GEO_STYLES = {
-  'Europe':          { bg:'rgba(0,60,160,.25)',   border:'rgba(80,140,255,.5)',  text:'#80b8ff', flag:'🇪🇺' },
-  'North America':   { bg:'rgba(180,20,30,.25)',  border:'rgba(255,100,100,.5)', text:'#ffaaaa', flag:'🇺🇸' },
-  'Asia':            { bg:'rgba(200,30,30,.22)',  border:'rgba(255,120,80,.5)',  text:'#ffb090', flag:'🌏' },
-  'Emerging Markets':{ bg:'rgba(180,100,0,.22)',  border:'rgba(255,180,50,.5)',  text:'#ffcc70', flag:'📈' },
-  'Americas':        { bg:'rgba(0,120,60,.22)',   border:'rgba(60,200,120,.5)',  text:'#80eeaa', flag:'🌎' },
-  'Global':          { bg:'rgba(80,40,160,.22)',  border:'rgba(150,100,255,.5)', text:'#c0a0ff', flag:'🌐' },
+  'Europe':           {bg:'rgba(0,60,160,.25)',  border:'rgba(80,140,255,.5)',  text:'#80b8ff',flag:'🇪🇺'},
+  'North America':    {bg:'rgba(180,20,30,.25)', border:'rgba(255,100,100,.5)',text:'#ffaaaa',flag:'🇺🇸'},
+  'Asia':             {bg:'rgba(200,30,30,.22)', border:'rgba(255,120,80,.5)', text:'#ffb090',flag:'🌏'},
+  'Emerging Markets': {bg:'rgba(180,100,0,.22)', border:'rgba(255,180,50,.5)', text:'#ffcc70',flag:'📈'},
+  'EM ex-China':      {bg:'rgba(160,120,0,.22)', border:'rgba(240,190,60,.5)', text:'#ffd880',flag:'🌐'},
+  'Americas':         {bg:'rgba(0,120,60,.22)',  border:'rgba(60,200,120,.5)', text:'#80eeaa',flag:'🌎'},
+  'Global':           {bg:'rgba(80,40,160,.22)', border:'rgba(150,100,255,.5)',text:'#c0a0ff',flag:'🌐'},
 };
-
-// ── STATE ─────────────────────────────────────
-let allRows=[], themeData=[], indivRows=[], geoRows=[];
-let history = []; // [{date, themes:{}, etfs:{}}]
-let chartMetric = {theme:'ytd', etf:'ytd'};
-let themeChart=null, aumChart=null, etfChart=null;
+const COUNTRY_FLAGS = {
+  'USA':'🇺🇸','Japan':'🇯🇵','South Korea':'🇰🇷','Korea':'🇰🇷',
+  'India':'🇮🇳','China':'🇨🇳','Germany':'🇩🇪','Europe':'🇪🇺',
+  'EM Asia':'🌏','EM ex-China':'🌐','EM':'📈','World':'🌍',
+  'Global':'🌐','LatAm':'🌎','Sweden':'🇸🇪','UK':'🇬🇧',
+  'France':'🇫🇷','Italy':'🇮🇹','Spain':'🇪🇸','Switzerland':'🇨🇭',
+  'Netherlands':'🇳🇱','Poland':'🇵🇱','Austria':'🇦🇹','Taiwan':'🇹🇼',
+  'DAX':'🇩🇪','MDAX':'🇩🇪','Euro Stoxx 50':'🇪🇺','Euro Stoxx 600':'🇪🇺',
+  'Australia':'🇦🇺','Canada':'🇨🇦','Brazil':'🇧🇷','Mexico':'🇲🇽','Singapore':'🇸🇬',
+};
+// World index config — Sweden (XACT OMXS30) to be added when available
+const WORLD_INDEX_CONFIG = [
+  {ticker:'EUNL', label:'World',            flag:'🌍'},
+  {ticker:'SXR8', label:'S&P 500',          flag:'🇺🇸'},
+  {ticker:'QDVE', label:'US Tech',          flag:'💻'},
+  {ticker:'IS3N', label:'Emerging Markets', flag:'📈'},
+  {ticker:'EUNK', label:'Europe',           flag:'🇪🇺'},
+];
+let allRows=[],themeData=[],indivRows=[],geoRows=[];
+let history=[];
+let chartMetric={theme:'ytd',etf:'ytd'};
+let themeChart=null,aumChart=null,etfChart=null;
 let sortState={themes:{col:8,dir:-1},indiv:{col:10,dir:-1},geo:{col:11,dir:-1}};
 
-// ── SMART THEME + GEO CLASSIFICATION ─────────
-// Regler: [keywords] → kategori. Specifika matchar före generella.
+// THEME RULES
 const THEME_RULES = [
-  [['semiconductor','semi ','chip'],                                          'Semiconductors'],
-  [['artificial intelligence','ai and big data','ai & big data','robotics',
-    'automation','information technology',' it ','tech select',
-    'technology select','nasdaq 100','nasdaq-100','yewno'],                   'AI & Tech'],
-  [['defense','defence'],                                                     'Defense'],
-  [['nuclear','uranium'],                                                     'Nuclear'],
-  [['clean energy','renewable','solar','wind','low carbon','green'],          'Clean Energy'],
-  [['bitcoin','crypto','blockchain','digital asset','btc'],                   'Crypto'],
-  [['gold miner','gold bugs','gold producer','pure gold',
-    'lbma gold','gold price pm','physical gold'],                             'Gold'],
-  [['silver miner','global silver','lbma silver','silver price'],             'Silver'],
-  [['copper','rare earth','strategic metal'],                                 'Materials'],
-  [['oil','gas','crude','brent','wti','energy select','energy sector'],       'Oil & Gas'],
-  [['health care','healthcare','biotech','pharma','medical'],                 'Health & Biotech'],
-  [['bank','financials','financial sector'],                                  'Financials'],
-  [['space industry','space'],                                                'Space'],
-  [['construction','infrastructure','industrial goods'],                      'Infrastructure'],
-  [['electric vehicle','ev ','mobility','automotive'],                        'EV & Mobility'],
-  [['consumer','retail'],                                                     'Consumer'],
-  [['momentum'],                                                              'Momentum'],
+  [['semiconductor','semi ','chip'],'Semiconductors'],
+  [['artificial intelligence','ai and big data','ai & big data','robotics','automation','information technology',' it ','tech select','technology select','nasdaq 100','nasdaq-100','yewno'],'AI & Tech'],
+  [['defense','defence'],'Defense'],
+  [['nuclear','uranium'],'Nuclear'],
+  [['clean energy','renewable','solar','wind','low carbon','green'],'Clean Energy'],
+  [['bitcoin','crypto','blockchain','digital asset','btc'],'Crypto'],
+  [['gold miner','gold bugs','gold producer','pure gold','lbma gold','gold price pm','physical gold'],'Gold'],
+  [['silver miner','global silver','lbma silver','silver price'],'Silver'],
+  [['copper','rare earth','strategic metal'],'Materials'],
+  [['oil','gas','crude','brent','wti','energy select','energy sector'],'Oil & Gas'],
+  [['health care','healthcare','biotech','pharma','medical'],'Health & Biotech'],
+  [['bank','financials','financial sector'],'Financials'],
+  [['space industry','space'],'Space'],
+  [['construction','infrastructure','industrial goods'],'Infrastructure'],
+  [['electric vehicle','ev ','mobility','automotive'],'EV & Mobility'],
+  [['consumer','retail'],'Consumer'],
+  [['momentum'],'Momentum'],
 ];
 
+// GEO RULES — ex-China MUST come before China
 const GEO_RULES = [
-  [['korea'],                                         'Asia',            'South Korea'],
-  [['japan'],                                         'Asia',            'Japan'],
-  [['china','hong kong'],                             'Asia',            'China'],
-  [['india'],                                         'Asia',            'India'],
-  [['em asia','msci asia'],                           'Asia',            'EM Asia'],
-  [['s&p 500','nasdaq','russell','dow jones',
-    'msci usa','s&p technology','s&p energy'],        'North America',   'USA'],
-  [['stoxx europe','euro stoxx','dax','mdax',
-    'msci europe','stoxx europe small'],              'Europe',          'Europe'],
-  [['acwi','all country world','ftse all-world',
-    'global markets large'],                          'Global',          'Global'],
-  [['msci world'],                                    'Global',          'World'],
-  [['emerging market','msci em ','em (emerging'],     'Emerging Markets','EM'],
-  [['latin','brazil'],                                'Americas',        'LatAm'],
+  [['ex china','ex-china','emerging ex china','emerging ex'],'EM ex-China','EM ex-China'],
+  [['korea'],'Asia','South Korea'],
+  [['japan'],'Asia','Japan'],
+  [['china','hong kong'],'Asia','China'],
+  [['india'],'Asia','India'],
+  [['em asia','msci asia'],'Asia','EM Asia'],
+  [['taiwan'],'Asia','Taiwan'],
+  [['australia'],'Global','Australia'],
+  [['canada'],'North America','Canada'],
+  [['brazil'],'Americas','Brazil'],
+  [['latin','latam'],'Americas','LatAm'],
+  [['mexico'],'Americas','Mexico'],
+  [['s&p 500','nasdaq','russell','dow jones','msci usa','s&p technology','s&p energy','s&p information technology','s&p financials','msci usa small cap','msci usa sri'],'North America','USA'],
+  [['germany dax','dax (tr)','dax price'],'Europe','DAX'],
+  [['mdax'],'Europe','MDAX'],
+  [['stoxx europe 600'],'Europe','Euro Stoxx 600'],
+  [['euro stoxx 50','euro stoxx50'],'Europe','Euro Stoxx 50'],
+  [['stoxx europe','euro stoxx','dax','mdax','msci europe','stoxx europe small','msci emu'],'Europe','Europe'],
+  [['acwi','all country world','ftse all-world','global markets large','solactive gbs global'],'Global','Global'],
+  [['msci world'],'Global','World'],
+  [['emerging market','msci em ','em (emerging'],'Emerging Markets','EM'],
 ];
 
 function classifyETF(r) {
-  const name     = (r['description']||r['name']||'').toLowerCase();
-  const idx      = (r['index tracked']||'').toLowerCase();
-  const combined = name + ' ' + idx;
-
-  for(const [keywords, theme] of THEME_RULES) {
-    if(keywords.some(k => combined.includes(k))) return {theme, geo:'', geo_type:''};
-  }
-  for(const [keywords, geo, geo_type] of GEO_RULES) {
-    if(keywords.some(k => combined.includes(k))) return {theme:'', geo, geo_type};
-  }
-  return {theme:'', geo:'', geo_type:''};
+  const name=(r['description']||r['name']||'').toLowerCase();
+  const idx=(r['index tracked']||'').toLowerCase();
+  const combined=name+' '+idx;
+  for(const [kw,theme] of THEME_RULES) if(kw.some(k=>combined.includes(k))) return {theme,geo:'',geo_type:''};
+  for(const [kw,geo,geo_type] of GEO_RULES) if(kw.some(k=>combined.includes(k))) return {theme:'',geo,geo_type};
+  return {theme:'',geo:'',geo_type:''};
 }
 
-// ── PARSE ROW (TradingView or pre-converted) ──
 function parseRow(r) {
-  // Normalize keys to lowercase
-  const n = {};
-  for(const [k,v] of Object.entries(r)) n[k.toLowerCase()] = v;
-
-  // Already converted format?
-  if(n['ticker'] && !n['symbol']) return {
-    ticker: n.ticker, name: n.name||n.ticker,
-    theme: n.theme||'', geo: n.geo||'', geo_type: n.geo_type||'',
-    chg1d: n.chg1d, chg1w: n.chg1w, chg1m: n.chg1m,
-    chg3m: n.chg3m, ytd: n.ytd, chg1y: n.chg1y,
-    aum: n.aum, aum_prev: n.aum_prev||'',
-    rsi: n.rsi||'', bbp: n.bbp||'',
-    fund_flows: n.fund_flows||'',
-    aum_perf_1m: n.aum_perf_1m||'',
-    aum_perf_3m: n.aum_perf_3m||'',
+  const n={};
+  for(const [k,v] of Object.entries(r)) n[k.toLowerCase()]=v;
+  if(n['ticker']&&!n['symbol']) return {
+    ticker:n.ticker,name:n.name||n.ticker,
+    theme:n.theme||'',geo:n.geo||'',geo_type:n.geo_type||'',
+    chg1d:n.chg1d,chg1w:n.chg1w,chg1m:n.chg1m,chg3m:n.chg3m,ytd:n.ytd,chg1y:n.chg1y,
+    aum:n.aum,aum_prev:n.aum_prev||'',rsi:n.rsi||'',bbp:n.bbp||'',
+    fund_flows:n.fund_flows||'',aum_perf_1m:n.aum_perf_1m||'',aum_perf_3m:n.aum_perf_3m||'',
   };
-
-  // TradingView format
-  const ticker = n['symbol']||'';
-  const name   = n['description']||ticker;
-  const cl = classifyETF(n);
-  const theme = cl.theme, geo = cl.geo, geo_type = cl.geo_type;
-
+  const ticker=n['symbol']||'';
+  const name=n['description']||ticker;
+  const cl=classifyETF(n);
   return {
-    ticker, name, theme, geo, geo_type,
-    chg1d: n['price change % 1 day']||'',
-    chg1w: n['performance % 1 week']||'',
-    chg1m: n['performance % 1 month']||'',
-    chg3m: n['performance % 3 months']||'',
-    chg6m: n['performance % 6 months']||'',
-    ytd:   n['performance % year to date']||'',
-    chg1y: n['performance % 1 year']||'',
-    aum:   n['assets under management']||'',
-    aum_prev: '',
-    rsi: n['relative strength index (14) 1 day']||n['rsi']||'',
-    bbp: n['bull bear power (13) 1 day']||n['bbp']||'',
-    fund_flows: n['fund flows 1 month']||n['fund_flows']||'',
-    aum_perf_1m: n['aum performance % 1 month']||n['aum_perf_1m']||'',
-    aum_perf_3m: n['aum performance % 3 months']||n['aum_perf_3m']||'',
-    _rawIdx: n['index tracked']||'',
+    ticker,name,theme:cl.theme,geo:cl.geo,geo_type:cl.geo_type,
+    chg1d:n['price change % 1 day']||'',
+    chg1w:n['performance % 1 week']||'',
+    chg1m:n['performance % 1 month']||'',
+    chg3m:n['performance % 3 months']||'',
+    chg6m:n['performance % 6 months']||'',
+    ytd:n['performance % year to date']||'',
+    chg1y:n['performance % 1 year']||'',
+    aum:n['assets under management']||'',
+    aum_prev:'',
+    rsi:n['relative strength index (14) 1 day']||n['rsi']||'',
+    bbp:n['bull bear power (13) 1 day']||n['bbp']||'',
+    fund_flows:n['fund flows 1 month']||n['fund_flows']||'',
+    aum_perf_1m:n['aum performance % 1 month']||n['aum_perf_1m']||'',
+    aum_perf_3m:n['aum performance % 3 months']||n['aum_perf_3m']||'',
+    _rawIdx:n['index tracked']||'',
   };
 }
 
-// ── HELPERS ───────────────────────────────────
-const pf = v => parseFloat(v);
+const pf=v=>parseFloat(v);
 
 function calcScore(r) {
   const w={chg1w:.1,chg1m:.3,chg3m:.3,chg6m:.3};
@@ -507,174 +477,122 @@ function calcScore(r) {
 }
 
 function calcFlow(r) {
-  const ff  = pf(r.fund_flows);
-  const aum = pf(r.aum);
-  if(isNaN(ff) || isNaN(aum) || aum === 0) return null;
-  const pct = (ff / aum) * 100; // fund flows som % av AUM
-  if(pct > 10)   return {label:'⬆ BIG INFLOWS',  cls:'sb', diff:pct};
-  if(pct > 2)    return {label:'↑ INFLOWS',       cls:'b',  diff:pct};
-  if(pct > -2)   return {label:'— NEUTRAL',       cls:'n',  diff:pct};
-  if(pct > -10)  return {label:'↓ OUTFLOWS',      cls:'s',  diff:pct};
-  return                {label:'⬇ BIG OUTFLOWS',  cls:'ss', diff:pct};
+  const ff=pf(r.fund_flows),aum=pf(r.aum);
+  if(isNaN(ff)||isNaN(aum)||aum===0) return null;
+  const pct=(ff/aum)*100;
+  if(pct>10)  return {label:'⬆ BIG INFLOWS', cls:'sb',diff:pct};
+  if(pct>2)   return {label:'↑ INFLOWS',      cls:'b', diff:pct};
+  if(pct>-2)  return {label:'— NEUTRAL',      cls:'n', diff:pct};
+  if(pct>-10) return {label:'↓ OUTFLOWS',     cls:'s', diff:pct};
+  return            {label:'⬇ BIG OUTFLOWS',  cls:'ss',diff:pct};
 }
 
-// ── DEDUPLICATION ─────────────────────────────
-// Grupperar på samma index, behåller bäst score + störst AUM
 function deduplicateRows(rows) {
-  const indexMap = {};
-  const noIndex  = [];
-
+  const indexMap={},noIndex=[];
   for(const r of rows) {
-    const idx = (r['index tracked'] || r._rawIdx || '').trim();
-    if(!idx || idx === 'No Underlying Index') {
-      noIndex.push(r);
-      continue;
-    }
-    if(!indexMap[idx]) indexMap[idx] = [];
+    const idx=(r['index tracked']||r._rawIdx||'').trim();
+    if(!idx||idx==='No Underlying Index'){noIndex.push(r);continue;}
+    if(!indexMap[idx]) indexMap[idx]=[];
     indexMap[idx].push(r);
   }
-
-  const kept = [];
-  for(const [idx, group] of Object.entries(indexMap)) {
-    if(group.length === 1) { kept.push(group[0]); continue; }
-    // Sort by score desc, then AUM desc
-    group.sort((a,b) => {
-      const sa = calcScore(a) ?? -999, sb = calcScore(b) ?? -999;
-      if(Math.abs(sa-sb) > 0.05) return sb - sa;
-      return (pf(b.aum)||0) - (pf(a.aum)||0);
+  const kept=[];
+  for(const [idx,group] of Object.entries(indexMap)) {
+    if(group.length===1){kept.push(group[0]);continue;}
+    group.sort((a,b)=>{
+      const sa=calcScore(a)??-999,sb=calcScore(b)??-999;
+      if(Math.abs(sa-sb)>0.05) return sb-sa;
+      return (pf(b.aum)||0)-(pf(a.aum)||0);
     });
-    kept.push(group[0]); // keep winner only
+    kept.push(group[0]);
   }
-  return [...kept, ...noIndex];
+  return [...kept,...noIndex];
 }
 
 function hmClass(v) {
-  const n=pf(v); if(isNaN(n)) return 'v-flat';
-  if(n>=30) return 'v-mega-up';    // Extrem vinnare: 30%+
-  if(n>=15) return 'v-strong-up';  // Stark vinnare: 15-30%
-  if(n>=5)  return 'v-up';         // Bra trend: 5-15%
-  if(n>=1)  return 'v-light-up';   // Svagt positiv: 1-5%
-  if(n>-1)  return 'v-flat';       // Neutral
-  if(n>-5)  return 'v-light-dn';   // Svagt negativ: -5 till -1%
-  if(n>-15) return 'v-dn';         // Dålig: -15 till -5%
-  if(n>-30) return 'v-strong-dn';  // Mycket dålig: -30 till -15%
-  return 'v-mega-dn';              // Krasch: -30%+
+  const n=pf(v);if(isNaN(n))return 'v-flat';
+  if(n>=30)return 'v-mega-up';if(n>=15)return 'v-strong-up';if(n>=5)return 'v-up';
+  if(n>=1)return 'v-light-up';if(n>-1)return 'v-flat';if(n>-5)return 'v-light-dn';
+  if(n>-15)return 'v-dn';if(n>-30)return 'v-strong-dn';return 'v-mega-dn';
 }
 
-// ── FORMATTERS ────────────────────────────────
-function fHm(v, isYtd=false, is1y=false, is3m=false) {
+function fHm(v,isYtd=false,is1y=false,is3m=false) {
   const n=pf(v);
-  if(isNaN(n)) return `<td class="hm v-flat"><span>—</span></td>`;
-  const cls = hmClass(n);
-  const orange = (isYtd && n >= 50) || (is1y && n >= 100) || (is3m && n >= 30);
-  const orangeStyle = orange ? 'color:#ff9900!important;font-weight:600!important' : '';
-  return `<td class="hm ${cls}"><span style="${orangeStyle}">${n>=0?'+':''}${n.toFixed(2)}%</span></td>`;
+  if(isNaN(n))return `<td class="hm v-flat"><span>—</span></td>`;
+  const cls=hmClass(n);
+  const orange=(isYtd&&n>=50)||(is1y&&n>=100)||(is3m&&n>=30);
+  const os=orange?'color:#ff9900!important;font-weight:600!important':'';
+  return `<td class="hm ${cls}"><span style="${os}">${n>=0?'+':''}${n.toFixed(2)}%</span></td>`;
+}
+
+function fPerfVal(v) {
+  const n=pf(v);
+  if(isNaN(n))return {html:'<span style="color:var(--muted)">—</span>',color:'var(--muted)'};
+  const cls=hmClass(n);
+  const cm={'v-mega-up':'#00ff88','v-strong-up':'#00dd66','v-up':'#aaeebb','v-light-up':'#77bb88',
+    'v-flat':'#555555','v-light-dn':'#bb7777','v-dn':'#ffaaaa','v-strong-dn':'#ff6666','v-mega-dn':'#ff3344'};
+  const color=cm[cls]||'var(--t2)';
+  return {html:`<span style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:${color}">${n>=0?'+':''}${n.toFixed(2)}%</span>`,color};
 }
 
 function fScore(sc) {
-  if(sc==null) return '<span style="color:var(--muted)">—</span>';
-  // Färg: rött vid negativt → gult vid noll → grönt vid positivt → starkt grön vid högt
-  let color;
-  if(sc >= 15)      color = '#00ffaa';  // Stark grön
-  else if(sc >= 8)  color = '#00dd88';
-  else if(sc >= 4)  color = '#00bb66';
-  else if(sc >= 1)  color = '#44aa66';
-  else if(sc >= 0)  color = '#888888';
-  else if(sc >= -4) color = '#cc6655';
-  else              color = '#ff3344';
-  return `<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:${color}">${sc.toFixed(1)}</span>`;
+  if(sc==null)return '<span style="color:var(--muted)">—</span>';
+  let c;
+  if(sc>=15)c='#00ffaa';else if(sc>=8)c='#00dd88';else if(sc>=4)c='#00bb66';
+  else if(sc>=1)c='#44aa66';else if(sc>=0)c='#888888';else if(sc>=-4)c='#cc6655';else c='#ff3344';
+  return `<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:${c}">${sc.toFixed(1)}</span>`;
 }
 
 function fRsi(v) {
-  const n=pf(v);
-  if(isNaN(n)) return '<span style="color:var(--muted)">—</span>';
+  const n=pf(v);if(isNaN(n))return '<span style="color:var(--muted)">—</span>';
   const pct=Math.min(100,Math.max(0,n));
-  const color = n>=70?'#ff4466':n>=55?'#f5a623':n<=30?'#00e4b8':n<=45?'#7c5fff':'var(--t2)';
-  const label = n>=70?'OB':n<=30?'OS':'';
-  return `<div class="rsi-wrap">
-    <div class="rsi-bar-bg"><div class="rsi-bar" style="width:${pct}%;background:${color}"></div></div>
-    <span class="rsi-num" style="color:${color}">${n.toFixed(0)}${label?'<sup style="font-size:8px;margin-left:1px">'+label+'</sup>':''}</span>
-  </div>`;
+  const color=n>=70?'#ff4466':n>=55?'#f5a623':n<=30?'#00e4b8':n<=45?'#7c5fff':'var(--t2)';
+  const label=n>=70?'OB':n<=30?'OS':'';
+  return `<div class="rsi-wrap"><div class="rsi-bar-bg"><div class="rsi-bar" style="width:${pct}%;background:${color}"></div></div><span class="rsi-num" style="color:${color}">${n.toFixed(0)}${label?'<sup style="font-size:8px;margin-left:1px">'+label+'</sup>':''}</span></div>`;
 }
 
-// ── SPARKLINES ───────────────────────────────
-function getThemeHistory(theme, metric) {
-  if(!history || !history.length) return [];
-  return history.slice(-10).map(h => {
-    const t = h.themes?.[theme];
-    if(!t) return null;
-    if(metric === 'perf1m') return parseFloat(t.chg1m ?? '') || null;
-    if(metric === 'score') return parseFloat(t.score ?? '') || null;
-    if(metric === 'aum_diff') {
-      const a = parseFloat(t.aum_perf_1m ?? '');
-      const p = parseFloat(t.chg1m ?? '');
-      return (!isNaN(a) && !isNaN(p)) ? a - p : null;
-    }
+function getThemeHistory(theme,metric) {
+  if(!history||!history.length)return [];
+  return history.slice(-10).map(h=>{
+    const t=h.themes?.[theme];if(!t)return null;
+    if(metric==='perf1m')return parseFloat(t.chg1m??'')||null;
+    if(metric==='score')return parseFloat(t.score??'')||null;
+    if(metric==='aum_diff'){const a=parseFloat(t.aum_perf_1m??''),p=parseFloat(t.chg1m??'');return(!isNaN(a)&&!isNaN(p))?a-p:null;}
     return null;
   });
 }
 
 function fSparkline(values) {
-  // values = array med tal eller null, senaste 10 dagar
-  if(!values || values.filter(v=>v!==null).length < 2) {
-    return '<span style="color:var(--muted);font-size:10px">no history</span>';
-  }
-  const dots = values.map((v, i) => {
-    if(v === null) return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#333;margin:0 1px;vertical-align:middle"></span>';
-    const prev = values.slice(0, i).filter(x => x !== null).pop();
+  if(!values||values.filter(v=>v!==null).length<2)return '<span style="color:var(--muted);font-size:10px">no history</span>';
+  const dots=values.map((v,i)=>{
+    if(v===null)return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#333;margin:0 1px;vertical-align:middle"></span>';
+    const prev=values.slice(0,i).filter(x=>x!==null).pop();
     let color;
-    if(prev === undefined) color = '#555';
-    else if(v > prev) color = '#00cc66';
-    else if(v < prev) color = '#dd3344';
-    else color = '#666';
-    const size = i === values.length - 1 ? '10px' : '7px'; // sista pricken större
+    if(prev===undefined)color='#555';else if(v>prev)color='#00cc66';else if(v<prev)color='#dd3344';else color='#666';
+    const size=i===values.length-1?'10px':'7px';
     return `<span title="${v?.toFixed(2)}" style="display:inline-block;width:${size};height:${size};border-radius:50%;background:${color};margin:0 1px;vertical-align:middle"></span>`;
   });
   return `<div style="display:flex;align-items:center;gap:1px">${dots.join('')}</div>`;
 }
 
-function fFlowDiff(aumPerf, perf) {
-  const a = pf(aumPerf), p = pf(perf);
-  if(isNaN(a) || isNaN(p)) return '<span style="color:var(--muted)">—</span>';
-  const diff = a - p;
-  const color = diff > 2 ? '#00cc66' : diff > 0 ? '#44aa66' : diff > -2 ? '#888888' : '#dd3344';
-  const arrow = diff > 0 ? '▲' : '▼';
+function fFlowDiff(aumPerf,perf) {
+  const a=pf(aumPerf),p=pf(perf);
+  if(isNaN(a)||isNaN(p))return '<span style="color:var(--muted)">—</span>';
+  const diff=a-p;
+  const color=diff>2?'#00cc66':diff>0?'#44aa66':diff>-2?'#888888':'#dd3344';
+  const arrow=diff>0?'▲':'▼';
   return `<span style="font-family:'DM Mono',monospace;font-size:12px;color:${color}">${arrow} ${diff>=0?'+':''}${diff.toFixed(1)}%</span>`;
 }
 
-function fBbp(v) {
-  const n=pf(v);
-  if(isNaN(n)) return '<span style="color:var(--muted)">—</span>';
-  const color = n>50?'var(--up)':n>0?'#7cffb0':n>-50?'#ff8899':'var(--dn)';
-  const arrow = n>0?'▲':'▼';
-  return `<span class="bbp-num" style="color:${color}">${arrow} ${n.toFixed(1)}</span>`;
-}
-
-function fAumBar(aum, maxAum) {
-  const a = pf(aum);
-  if(isNaN(a) || !maxAum) return '<span style="color:var(--muted)">—</span>';
-  const pct = Math.min(100, (a / maxAum) * 100);
-  const fmt = a >= 1e9 ? (a/1e9).toFixed(1)+'B' : a >= 1e6 ? (a/1e6).toFixed(0)+'M' : a.toLocaleString();
-  return `<div style="display:flex;align-items:center;gap:6px;min-width:100px">
-    <div style="flex:1;height:6px;background:var(--b1);border-radius:3px;overflow:hidden;min-width:60px">
-      <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#7c5fff,#00e4b8);border-radius:3px"></div>
-    </div>
-    <span style="font-size:11px;color:var(--t2);min-width:36px;text-align:right">${fmt}</span>
-  </div>`;
-}
-
-function fAum(aum, aum_prev) {
-  const a=pf(aum); if(isNaN(a)) return '<span style="color:var(--muted)">—</span>';
-  const fmt=n=>n>=1e9?(n/1e9).toFixed(1)+'B':n>=1e6?(n/1e6).toFixed(0)+'M':n.toLocaleString();
-  const pr=pf(aum_prev);
-  let chg='';
-  if(!isNaN(pr)&&pr>0){const c=((a-pr)/pr)*100;chg=`<div class="aum-c" style="color:${c>=0?'var(--up)':'var(--dn)'}">${c>=0?'+':''}${c.toFixed(2)}%</div>`;}
-  return `<div class="aum-wrap"><div class="aum-v">${fmt(a)}</div>${chg}</div>`;
+function fAumBar(aum,maxAum) {
+  const a=pf(aum);if(isNaN(a)||!maxAum)return '<span style="color:var(--muted)">—</span>';
+  const pct=Math.min(100,(a/maxAum)*100);
+  const fmt=a>=1e9?(a/1e9).toFixed(1)+'B':a>=1e6?(a/1e6).toFixed(0)+'M':a.toLocaleString();
+  return `<div style="display:flex;align-items:center;gap:6px;min-width:100px"><div style="flex:1;height:6px;background:var(--b1);border-radius:3px;overflow:hidden;min-width:60px"><div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#7c5fff,#00e4b8);border-radius:3px"></div></div><span style="font-size:11px;color:var(--t2);min-width:36px;text-align:right">${fmt}</span></div>`;
 }
 
 function fFlow(r) {
   const sig=calcFlow(r);
-  if(!sig) return '<span class="flow nd">— no flow data</span>';
+  if(!sig)return '<span class="flow nd">— no flow data</span>';
   return `<span class="flow ${sig.cls}" title="Fund flows 1M: ${sig.diff>=0?'+':''}${sig.diff.toFixed(2)}% of AUM">${sig.label}</span>`;
 }
 
@@ -685,22 +603,21 @@ function fThemePill(t) {
 
 function fGeoBadge(geo) {
   const s=GEO_STYLES[geo];
-  if(!s) return `<span class="t-chip">${geo||'—'}</span>`;
+  if(!s)return `<span class="t-chip">${geo||'—'}</span>`;
   return `<span class="geo-badge" style="background:${s.bg};border:1px solid ${s.border};color:${s.text}">${s.flag} ${geo}</span>`;
 }
 
-function fGeoTypeBadge(geo, type) {
+function fGeoTypeBadge(geo,type) {
   const s=GEO_STYLES[geo];
-  if(!s||!type) return `<span class="t-chip" style="color:var(--t2)">${type||'—'}</span>`;
+  if(!s||!type)return `<span class="t-chip" style="color:var(--t2)">${type||'—'}</span>`;
   return `<span class="t-chip" style="border-color:${s.border};color:${s.text}">${type}</span>`;
 }
 
-// ── BUILD THEME AGGREGATES ────────────────────
 function buildThemeData() {
   const map={};
   allRows.filter(r=>r.theme&&r.theme.trim()).forEach(r=>{
     const t=r.theme.trim();
-    if(!map[t]) map[t]={theme:t,rows:[]};
+    if(!map[t])map[t]={theme:t,rows:[]};
     map[t].rows.push(r);
   });
   themeData=Object.values(map).map(({theme,rows})=>{
@@ -712,30 +629,21 @@ function buildThemeData() {
     const avg=key=>{const vs=top.map(r=>pf(r[key])).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
     const ag={chg1d:avg('chg1d'),chg1w:avg('chg1w'),chg1m:avg('chg1m'),chg3m:avg('chg3m'),ytd:avg('ytd'),chg1y:avg('chg1y')};
     const avgRsi=()=>{const vs=rows.map(r=>pf(r.rsi)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
-    const avgBbp=()=>{const vs=rows.map(r=>pf(r.bbp)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
-    // Summera fund_flows för alla ETF:er i temat
-    const totalFundFlows = rows.reduce((s,r)=>s+(pf(r.fund_flows)||0),0);
-    const avgAumPerf1m = ()=>{const vs=rows.map(r=>pf(r.aum_perf_1m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
-    const avgAumPerf3m = ()=>{const vs=rows.map(r=>pf(r.aum_perf_3m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
-    return {
-      theme, rows, top3:top, ...ag,
-      sc:calcScore(ag),
-      rsi:avgRsi(), bbp:avgBbp(),
+    const totalFF=rows.reduce((s,r)=>s+(pf(r.fund_flows)||0),0);
+    const avgAP1m=()=>{const vs=rows.map(r=>pf(r.aum_perf_1m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+    const avgAP3m=()=>{const vs=rows.map(r=>pf(r.aum_perf_3m)).filter(n=>!isNaN(n));return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+    return {theme,rows,top3:top,...ag,sc:calcScore(ag),rsi:avgRsi(),
       aum:top.reduce((s,r)=>s+(pf(r.aum)||0),0),
       aum_prev:top.reduce((s,r)=>s+(pf(r.aum_prev)||0),0),
-      fund_flows: totalFundFlows,
-      aum_perf_1m: avgAumPerf1m(),
-      aum_perf_3m: avgAumPerf3m(),
-    };
+      fund_flows:totalFF,aum_perf_1m:avgAP1m(),aum_perf_3m:avgAP3m()};
   });
   themeData.sort((a,b)=>(b.sc??-999)-(a.sc??-999));
 }
 
-// ── RENDER THEMES ─────────────────────────────
 function renderThemes() {
   const tbody=document.getElementById('themeBody');
-  if(!themeData.length){tbody.innerHTML='<tr class="empty-row"><td colspan="14">No thematic data in CSV</td></tr>';return;}
-  const maxAum = Math.max(...themeData.map(td=>pf(td.aum)||0));
+  if(!themeData.length){tbody.innerHTML='<tr class="empty-row"><td colspan="17">No thematic data in CSV</td></tr>';return;}
+  const maxAum=Math.max(...themeData.map(td=>pf(td.aum)||0));
   tbody.innerHTML=themeData.map((td,i)=>{
     const sig=calcFlow({aum:td.aum,fund_flows:td.fund_flows});
     const tickers=td.rows.map((r,j)=>`<span class="t-chip${j<3?' best':''}">${r.ticker}</span>`).join('');
@@ -746,9 +654,9 @@ function renderThemes() {
       <td>${fScore(td.sc)}</td>
       <td>${fSparkline(getThemeHistory(td.theme,'score'))}</td>
       <td>${fRsi(td.rsi)}</td>
-      <td>${fAumBar(td.aum, maxAum)}</td>
+      <td>${fAumBar(td.aum,maxAum)}</td>
       <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no AUM prev</span>'}</td>
-      <td>${fFlowDiff(td.aum_perf_1m, td.chg1m)}</td>
+      <td>${fFlowDiff(td.aum_perf_1m,td.chg1m)}</td>
       <td>${fSparkline(getThemeHistory(td.theme,'aum_diff'))}</td>
       <td><div class="ticker-list">${tickers}</div></td>
     </tr>`;
@@ -756,11 +664,10 @@ function renderThemes() {
   document.getElementById('themeUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
-// ── RENDER INDIVIDUAL ─────────────────────────
 function renderIndiv() {
   const tbody=document.getElementById('indivBody');
   if(!indivRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="14">No data in CSV</td></tr>';return;}
-  const maxAumIndiv = Math.max(...indivRows.map(r=>pf(r.aum)||0));
+  const maxAumIndiv=Math.max(...indivRows.map(r=>pf(r.aum)||0));
   tbody.innerHTML=indivRows.map((r,i)=>{
     const sc=calcScore(r);
     const cat=r.theme?fThemePill(r.theme):r.geo?fGeoBadge(r.geo):'—';
@@ -770,20 +677,121 @@ function renderIndiv() {
       <td><span class="etf-n">${r.name||r.ticker}</span></td>
       <td>${cat}</td>
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
-      <td>${fScore(sc)}</td>
-      <td>${fRsi(r.rsi)}</td>
-      <td>${fAumBar(r.aum, maxAumIndiv)}</td>
-      <td>${fFlow(r)}</td>
+      <td>${fScore(sc)}</td><td>${fRsi(r.rsi)}</td>
+      <td>${fAumBar(r.aum,maxAumIndiv)}</td><td>${fFlow(r)}</td>
     </tr>`;
   }).join('');
   document.getElementById('indivUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
-// ── RENDER GEO ────────────────────────────────
+function makeEtfCard(r, flagEmoji, labelLine1, labelLine2, extraStyle='') {
+  const sc=calcScore(r);
+  const p1w=fPerfVal(r.chg1w),p1m=fPerfVal(r.chg1m),p3m=fPerfVal(r.chg3m),pYtd=fPerfVal(r.ytd);
+  const aum=pf(r.aum);
+  const aumFmt=!isNaN(aum)?(aum>=1e9?(aum/1e9).toFixed(1)+'B':aum>=1e6?(aum/1e6).toFixed(0)+'M':'—'):'—';
+  return `<div class="country-card" style="${extraStyle}">
+    <div class="country-card-header">
+      <span class="country-flag">${flagEmoji}</span>
+      <div><div class="country-name">${labelLine1}</div><div class="country-ticker">${labelLine2}</div></div>
+    </div>
+    <div class="country-perf-row">
+      <div class="country-perf-item"><span class="country-perf-label">1W</span>${p1w.html}</div>
+      <div class="country-perf-item"><span class="country-perf-label">1M</span>${p1m.html}</div>
+      <div class="country-perf-item"><span class="country-perf-label">3M</span>${p3m.html}</div>
+      <div class="country-perf-item"><span class="country-perf-label">YTD</span>${pYtd.html}</div>
+    </div>
+    <div class="country-score-row">
+      <span style="font-size:11px;color:var(--muted)">Score</span>
+      ${fScore(sc)}
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)">${aumFmt}</span>
+    </div>
+  </div>`;
+}
+
+function renderGeoPanels() {
+  if(!geoRows.length&&!allRows.length)return;
+  const rowMap={};
+  allRows.forEach(r=>{rowMap[r.ticker]=r;});
+
+  // TOP 10 COUNTRIES
+  const singleCountryTypes=new Set(['South Korea','Japan','China','India','Taiwan','Australia',
+    'Canada','Brazil','LatAm','Mexico','USA','DAX','MDAX','Euro Stoxx 50','Euro Stoxx 600','EM ex-China','EM Asia']);
+  const countryMap={};
+  geoRows.forEach(r=>{
+    if(!singleCountryTypes.has(r.geo_type))return;
+    const sc=calcScore(r)??-999;
+    if(!countryMap[r.geo_type]||sc>(calcScore(countryMap[r.geo_type])??-999))countryMap[r.geo_type]=r;
+  });
+  const top10=Object.values(countryMap).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999)).slice(0,10);
+  const top10Grid=document.getElementById('top10Grid');
+  if(!top10.length){
+    top10Grid.innerHTML='<div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">No country data found</div>';
+  } else {
+    top10Grid.innerHTML=top10.map((r,i)=>{
+      const flag=COUNTRY_FLAGS[r.geo_type]||COUNTRY_FLAGS[r.geo]||'🏳';
+      const rank=i<3?`<span style="font-size:9px;background:var(--accent);color:#fff;padding:2px 5px;border-radius:3px;margin-left:4px">#${i+1}</span>`:'';
+      const gs=GEO_STYLES[r.geo];
+      const bc=gs?gs.border:'var(--b1)';
+      return makeEtfCard(r,flag,`${r.geo_type}${rank}`,r.ticker,`border-color:${bc}`);
+    }).join('');
+  }
+
+  // WORLD INDEXES
+  const indexesGrid=document.getElementById('indexesGrid');
+  indexesGrid.innerHTML=WORLD_INDEX_CONFIG.map(cfg=>{
+    const r=rowMap[cfg.ticker];
+    if(!r)return `<div class="index-card" style="opacity:.4"><div class="index-card-header"><span class="index-label">${cfg.label}</span><span class="index-flag">${cfg.flag}</span></div><div class="index-ticker">${cfg.ticker}</div><div class="index-name" style="color:var(--muted)">Not in CSV</div></div>`;
+    const sc=calcScore(r);
+    const perfs=[{l:'1W',v:r.chg1w},{l:'1M',v:r.chg1m},{l:'3M',v:r.chg3m},{l:'YTD',v:r.ytd}];
+    const perfHtml=perfs.map(p=>{
+      const pv=fPerfVal(p.v);
+      const txt=pv.html.replace(/<[^>]+>/g,'');
+      return `<div class="index-perf-item"><span class="index-perf-label">${p.l}</span><span class="index-perf-val" style="color:${pv.color}">${txt}</span></div>`;
+    }).join('');
+    const aum=pf(r.aum);
+    const aumFmt=!isNaN(aum)?(aum>=1e9?(aum/1e9).toFixed(1)+'B':aum>=1e6?(aum/1e6).toFixed(0)+'M':'—'):'—';
+    const scTxt=fScore(sc).replace(/<[^>]+>/g,'');
+    return `<div class="index-card">
+      <div class="index-card-header"><span class="index-label">${cfg.label}</span><span class="index-flag">${cfg.flag}</span></div>
+      <div class="index-ticker">${cfg.ticker}</div>
+      <div class="index-name">${r.name||cfg.ticker}</div>
+      <div class="index-perf-row">${perfHtml}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--b1)">
+        <span style="font-size:11px;color:var(--muted)">Score: ${scTxt}</span>
+        <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)">${aumFmt}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  // EUROPE CURATED: best DAX by AUM + best Euro Stoxx 600 by AUM + top 4 trending EU countries
+  const europeCurated=[];
+  const daxEtfs=geoRows.filter(r=>r.geo_type==='DAX').sort((a,b)=>(pf(b.aum)||0)-(pf(a.aum)||0));
+  if(daxEtfs.length)europeCurated.push({r:daxEtfs[0],label:'DAX',flag:'🇩🇪'});
+  const stoxx=geoRows.filter(r=>r.geo_type==='Euro Stoxx 600').sort((a,b)=>(pf(b.aum)||0)-(pf(a.aum)||0));
+  if(stoxx.length)europeCurated.push({r:stoxx[0],label:'Euro Stoxx 600',flag:'🇪🇺'});
+  const euCMap={};
+  geoRows.filter(r=>r.geo==='Europe'&&!['Europe','DAX','MDAX','Euro Stoxx 50','Euro Stoxx 600'].includes(r.geo_type))
+    .forEach(r=>{
+      const sc=calcScore(r)??-999;
+      if(!euCMap[r.geo_type]||sc>(calcScore(euCMap[r.geo_type])??-999))euCMap[r.geo_type]=r;
+    });
+  Object.values(euCMap).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999)).slice(0,4)
+    .forEach(r=>europeCurated.push({r,label:r.geo_type,flag:COUNTRY_FLAGS[r.geo_type]||'🇪🇺'}));
+  const europeGrid=document.getElementById('europeGrid');
+  if(!europeCurated.length){
+    europeGrid.innerHTML='<div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">No European data found</div>';
+  } else {
+    europeGrid.innerHTML=europeCurated.map(({r,label,flag})=>
+      makeEtfCard(r,flag,label,r.ticker,'border-color:rgba(80,140,255,.4)')
+    ).join('');
+  }
+}
+
 function renderGeo() {
+  renderGeoPanels();
   const tbody=document.getElementById('geoBody');
-  if(!geoRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="15">No geographic data in CSV</td></tr>';return;}
-  const maxAumGeo = Math.max(...geoRows.map(r=>pf(r.aum)||0));
+  if(!geoRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="16">No geographic data in CSV</td></tr>';return;}
+  const maxAumGeo=Math.max(...geoRows.map(r=>pf(r.aum)||0));
   tbody.innerHTML=geoRows.map((r,i)=>{
     const sc=calcScore(r);
     return `<tr>
@@ -793,49 +801,38 @@ function renderGeo() {
       <td>${fGeoBadge(r.geo)}</td>
       <td>${fGeoTypeBadge(r.geo,r.geo_type)}</td>
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
-      <td>${fScore(sc)}</td>
-      <td>${fRsi(r.rsi)}</td>
-      <td>${fAumBar(r.aum, maxAumGeo)}</td>
-      <td>${fFlow(r)}</td>
+      <td>${fScore(sc)}</td><td>${fRsi(r.rsi)}</td>
+      <td>${fAumBar(r.aum,maxAumGeo)}</td><td>${fFlow(r)}</td>
     </tr>`;
   }).join('');
   document.getElementById('geoUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
-// ── SORT ──────────────────────────────────────
 function sortT(tbl,col) {
   const s=sortState[tbl];
-  if(s.col===col) s.dir*=-1; else{s.col=col;s.dir=-1;}
+  if(s.col===col)s.dir*=-1;else{s.col=col;s.dir=-1;}
   const getV=(r,c,type)=>{
     if(type==='themes'){
-      if(c===1) return r.theme;
-      const map={2:'chg1d',3:'chg1w',4:'chg1m',5:'chg3m',6:'ytd',7:'chg1y',8:'sc',9:'rsi',10:'bbp',11:'aum'};
-      if(map[c]!=null) return pf(r[map[c]])??-999;
-      if(c===12){const sg=calcFlow({aum:r.aum,aum_prev:r.aum_prev,chg1w:r.chg1w});return sg?sg.diff:-999;}
+      if(c===1)return r.theme;
+      const m={2:'chg1d',3:'chg1w',4:'chg1m',5:'chg3m',6:'ytd',7:'chg1y',8:'sc',9:'rsi',10:'bbp',11:'aum'};
+      if(m[c]!=null)return pf(r[m[c]])??-999;
+      if(c===12){const sg=calcFlow({aum:r.aum,fund_flows:r.fund_flows});return sg?sg.diff:-999;}
     }
     if(type==='indiv'){
-      if(c===1) return r.ticker;
-      if(c===2) return r.name||'';
-      if(c===3) return r.theme||r.geo||'';
-      const map={4:'chg1d',5:'chg1w',6:'chg1m',7:'chg3m',8:'ytd',9:'chg1y'};
-      if(map[c]) return pf(r[map[c]])||(-999);
-      if(c===10) return calcScore(r)??(-999);
-      if(c===11) return pf(r.rsi)||(-1);
-      if(c===12) return pf(r.bbp)||(-9999);
-      if(c===13) return pf(r.aum)||(-1);
+      if(c===1)return r.ticker;if(c===2)return r.name||'';if(c===3)return r.theme||r.geo||'';
+      const m={4:'chg1d',5:'chg1w',6:'chg1m',7:'chg3m',8:'ytd',9:'chg1y'};
+      if(m[c])return pf(r[m[c]])||(-999);
+      if(c===10)return calcScore(r)??-999;if(c===11)return pf(r.rsi)||(-1);
+      if(c===12)return pf(r.bbp)||(-9999);if(c===13)return pf(r.aum)||(-1);
       if(c===14){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     if(type==='geo'){
-      if(c===1) return r.ticker;
-      if(c===2) return r.name||'';
-      if(c===3) return r.geo||'';
-      if(c===4) return r.geo_type||'';
-      const map={5:'chg1d',6:'chg1w',7:'chg1m',8:'chg3m',9:'ytd',10:'chg1y'};
-      if(map[c]) return pf(r[map[c]])||(-999);
-      if(c===11) return calcScore(r)??(-999);
-      if(c===12) return pf(r.rsi)||(-1);
-      if(c===13) return pf(r.bbp)||(-9999);
-      if(c===14) return pf(r.aum)||(-1);
+      if(c===1)return r.ticker;if(c===2)return r.name||'';
+      if(c===3)return r.geo||'';if(c===4)return r.geo_type||'';
+      const m={5:'chg1d',6:'chg1w',7:'chg1m',8:'chg3m',9:'ytd',10:'chg1y'};
+      if(m[c])return pf(r[m[c]])||(-999);
+      if(c===11)return calcScore(r)??-999;if(c===12)return pf(r.rsi)||(-1);
+      if(c===13)return pf(r.bbp)||(-9999);if(c===14)return pf(r.aum)||(-1);
       if(c===15){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     return 0;
@@ -846,22 +843,20 @@ function sortT(tbl,col) {
   else{geoRows.sort(cmp);renderGeo();}
 }
 
-// ── CSV PARSE HELPER (handles quoted fields with commas) ──
 function parseCsvLine(line) {
-  const result=[]; let cur='', inQ=false;
+  const result=[];let cur='',inQ=false;
   for(let i=0;i<line.length;i++){
     const c=line[i];
-    if(c==='"'){ inQ=!inQ; }
-    else if(c===','&&!inQ){ result.push(cur.trim()); cur=''; }
-    else { cur+=c; }
+    if(c==='"'){inQ=!inQ;}
+    else if(c===','&&!inQ){result.push(cur.trim());cur='';}
+    else{cur+=c;}
   }
   result.push(cur.trim());
   return result;
 }
 
-// ── CSV UPLOAD ────────────────────────────────
 document.getElementById('csvInput').addEventListener('change',function(e){
-  const file=e.target.files[0]; if(!file) return;
+  const file=e.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=ev=>{
     try{
@@ -870,30 +865,24 @@ document.getElementById('csvInput').addEventListener('change',function(e){
       const rows=[];
       for(let i=1;i<lines.length;i++){
         const cols=parseCsvLine(lines[i].replace(/\r/g,''));
-        if(!cols[0]?.trim()) continue;
-        const raw={};
-        hdr.forEach((h,j)=>raw[h]=cols[j]?.trim()||'');
-        const row=parseRow(raw);
-        if(row.ticker) rows.push(row);
+        if(!cols[0]?.trim())continue;
+        const raw={};hdr.forEach((h,j)=>raw[h]=cols[j]?.trim()||'');
+        const row=parseRow(raw);if(row.ticker)rows.push(row);
       }
-      const dedupedRows = deduplicateRows(rows);
-      const removed = rows.length - dedupedRows.length;
-      allRows=dedupedRows;
-      indivRows=[...dedupedRows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
-      geoRows=dedupedRows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+      const deduped=deduplicateRows(rows);
+      const removed=rows.length-deduped.length;
+      allRows=deduped;
+      indivRows=[...deduped].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
+      geoRows=deduped.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
       buildThemeData();
-      renderThemes(); renderIndiv(); renderGeo();
-      document.getElementById('dataBadge').textContent=`${dedupedRows.length} ETFs loaded`;
+      renderThemes();renderIndiv();renderGeo();
+      document.getElementById('dataBadge').textContent=`${deduped.length} ETFs loaded`;
       document.getElementById('dataBadge').className='badge ok';
       document.getElementById('dateBadge').textContent=new Date().toLocaleDateString('sv-SE');
-      showToast(`✓ ${dedupedRows.length} ETFs loaded (${removed} duplicates removed)`);
-      // Auto-spara till GitHub om token finns
-      const ghS = ghSettings();
-      if(ghS.token) {
-        setTimeout(async () => {
-          await saveLatestToGithub(dedupedRows);
-          await saveHistoryToGithub();
-        }, 500);
+      showToast(`✓ ${deduped.length} ETFs loaded (${removed} duplicates removed)`);
+      const ghS=ghSettings();
+      if(ghS.token){
+        setTimeout(async()=>{await saveLatestToGithub(deduped);await saveHistoryToGithub();},500);
       } else {
         showToast('✓ Data loaded · Go to Settings to enable history saving');
       }
@@ -902,511 +891,46 @@ document.getElementById('csvInput').addEventListener('change',function(e){
   reader.readAsText(file);
 });
 
-// ── GITHUB HISTORY ────────────────────────────
-function ghSettings() {
-  return {
-    token: localStorage.getItem('gh_token')||'',
-    repo:  localStorage.getItem('gh_repo') ||'SerenityInvest/theme-tracker',
-    file:  localStorage.getItem('gh_file') ||'history.json',
-  };
-}
+function ghSettings(){return{token:localStorage.getItem('gh_token')||'',repo:localStorage.getItem('gh_repo')||'SerenityInvest/theme-tracker',file:localStorage.getItem('gh_file')||'history.json'};}
+function saveGhSettings(){localStorage.setItem('gh_token',document.getElementById('ghToken').value.trim());localStorage.setItem('gh_repo',document.getElementById('ghRepo').value.trim());localStorage.setItem('gh_file',document.getElementById('ghFile').value.trim());updatePersonalLink();showToast('✓ Settings saved');}
+function updatePersonalLink(){const s=ghSettings();const linkEl=document.getElementById('personalLink');if(!linkEl)return;if(s.token){const base=window.location.origin+window.location.pathname;linkEl.value=`${base}?token=${s.token}`;}else{linkEl.value='Spara settings med token först...';}}
+function copyPersonalLink(){const linkEl=document.getElementById('personalLink');if(!linkEl||!linkEl.value.startsWith('http')){showToast('⚠ Spara settings med token först');return;}navigator.clipboard.writeText(linkEl.value).then(()=>showToast('✓ Länk kopierad – klistra in i WhatsApp!')).catch(()=>{linkEl.select();document.execCommand('copy');showToast('✓ Länk kopierad!');});}
+function loadGhSettingsUI(){const s=ghSettings();document.getElementById('ghToken').value=s.token;document.getElementById('ghRepo').value=s.repo;document.getElementById('ghFile').value=s.file;}
+async function testGithubConnection(){const s=ghSettings();if(!s.token){setGhStatus('No token',true);return;}setGhStatus('Testing…',false);try{const r=await fetch(`https://api.github.com/repos/${s.repo}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok)setGhStatus('✓ Connected',false);else setGhStatus('✗ '+r.status+' – check token/repo',true);}catch(e){setGhStatus('✗ Network error',true);}}
+function setGhStatus(msg,err){const el=document.getElementById('ghStatus');el.textContent=msg;el.className='gh-status '+(err?'err':'ok');}
+async function loadHistoryFromGithub(){const s=ghSettings();if(!s.token){showToast('⚠ No GitHub token – check Settings');return;}showToast('Loading history…');try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.status===404){showToast('No history file yet – upload CSV to create it');return;}const data=await r.json();const json=JSON.parse(atob(data.content.split('\n').join('')));history=json;showToast(`✓ Loaded ${history.length} days of history`);updateHistoryUI();renderAllCharts();}catch(e){showToast('⚠ Could not load history');console.error(e);}}
+async function saveLatestToGithub(rows){const s=ghSettings();if(!s.token)return;const data=rows.map(r=>({ticker:r.ticker,name:r.name,theme:r.theme,geo:r.geo,geo_type:r.geo_type,chg1d:r.chg1d,chg1w:r.chg1w,chg1m:r.chg1m,chg3m:r.chg3m,chg6m:r.chg6m||'',ytd:r.ytd,chg1y:r.chg1y,aum:r.aum,aum_prev:r.aum_prev||'',rsi:r.rsi,bbp:r.bbp,fund_flows:r.fund_flows||'',_rawIdx:r._rawIdx||''}));const today=new Date().toISOString().split('T')[0];const payload={date:today,rows:data};let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update latest ${today}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(payload)))),...(sha?{sha}:{})};try{await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});}catch(e){console.error('Could not save latest.json',e);}}
+async function loadPublicData(){const s=ghSettings();const repo=s.repo||'SerenityInvest/theme-tracker';try{const url=`https://raw.githubusercontent.com/${repo}/main/latest.json`;const r=await fetch(url);if(!r.ok)return false;const payload=await r.json();const rows=payload.rows;allRows=rows;indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));buildThemeData();renderThemes();renderIndiv();renderGeo();document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;document.getElementById('dataBadge').className='badge ok';document.getElementById('dateBadge').textContent=payload.date||'';return true;}catch(e){return false;}}
+async function loadLatestFromGithub(){const s=ghSettings();if(!s.token)return false;try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(!r.ok)return false;const data=await r.json();const payload=JSON.parse(atob(data.content.split('\n').join('')));const rows=payload.rows;allRows=rows;indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));buildThemeData();renderThemes();renderIndiv();renderGeo();document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;document.getElementById('dataBadge').className='badge ok';document.getElementById('dateBadge').textContent=payload.date||'';showToast(`✓ Loaded ${rows.length} ETFs from GitHub (${payload.date})`);return true;}catch(e){console.error('Could not load latest.json',e);return false;}}
+async function saveHistoryToGithub(){const s=ghSettings();if(!s.token){showToast('⚠ No GitHub token – go to Settings tab');return;}const today=new Date().toISOString().split('T')[0];const existing=history.findIndex(h=>h.date===today);const themesSnap={};themeData.forEach(t=>{themesSnap[t.theme]={ytd:t.ytd,chg1m:t.chg1m,chg3m:t.chg3m,chg1w:t.chg1w,score:t.sc,aum:t.aum,aum_perf_1m:t.aum_perf_1m};});const etfsSnap={};allRows.forEach(r=>{etfsSnap[r.ticker]={ytd:pf(r.ytd)||0,chg1m:pf(r.chg1m)||0,chg3m:pf(r.chg3m)||0,aum:pf(r.aum)||0,score:calcScore(r)||0};});const snap={date:today,themes:themesSnap,etfs:etfsSnap};if(existing>=0)history[existing]=snap;else history.push(snap);history.sort((a,b)=>a.date.localeCompare(b.date));let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update history ${today}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(history,null,2)))),...(sha?{sha}:{})};try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(r.ok){showToast(`✓ History saved to GitHub (${history.length} days)`);updateHistoryUI();renderAllCharts();}else{const err=await r.json();showToast('⚠ Save failed: '+(err.message||r.status));}}catch(e){showToast('⚠ Network error saving history');}}
+function clearHistory(){if(!confirm('Clear all history? This cannot be undone.'))return;history=[];updateHistoryUI();renderAllCharts();showToast('History cleared');}
+function updateHistoryUI(){const el=document.getElementById('historyStats');const badge=document.getElementById('historyInfoBadge');if(!history.length){el.textContent='No history loaded yet.';if(badge)badge.textContent='';return;}const dates=history.map(h=>h.date);el.innerHTML=`<span style="color:var(--teal)">${history.length} days</span> of history · <span style="color:var(--t2)">${dates[0]}</span> → <span style="color:var(--t2)">${dates[dates.length-1]}</span>`;if(badge)badge.textContent=`${history.length} days history`;const etfSel=document.getElementById('etfSelect');if(etfSel){const tickers=[...new Set(history.flatMap(h=>Object.keys(h.etfs||{})))].sort();etfSel.innerHTML='<option value="">— Select ETF —</option>'+tickers.map(t=>`<option value="${t}">${t}</option>`).join('');}const themeSel=document.getElementById('themeAumSelect');if(themeSel){const themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))].sort();themeSel.innerHTML='<option value="all">All Themes</option>'+themes.map(t=>`<option value="${t}">${t}</option>`).join('');}}
 
-function saveGhSettings() {
-  localStorage.setItem('gh_token', document.getElementById('ghToken').value.trim());
-  localStorage.setItem('gh_repo',  document.getElementById('ghRepo').value.trim());
-  localStorage.setItem('gh_file',  document.getElementById('ghFile').value.trim());
-  updatePersonalLink();
-  showToast('✓ Settings saved');
-}
+const CHART_COLORS=['#7c5fff','#00e4b8','#ff4466','#f5a623','#00b8ff','#ff6b9d','#54d66b','#ffcc00','#c084fc','#fb923c','#34d399','#f87171','#a78bfa','#38bdf8','#fbbf24'];
+function chartDefaults(){return{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#c8c8e8',font:{family:'DM Mono, monospace',size:11}}},tooltip:{backgroundColor:'#12121f',borderColor:'#2e2e50',borderWidth:1,titleColor:'#fff',bodyColor:'#c8c8e8',callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(2)}`}}},scales:{x:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'}},y:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'},position:'right'}}};}
+function setChartMetric(type,metric,btn){chartMetric[type]=metric;const group=btn.parentElement.querySelectorAll('.chart-btn');group.forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(type==='theme')renderThemeChart();if(type==='etf')renderEtfChart();}
+function renderAllCharts(){renderThemeChart();renderAumChart();renderEtfChart();}
+function renderThemeChart(){const wrap=document.getElementById('themeChartWrap');if(!history.length){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';return;}const metric=chartMetric.theme;const dates=history.map(h=>h.date);const themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))];const datasets=themes.map((theme,i)=>({label:theme,data:history.map(h=>{const v=h.themes?.[theme]?.[metric];return v!=null?parseFloat(v):null;}),borderColor:CHART_COLORS[i%CHART_COLORS.length],backgroundColor:CHART_COLORS[i%CHART_COLORS.length]+'22',borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:true}));wrap.innerHTML='<canvas id="themeChartCanvas"></canvas>';if(themeChart)themeChart.destroy();const ctx=document.getElementById('themeChartCanvas').getContext('2d');themeChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:`Theme ${metric.toUpperCase()} %`,color:'#c8c8e8',font:{size:12}}}}});}
+function renderAumChart(){const wrap=document.getElementById('aumChartWrap');if(!history.length){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';return;}const sel=document.getElementById('themeAumSelect')?.value||'all';const dates=history.map(h=>h.date);let themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))];if(sel!=='all')themes=themes.filter(t=>t===sel);const datasets=themes.map((theme,i)=>({label:theme,data:history.map(h=>{const v=h.themes?.[theme]?.aum;return v!=null?parseFloat(v)/1e9:null;}),borderColor:CHART_COLORS[i%CHART_COLORS.length],backgroundColor:CHART_COLORS[i%CHART_COLORS.length]+'22',borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:true}));wrap.innerHTML='<canvas id="aumChartCanvas"></canvas>';if(aumChart)aumChart.destroy();const ctx=document.getElementById('aumChartCanvas').getContext('2d');aumChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:'AUM (EUR Billion)',color:'#c8c8e8',font:{size:12}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,ticks:{...chartDefaults().scales.y.ticks,callback:v=>v.toFixed(1)+'B'}}}}});}
+function renderEtfChart(){const wrap=document.getElementById('etfChartWrap');const ticker=document.getElementById('etfSelect')?.value;if(!history.length||!ticker){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Select an ETF and upload daily to build history</div>';return;}const metric=chartMetric.etf;const dates=history.map(h=>h.date);const isAum=metric==='aum';const data=history.map(h=>{const v=h.etfs?.[ticker]?.[metric];return v!=null?(isAum?parseFloat(v)/1e9:parseFloat(v)):null;});wrap.innerHTML='<canvas id="etfChartCanvas"></canvas>';if(etfChart)etfChart.destroy();const ctx=document.getElementById('etfChartCanvas').getContext('2d');etfChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets:[{label:`${ticker} ${metric.toUpperCase()}`,data,borderColor:'#7c5fff',backgroundColor:'rgba(124,95,255,.15)',borderWidth:2,pointRadius:4,pointHoverRadius:6,tension:.3,spanGaps:true,fill:true}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:`${ticker} – ${metric.toUpperCase()}${isAum?' (EUR B)':' %'}`,color:'#c8c8e8',font:{size:12}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,ticks:{...chartDefaults().scales.y.ticks,callback:v=>isAum?v.toFixed(2)+'B':v.toFixed(2)+'%'}}}}});}
 
-function updatePersonalLink() {
-  const s = ghSettings();
-  const linkEl = document.getElementById('personalLink');
-  if(!linkEl) return;
-  if(s.token) {
-    const base = window.location.origin + window.location.pathname;
-    linkEl.value = `${base}?token=${s.token}`;
-  } else {
-    linkEl.value = 'Spara settings med token först...';
-  }
-}
+function switchTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');}
+function toggleCsv(){const el=document.getElementById('csvInfo'),btn=document.querySelector('.csv-toggle');const open=el.style.display==='block';el.style.display=open?'none':'block';btn.textContent=open?'▸ How to prepare your data file':'▾ Hide data format info';}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
 
-function copyPersonalLink() {
-  const linkEl = document.getElementById('personalLink');
-  if(!linkEl || !linkEl.value.startsWith('http')) {
-    showToast('⚠ Spara settings med token först');
-    return;
-  }
-  navigator.clipboard.writeText(linkEl.value).then(() => {
-    showToast('✓ Länk kopierad – klistra in i WhatsApp!');
-  }).catch(() => {
-    linkEl.select();
-    document.execCommand('copy');
-    showToast('✓ Länk kopierad!');
-  });
-}
-
-function loadGhSettingsUI() {
-  const s = ghSettings();
-  document.getElementById('ghToken').value = s.token;
-  document.getElementById('ghRepo').value  = s.repo;
-  document.getElementById('ghFile').value  = s.file;
-}
-
-async function testGithubConnection() {
-  const s = ghSettings();
-  if(!s.token) { setGhStatus('No token', true); return; }
-  setGhStatus('Testing…', false);
-  try {
-    const r = await fetch(`https://api.github.com/repos/${s.repo}`, {
-      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
-    });
-    if(r.ok) setGhStatus('✓ Connected', false);
-    else setGhStatus('✗ ' + r.status + ' – check token/repo', true);
-  } catch(e) { setGhStatus('✗ Network error', true); }
-}
-
-function setGhStatus(msg, err) {
-  const el = document.getElementById('ghStatus');
-  el.textContent = msg;
-  el.className = 'gh-status ' + (err ? 'err' : 'ok');
-}
-
-async function loadHistoryFromGithub() {
-  const s = ghSettings();
-  if(!s.token) { showToast('⚠ No GitHub token – check Settings'); return; }
-  showToast('Loading history…');
-  try {
-    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`, {
-      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
-    });
-    if(r.status === 404) { showToast('No history file yet – upload CSV to create it'); return; }
-    const data = await r.json();
-    const json = JSON.parse(atob(data.content.split('\n').join('')));
-    history = json;
-    showToast(`✓ Loaded ${history.length} days of history`);
-    updateHistoryUI();
-    renderAllCharts();
-  } catch(e) { showToast('⚠ Could not load history'); console.error(e); }
-}
-
-async function saveLatestToGithub(rows) {
-  const s = ghSettings();
-  if(!s.token) return;
-  // Spara en kompakt version av senaste rader
-  const data = rows.map(r => ({
-    ticker:r.ticker, name:r.name, theme:r.theme, geo:r.geo, geo_type:r.geo_type,
-    chg1d:r.chg1d, chg1w:r.chg1w, chg1m:r.chg1m, chg3m:r.chg3m,
-    chg6m:r.chg6m||'', ytd:r.ytd, chg1y:r.chg1y,
-    aum:r.aum, aum_prev:r.aum_prev||'',
-    rsi:r.rsi, bbp:r.bbp, fund_flows:r.fund_flows||'',
-    _rawIdx:r._rawIdx||'',
-  }));
-  const today = new Date().toISOString().split('T')[0];
-  const payload = {date: today, rows: data};
-
-  let sha = '';
-  try {
-    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`, {
-      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
-    });
-    if(r.ok) { const d = await r.json(); sha = d.sha; }
-  } catch(e) {}
-
-  const body = {
-    message: `Update latest ${today}`,
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(payload)))),
-    ...(sha ? {sha} : {})
-  };
-
-  try {
-    await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`, {
-      method:'PUT',
-      headers:{
-        'Authorization':`token ${s.token}`,
-        'Accept':'application/vnd.github.v3+json',
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-  } catch(e) { console.error('Could not save latest.json', e); }
-}
-
-async function loadPublicData() {
-  // Hämtar latest.json direkt från GitHub utan token (publik data)
-  const s = ghSettings();
-  const repo = s.repo || 'SerenityInvest/theme-tracker';
-  try {
-    const url = `https://raw.githubusercontent.com/${repo}/main/latest.json`;
-    const r = await fetch(url);
-    if(!r.ok) return false;
-    const payload = await r.json();
-    const rows = payload.rows;
-    allRows = rows;
-    indivRows = [...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
-    geoRows = rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
-    buildThemeData();
-    renderThemes(); renderIndiv(); renderGeo();
-    document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;
-    document.getElementById('dataBadge').className='badge ok';
-    document.getElementById('dateBadge').textContent=payload.date||'';
-    return true;
-  } catch(e) {
-    return false;
-  }
-}
-
-async function loadLatestFromGithub() {
-  const s = ghSettings();
-  if(!s.token) return false;
-  try {
-    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`, {
-      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
-    });
-    if(!r.ok) return false;
-    const data = await r.json();
-    const payload = JSON.parse(atob(data.content.split('\n').join('')));
-    const rows = payload.rows;
-
-    allRows = rows;
-    indivRows = [...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
-    geoRows = rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));
-    buildThemeData();
-    renderThemes(); renderIndiv(); renderGeo();
-
-    document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;
-    document.getElementById('dataBadge').className='badge ok';
-    document.getElementById('dateBadge').textContent=payload.date||'';
-    showToast(`✓ Loaded ${rows.length} ETFs from GitHub (${payload.date})`);
-    return true;
-  } catch(e) {
-    console.error('Could not load latest.json', e);
-    return false;
-  }
-}
-
-async function saveHistoryToGithub() {
-  const s = ghSettings();
-  if(!s.token) { showToast('⚠ No GitHub token – go to Settings tab'); return; }
-
-  // Bygg dagens snapshot
-  const today = new Date().toISOString().split('T')[0];
-  const existing = history.findIndex(h => h.date === today);
-
-  // Tema-snapshot
-  const themesSnap = {};
-  themeData.forEach(t => {
-    themesSnap[t.theme] = {
-      ytd: t.ytd, chg1m: t.chg1m, chg3m: t.chg3m,
-      chg1w: t.chg1w, score: t.sc, aum: t.aum,
-      aum_perf_1m: t.aum_perf_1m,
-    };
-  });
-
-  // ETF-snapshot
-  const etfsSnap = {};
-  allRows.forEach(r => {
-    etfsSnap[r.ticker] = {
-      ytd: pf(r.ytd)||0, chg1m: pf(r.chg1m)||0,
-      chg3m: pf(r.chg3m)||0, aum: pf(r.aum)||0,
-      score: calcScore(r)||0,
-    };
-  });
-
-  const snap = {date: today, themes: themesSnap, etfs: etfsSnap};
-  if(existing >= 0) history[existing] = snap;
-  else history.push(snap);
-  history.sort((a,b) => a.date.localeCompare(b.date));
-
-  // Hämta nuvarande SHA (behövs för update)
-  let sha = '';
-  try {
-    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`, {
-      headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}
-    });
-    if(r.ok) { const d = await r.json(); sha = d.sha; }
-  } catch(e) {}
-
-  // Spara
-  const body = {
-    message: `Update history ${today}`,
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(history, null, 2)))),
-    ...(sha ? {sha} : {})
-  };
-
-  try {
-    const r = await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`, {
-      method: 'PUT',
-      headers:{
-        'Authorization':`token ${s.token}`,
-        'Accept':'application/vnd.github.v3+json',
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-    if(r.ok) {
-      showToast(`✓ History saved to GitHub (${history.length} days)`);
-      updateHistoryUI();
-      renderAllCharts();
-    } else {
-      const err = await r.json();
-      showToast('⚠ Save failed: ' + (err.message||r.status));
-    }
-  } catch(e) { showToast('⚠ Network error saving history'); }
-}
-
-function clearHistory() {
-  if(!confirm('Clear all history? This cannot be undone.')) return;
-  history = [];
-  updateHistoryUI();
-  renderAllCharts();
-  showToast('History cleared');
-}
-
-function updateHistoryUI() {
-  const el = document.getElementById('historyStats');
-  const badge = document.getElementById('historyInfoBadge');
-  if(!history.length) {
-    el.textContent = 'No history loaded yet.';
-    if(badge) badge.textContent = '';
-    return;
-  }
-  const dates = history.map(h=>h.date);
-  el.innerHTML = `<span style="color:var(--teal)">${history.length} days</span> of history · 
-    <span style="color:var(--t2)">${dates[0]}</span> → 
-    <span style="color:var(--t2)">${dates[dates.length-1]}</span>`;
-  if(badge) badge.textContent = `${history.length} days history`;
-
-  // Populera ETF-dropdown
-  const etfSel = document.getElementById('etfSelect');
-  if(etfSel) {
-    const tickers = [...new Set(history.flatMap(h => Object.keys(h.etfs||{})))].sort();
-    etfSel.innerHTML = '<option value="">— Select ETF —</option>' +
-      tickers.map(t => `<option value="${t}">${t}</option>`).join('');
-  }
-
-  // Populera tema AUM-dropdown
-  const themeSel = document.getElementById('themeAumSelect');
-  if(themeSel) {
-    const themes = [...new Set(history.flatMap(h => Object.keys(h.themes||{})))].sort();
-    themeSel.innerHTML = '<option value="all">All Themes</option>' +
-      themes.map(t => `<option value="${t}">${t}</option>`).join('');
-  }
-}
-
-// ── CHARTS ────────────────────────────────────
-const CHART_COLORS = [
-  '#7c5fff','#00e4b8','#ff4466','#f5a623','#00b8ff',
-  '#ff6b9d','#54d66b','#ffcc00','#c084fc','#fb923c',
-  '#34d399','#f87171','#a78bfa','#38bdf8','#fbbf24',
-];
-
-function chartDefaults() {
-  return {
-    responsive: true,
-    interaction: {mode:'index', intersect:false},
-    plugins: {
-      legend:{labels:{color:'#c8c8e8',font:{family:'DM Mono, monospace',size:11}}},
-      tooltip:{
-        backgroundColor:'#12121f',borderColor:'#2e2e50',borderWidth:1,
-        titleColor:'#fff',bodyColor:'#c8c8e8',
-        callbacks:{label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(2)}`}
-      }
-    },
-    scales:{
-      x:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'}},
-      y:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'},
-         position:'right'}
-    }
-  };
-}
-
-function setChartMetric(type, metric, btn) {
-  chartMetric[type] = metric;
-  const group = btn.parentElement.querySelectorAll('.chart-btn');
-  group.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if(type === 'theme') renderThemeChart();
-  if(type === 'etf')   renderEtfChart();
-}
-
-function renderAllCharts() {
-  renderThemeChart();
-  renderAumChart();
-  renderEtfChart();
-}
-
-function renderThemeChart() {
-  const wrap = document.getElementById('themeChartWrap');
-  if(!history.length) {
-    wrap.innerHTML = '<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';
-    return;
-  }
-  const metric = chartMetric.theme;
-  const dates = history.map(h => h.date);
-  const themes = [...new Set(history.flatMap(h => Object.keys(h.themes||{})))];
-
-  const datasets = themes.map((theme, i) => ({
-    label: theme,
-    data: history.map(h => {
-      const v = h.themes?.[theme]?.[metric];
-      return v != null ? parseFloat(v) : null;
-    }),
-    borderColor: CHART_COLORS[i % CHART_COLORS.length],
-    backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '22',
-    borderWidth: 2, pointRadius: 3, pointHoverRadius: 5,
-    tension: 0.3, spanGaps: true,
-  }));
-
-  wrap.innerHTML = '<canvas id="themeChartCanvas"></canvas>';
-  if(themeChart) themeChart.destroy();
-  const ctx = document.getElementById('themeChartCanvas').getContext('2d');
-  themeChart = new Chart(ctx, {
-    type: 'line',
-    data: {labels: dates, datasets},
-    options: {
-      ...chartDefaults(),
-      plugins: {
-        ...chartDefaults().plugins,
-        title:{display:true,text:`Theme ${metric.toUpperCase()} %`,color:'#c8c8e8',font:{size:12}}
-      }
-    }
-  });
-}
-
-function renderAumChart() {
-  const wrap = document.getElementById('aumChartWrap');
-  if(!history.length) {
-    wrap.innerHTML = '<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';
-    return;
-  }
-  const sel = document.getElementById('themeAumSelect')?.value || 'all';
-  const dates = history.map(h => h.date);
-  let themes = [...new Set(history.flatMap(h => Object.keys(h.themes||{})))];
-  if(sel !== 'all') themes = themes.filter(t => t === sel);
-
-  const datasets = themes.map((theme, i) => ({
-    label: theme,
-    data: history.map(h => {
-      const v = h.themes?.[theme]?.aum;
-      return v != null ? parseFloat(v) / 1e9 : null;
-    }),
-    borderColor: CHART_COLORS[i % CHART_COLORS.length],
-    backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '22',
-    borderWidth: 2, pointRadius: 3, pointHoverRadius: 5,
-    tension: 0.3, spanGaps: true,
-    fill: sel !== 'all' ? false : false,
-  }));
-
-  wrap.innerHTML = '<canvas id="aumChartCanvas"></canvas>';
-  if(aumChart) aumChart.destroy();
-  const ctx = document.getElementById('aumChartCanvas').getContext('2d');
-  aumChart = new Chart(ctx, {
-    type: 'line',
-    data: {labels: dates, datasets},
-    options: {
-      ...chartDefaults(),
-      plugins: {
-        ...chartDefaults().plugins,
-        title:{display:true,text:'AUM (EUR Billion)',color:'#c8c8e8',font:{size:12}}
-      },
-      scales: {
-        ...chartDefaults().scales,
-        y: {...chartDefaults().scales.y,
-          ticks:{...chartDefaults().scales.y.ticks, callback: v => v.toFixed(1)+'B'}}
-      }
-    }
-  });
-}
-
-function renderEtfChart() {
-  const wrap = document.getElementById('etfChartWrap');
-  const ticker = document.getElementById('etfSelect')?.value;
-  if(!history.length || !ticker) {
-    wrap.innerHTML = '<div class="no-history"><strong>No history yet</strong>Select an ETF and upload daily to build history</div>';
-    return;
-  }
-  const metric = chartMetric.etf;
-  const dates = history.map(h => h.date);
-  const isAum = metric === 'aum';
-
-  const data = history.map(h => {
-    const v = h.etfs?.[ticker]?.[metric];
-    return v != null ? (isAum ? parseFloat(v)/1e9 : parseFloat(v)) : null;
-  });
-
-  wrap.innerHTML = '<canvas id="etfChartCanvas"></canvas>';
-  if(etfChart) etfChart.destroy();
-  const ctx = document.getElementById('etfChartCanvas').getContext('2d');
-  etfChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        label: `${ticker} ${metric.toUpperCase()}`,
-        data, borderColor: '#7c5fff',
-        backgroundColor: 'rgba(124,95,255,.15)',
-        borderWidth: 2, pointRadius: 4, pointHoverRadius: 6,
-        tension: 0.3, spanGaps: true, fill: true,
-      }]
-    },
-    options: {
-      ...chartDefaults(),
-      plugins: {
-        ...chartDefaults().plugins,
-        title:{display:true,text:`${ticker} – ${metric.toUpperCase()}${isAum?' (EUR B)':' %'}`,color:'#c8c8e8',font:{size:12}}
-      },
-      scales: {
-        ...chartDefaults().scales,
-        y: {...chartDefaults().scales.y,
-          ticks:{...chartDefaults().scales.y.ticks,
-            callback: v => isAum ? v.toFixed(2)+'B' : v.toFixed(2)+'%'}}
-      }
-    }
-  });
-}
-
-// ── TABS ──────────────────────────────────────
-function switchTab(id,btn){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  btn.classList.add('active');
-}
-
-function toggleCsv(){
-  const el=document.getElementById('csvInfo'),btn=document.querySelector('.csv-toggle');
-  const open=el.style.display==='block';
-  el.style.display=open?'none':'block';
-  btn.textContent=open?'▸ How to prepare your data file':'▾ Hide data format info';
-}
-
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3500);
-}
-
-// ── INIT ──────────────────────────────────────
-window.addEventListener('DOMContentLoaded', async () => {
-  // Läs token från URL-parameter om den finns: ?token=xxx
-  const urlParams = new URLSearchParams(window.location.search);
-  const urlToken = urlParams.get('token');
-  if(urlToken) {
-    localStorage.setItem('gh_token', urlToken);
-  }
-
-  loadGhSettingsUI();
-  updatePersonalLink();
-  const s = ghSettings();
-  if(s.token) {
-    const loaded = await loadLatestFromGithub();
-    if(!loaded) showToast('Enter your GitHub token in Settings to load data');
+window.addEventListener('DOMContentLoaded',async()=>{
+  const urlParams=new URLSearchParams(window.location.search);
+  const urlToken=urlParams.get('token');
+  if(urlToken)localStorage.setItem('gh_token',urlToken);
+  loadGhSettingsUI();updatePersonalLink();
+  const s=ghSettings();
+  if(s.token){
+    const loaded=await loadLatestFromGithub();
+    if(!loaded)showToast('Enter your GitHub token in Settings to load data');
     loadHistoryFromGithub();
   } else {
-    // Ingen token – försök ladda publik data ändå
-    const loaded = await loadPublicData();
-    if(loaded) showToast('✓ Data loaded (read-only mode)');
+    const loaded=await loadPublicData();
+    if(loaded)showToast('✓ Data loaded (read-only mode)');
   }
 });
 </script>
