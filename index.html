@@ -1025,7 +1025,70 @@ const CHART_COLORS=['#7c5fff','#00e4b8','#ff4466','#f5a623','#00b8ff','#ff6b9d',
 function chartDefaults(){return{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#c8c8e8',font:{family:'DM Mono, monospace',size:11}}},tooltip:{backgroundColor:'#12121f',borderColor:'#2e2e50',borderWidth:1,titleColor:'#fff',bodyColor:'#c8c8e8',callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(2)}`}}},scales:{x:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'}},y:{ticks:{color:'#8888aa',font:{family:'DM Mono, monospace',size:10}},grid:{color:'rgba(46,46,80,.5)'},position:'right'}}};}
 function setChartMetric(type,metric,btn){chartMetric[type]=metric;const group=btn.parentElement.querySelectorAll('.chart-btn');group.forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(type==='theme')renderThemeChart();if(type==='etf')renderEtfChart();}
 function renderAllCharts(){renderThemeChart();renderAumChart();renderEtfChart();}
-function renderThemeChart(){const wrap=document.getElementById('themeChartWrap');if(!history.length){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';return;}const metric=chartMetric.theme;const dates=history.map(h=>h.date);const themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))];const datasets=themes.map((theme,i)=>({label:theme,data:history.map(h=>{const v=h.themes?.[theme]?.[metric];return v!=null?parseFloat(v):null;}),borderColor:CHART_COLORS[i%CHART_COLORS.length],backgroundColor:CHART_COLORS[i%CHART_COLORS.length]+'22',borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:true}));wrap.innerHTML='<canvas id="themeChartCanvas"></canvas>';if(themeChart)themeChart.destroy();const ctx=document.getElementById('themeChartCanvas').getContext('2d');themeChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:`Theme ${metric.toUpperCase()} %`,color:'#c8c8e8',font:{size:12}}}}});}
+function renderThemeChart(){
+  const wrap=document.getElementById('themeChartWrap');
+  if(!history.length){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';return;}
+  const metric=chartMetric.theme;
+  const dates=history.map(h=>h.date);
+  const themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))];
+  const datasets=themes.map((theme,i)=>({
+    label:theme,
+    data:history.map(h=>{const v=h.themes?.[theme]?.[metric];return v!=null?parseFloat(v):null;}),
+    borderColor:CHART_COLORS[i%CHART_COLORS.length],
+    backgroundColor:CHART_COLORS[i%CHART_COLORS.length]+'22',
+    borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:true
+  }));
+  wrap.innerHTML='<canvas id="themeChartCanvas"></canvas>';
+  if(themeChart)themeChart.destroy();
+  const ctx=document.getElementById('themeChartCanvas').getContext('2d');
+
+  // Custom plugin: draw labels at end of each line
+  const endLabelsPlugin = {
+    id:'endLabels',
+    afterDraw(chart) {
+      const ctx2=chart.ctx;
+      chart.data.datasets.forEach((ds,i)=>{
+        const meta=chart.getDatasetMeta(i);
+        if(meta.hidden)return;
+        // Find last non-null point
+        let lastPt=null;
+        for(let j=meta.data.length-1;j>=0;j--){
+          if(ds.data[j]!=null){lastPt=meta.data[j];break;}
+        }
+        if(!lastPt)return;
+        const x=lastPt.x+6;
+        const y=lastPt.y;
+        ctx2.save();
+        ctx2.font='bold 11px DM Mono, monospace';
+        ctx2.fillStyle=ds.borderColor;
+        ctx2.textAlign='left';
+        ctx2.textBaseline='middle';
+        // Small background for readability
+        const tw=ctx2.measureText(ds.label).width;
+        ctx2.fillStyle='rgba(13,13,13,0.7)';
+        ctx2.fillRect(x-2,y-8,tw+6,16);
+        ctx2.fillStyle=ds.borderColor;
+        ctx2.fillText(ds.label,x,y);
+        ctx2.restore();
+      });
+    }
+  };
+
+  themeChart=new Chart(ctx,{
+    type:'line',
+    data:{labels:dates,datasets},
+    options:{
+      ...chartDefaults(),
+      layout:{padding:{right:120}},
+      plugins:{
+        ...chartDefaults().plugins,
+        legend:{display:false},
+        title:{display:true,text:`Theme ${metric.toUpperCase()} %`,color:'#c8c8e8',font:{size:12}}
+      }
+    },
+    plugins:[endLabelsPlugin]
+  });
+}
 function renderAumChart(){const wrap=document.getElementById('aumChartWrap');if(!history.length){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';return;}const sel=document.getElementById('themeAumSelect')?.value||'all';const dates=history.map(h=>h.date);let themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))];if(sel!=='all')themes=themes.filter(t=>t===sel);const datasets=themes.map((theme,i)=>({label:theme,data:history.map(h=>{const v=h.themes?.[theme]?.aum;return v!=null?parseFloat(v)/1e9:null;}),borderColor:CHART_COLORS[i%CHART_COLORS.length],backgroundColor:CHART_COLORS[i%CHART_COLORS.length]+'22',borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:true}));wrap.innerHTML='<canvas id="aumChartCanvas"></canvas>';if(aumChart)aumChart.destroy();const ctx=document.getElementById('aumChartCanvas').getContext('2d');aumChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:'AUM (EUR Billion)',color:'#c8c8e8',font:{size:12}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,ticks:{...chartDefaults().scales.y.ticks,callback:v=>v.toFixed(1)+'B'}}}}});}
 function renderEtfChart(){const wrap=document.getElementById('etfChartWrap');const ticker=document.getElementById('etfSelect')?.value;if(!history.length||!ticker){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Select an ETF and upload daily to build history</div>';return;}const metric=chartMetric.etf;const dates=history.map(h=>h.date);const isAum=metric==='aum';const data=history.map(h=>{const v=h.etfs?.[ticker]?.[metric];return v!=null?(isAum?parseFloat(v)/1e9:parseFloat(v)):null;});wrap.innerHTML='<canvas id="etfChartCanvas"></canvas>';if(etfChart)etfChart.destroy();const ctx=document.getElementById('etfChartCanvas').getContext('2d');etfChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets:[{label:`${ticker} ${metric.toUpperCase()}`,data,borderColor:'#7c5fff',backgroundColor:'rgba(124,95,255,.15)',borderWidth:2,pointRadius:4,pointHoverRadius:6,tension:.3,spanGaps:true,fill:true}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:`${ticker} – ${metric.toUpperCase()}${isAum?' (EUR B)':' %'}`,color:'#c8c8e8',font:{size:12}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,ticks:{...chartDefaults().scales.y.ticks,callback:v=>isAum?v.toFixed(2)+'B':v.toFixed(2)+'%'}}}}});}
 
