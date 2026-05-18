@@ -17,7 +17,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:13px;min-height:100vh;overflow-x:hidden}
 .wrap{position:relative;z-index:1;max-width:100%;margin:0 auto;padding:0 16px 80px}
-header{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:20px;flex-wrap:wrap;gap:12px}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:4px;flex-wrap:wrap;gap:12px}
 .logo h1{font-size:18px;font-weight:700;letter-spacing:-.3px;color:var(--text)}
 .logo p{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
 .header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -26,6 +26,16 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 .upload-btn input{display:none}
 .badge{font-family:'DM Mono',monospace;font-size:11px;padding:6px 11px;border-radius:4px;background:var(--s2);border:1px solid var(--b1);color:var(--muted)}
 .badge.ok{border-color:var(--teal);color:var(--teal)}
+/* SEARCH BAR */
+.search-bar-wrap{display:flex;align-items:center;gap:12px;padding:12px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:16px}
+.search-input-wrap{position:relative;flex:1;max-width:500px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
+#searchInput{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:9px 36px 9px 36px;font-size:13px;color:var(--text);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+#searchInput:focus{border-color:var(--accent);background:var(--s1)}
+#searchInput::placeholder{color:var(--muted)}
+#searchClear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0;line-height:1;display:none}
+#searchClear:hover{color:var(--text)}
+#searchCount{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;white-space:nowrap}
 .csv-box{margin-bottom:24px}
 .csv-toggle{background:none;border:none;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;display:block;margin-bottom:8px}
 .csv-info{display:none;background:var(--s1);border:1px solid var(--b1);border-radius:10px;padding:18px 22px;font-size:12px;color:var(--t2);line-height:2}
@@ -144,8 +154,7 @@ canvas{width:100%!important}
 .gh-status{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border-radius:4px;background:var(--s3)}
 .gh-status.ok{color:var(--teal)}.gh-status.err{color:var(--dn)}
 .history-info{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
-th[title]{cursor:help;}
-th[title]{border-bottom:1px dashed var(--b2);}
+th[title]{cursor:help;border-bottom:1px dashed var(--b2);}
 th[title]:hover{color:var(--text);}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .modal-overlay.hidden{display:none}
@@ -162,6 +171,7 @@ th[title]:hover{color:var(--text);}
 .modal-btn.primary:hover{opacity:.85}
 .modal-btn.cancel{background:var(--s2);border:1px solid var(--b1);color:var(--t2)}
 .modal-btn.cancel:hover{border-color:var(--b2);color:var(--text)}
+mark.hl{background:rgba(124,95,255,.4);color:inherit;border-radius:2px;padding:0 1px}
 </style>
 </head>
 <body>
@@ -177,6 +187,16 @@ th[title]:hover{color:var(--text);}
     <div class="badge" id="dateBadge"></div>
   </div>
 </header>
+
+<!-- GLOBAL SEARCH BAR -->
+<div class="search-bar-wrap">
+  <div class="search-input-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Sök Ticker eller Name… (t.ex. SXRV, Semiconductor, Clean Energy)" oninput="applySearch(this.value)">
+    <button id="searchClear" onclick="clearSearch()">✕</button>
+  </div>
+  <span id="searchCount"></span>
+</div>
 
 <div class="csv-box">
   <button class="csv-toggle" onclick="toggleCsv()">▸ How to prepare your data file</button>
@@ -216,7 +236,8 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
       <th onclick="sortT('themes',6)" class="r">YTD ↕</th><th onclick="sortT('themes',7)" class="r">1Y ↕</th>
       <th onclick="sortT('themes',8)">Score ↕</th><th>Score trend</th>
       <th onclick="sortT('themes',9)">RSI ↕</th><th onclick="sortT('themes',10)" class="r">AUM ↕</th>
-      <th onclick="sortT('themes',12)" title="Investor Flow Signal: fund flows over last month as % of total AUM. Measures whether investors are buying or selling this theme.">Investor Flows ↕ ℹ</th><th onclick="sortT('themes',13)" title="AUM Growth vs Price: AUM % change minus price % change over 1 month. Positive = AUM grew faster than price (net inflows). Negative = AUM lagged price (net outflows or redemptions).">AUM vs Price 1M ↕ ℹ</th>
+      <th onclick="sortT('themes',12)" title="Investor Flow Signal: fund flows over last month as % of total AUM.">Investor Flows ↕ ℹ</th>
+      <th onclick="sortT('themes',13)" title="AUM Growth vs Price: AUM % change minus price % change over 1 month.">AUM vs Price 1M ↕ ℹ</th>
       <th title="AUM vs Price trend over last 10 days of history">AUM trend</th><th>ETFs in Theme</th>
     </tr></thead>
     <tbody id="themeBody"><tr class="empty-row"><td colspan="17">Upload a CSV file to display data</td></tr></tbody>
@@ -227,18 +248,25 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
 
 <!-- INDIVIDUAL -->
 <div class="tab-pane" id="tab-individual">
-  <div class="section-head"><div><h2>Individual ETFs</h2><p>All ETFs sorted by trend score · click columns to sort</p></div></div>
+  <div class="section-head"><div><h2>Individual ETFs</h2><p>All ETFs sorted by trend score · click columns to sort · sök med sökrutan högst upp</p></div></div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th onclick="sortT('indiv',0)">#</th><th onclick="sortT('indiv',1)">Ticker ↕</th>
-      <th onclick="sortT('indiv',2)">Name ↕</th><th onclick="sortT('indiv',3)">Theme / Geo ↕</th>
-      <th onclick="sortT('indiv',4)" class="r">1D ↕</th><th onclick="sortT('indiv',5)" class="r">1W ↕</th>
-      <th onclick="sortT('indiv',6)" class="r">1M ↕</th><th onclick="sortT('indiv',7)" class="r">3M ↕</th>
-      <th onclick="sortT('indiv',8)" class="r">YTD ↕</th><th onclick="sortT('indiv',9)" class="r">1Y ↕</th>
-      <th onclick="sortT('indiv',10)">Score ↕</th><th onclick="sortT('indiv',11)">RSI ↕</th>
-      <th onclick="sortT('indiv',12)" class="r">AUM ↕</th><th onclick="sortT('indiv',14)">Flow Signal ↕</th>
+      <th onclick="sortT('indiv',0)">#</th>
+      <th onclick="sortT('indiv',1)">Ticker ↕</th>
+      <th onclick="sortT('indiv',2)">Name ↕</th>
+      <th onclick="sortT('indiv',3)">Theme / Geo ↕</th>
+      <th onclick="sortT('indiv',4)" class="r">1D ↕</th>
+      <th onclick="sortT('indiv',5)" class="r">1W ↕</th>
+      <th onclick="sortT('indiv',6)" class="r">1M ↕</th>
+      <th onclick="sortT('indiv',7)" class="r">3M ↕</th>
+      <th onclick="sortT('indiv',8)" class="r">YTD ↕</th>
+      <th onclick="sortT('indiv',9)" class="r">1Y ↕</th>
+      <th onclick="sortT('indiv',10)">Score ↕</th>
+      <th onclick="sortT('indiv',11)">RSI ↕</th>
+      <th onclick="sortT('indiv',12)" class="r">AUM ↕</th>
+      <th onclick="sortT('indiv',14)">Flow Signal ↕</th>
     </tr></thead>
-    <tbody id="indivBody"><tr class="empty-row"><td colspan="15">Upload a CSV file to display data</td></tr></tbody>
+    <tbody id="indivBody"><tr class="empty-row"><td colspan="14">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="indivUpdate"></div>
 </div>
@@ -246,41 +274,44 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
 <!-- GEO -->
 <div class="tab-pane" id="tab-geo">
   <div class="section-head"><div><h2>Geographic ETFs</h2><p>Countries · Regions · Indexes · color-coded by region</p></div></div>
-
   <div class="geo-panel">
     <div class="geo-panel-title">🏆 Top 10 Trending Countries <span>ranked by trend score</span></div>
     <div class="countries-grid" id="top10Grid">
       <div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">Upload a CSV file to display data</div>
     </div>
   </div>
-
   <div class="geo-panel">
     <div class="geo-panel-title">📊 Major World Indexes <span>key benchmarks</span></div>
     <div class="indexes-grid" id="indexesGrid">
       <div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">Upload a CSV file to display data</div>
     </div>
   </div>
-
   <div class="geo-panel">
     <div class="geo-panel-title">🇪🇺 Europe Focus <span>DAX · Euro Stoxx 600 · top trending countries</span></div>
     <div class="europe-grid" id="europeGrid">
       <div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:20px 0">Upload a CSV file to display data</div>
     </div>
   </div>
-
   <div class="subsection-title">🌍 All Geographic ETFs <span style="font-size:11px;color:var(--muted);font-weight:400;margin-left:4px">click columns to sort</span></div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th onclick="sortT('geo',0)">#</th><th onclick="sortT('geo',1)">Ticker ↕</th>
-      <th onclick="sortT('geo',2)">Name ↕</th><th onclick="sortT('geo',3)">Region ↕</th>
+      <th onclick="sortT('geo',0)">#</th>
+      <th onclick="sortT('geo',1)">Ticker ↕</th>
+      <th onclick="sortT('geo',2)">Name ↕</th>
+      <th onclick="sortT('geo',3)">Region ↕</th>
       <th onclick="sortT('geo',4)">Country ↕</th>
-      <th onclick="sortT('geo',5)" class="r">1D ↕</th><th onclick="sortT('geo',6)" class="r">1W ↕</th>
-      <th onclick="sortT('geo',7)" class="r">1M ↕</th><th onclick="sortT('geo',8)" class="r">3M ↕</th>
-      <th onclick="sortT('geo',9)" class="r">YTD ↕</th><th onclick="sortT('geo',10)" class="r">1Y ↕</th>
-      <th onclick="sortT('geo',11)">Score ↕</th><th onclick="sortT('geo',12)">RSI ↕</th>
-      <th onclick="sortT('geo',13)" class="r">AUM ↕</th><th onclick="sortT('geo',15)">Flow Signal ↕</th>
+      <th onclick="sortT('geo',5)" class="r">1D ↕</th>
+      <th onclick="sortT('geo',6)" class="r">1W ↕</th>
+      <th onclick="sortT('geo',7)" class="r">1M ↕</th>
+      <th onclick="sortT('geo',8)" class="r">3M ↕</th>
+      <th onclick="sortT('geo',9)" class="r">YTD ↕</th>
+      <th onclick="sortT('geo',10)" class="r">1Y ↕</th>
+      <th onclick="sortT('geo',11)">Score ↕</th>
+      <th onclick="sortT('geo',12)">RSI ↕</th>
+      <th onclick="sortT('geo',13)" class="r">AUM ↕</th>
+      <th onclick="sortT('geo',15)">Flow Signal ↕</th>
     </tr></thead>
-    <tbody id="geoBody"><tr class="empty-row"><td colspan="16">Upload a CSV file to display data</td></tr></tbody>
+    <tbody id="geoBody"><tr class="empty-row"><td colspan="15">Upload a CSV file to display data</td></tr></tbody>
   </table></div>
   <div class="last-update" id="geoUpdate"></div>
 </div>
@@ -353,7 +384,7 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
   </div>
 </div>
 
-</div>
+</div><!-- /wrap -->
 
 <!-- DATE PICKER MODAL -->
 <div class="modal-overlay hidden" id="dateModal">
@@ -399,7 +430,6 @@ const COUNTRY_FLAGS = {
   'DAX':'🇩🇪','MDAX':'🇩🇪','Euro Stoxx 50':'🇪🇺','Euro Stoxx 600':'🇪🇺',
   'Australia':'🇦🇺','Canada':'🇨🇦','Brazil':'🇧🇷','Mexico':'🇲🇽','Singapore':'🇸🇬',
 };
-// World index config — Sweden (XACT OMXS30) to be added when available
 const WORLD_INDEX_CONFIG = [
   {ticker:'EUNL', label:'World',            flag:'🌍'},
   {ticker:'SXR8', label:'S&P 500',          flag:'🇺🇸'},
@@ -407,11 +437,50 @@ const WORLD_INDEX_CONFIG = [
   {ticker:'IS3N', label:'Emerging Markets', flag:'📈'},
   {ticker:'EUNK', label:'Europe',           flag:'🇪🇺'},
 ];
+
 let allRows=[],themeData=[],indivRows=[],geoRows=[];
 let history=[];
 let chartMetric={theme:'ytd',etf:'ytd'};
 let themeChart=null,aumChart=null,etfChart=null;
 let sortState={themes:{col:8,dir:-1},indiv:{col:10,dir:-1},geo:{col:11,dir:-1}};
+
+// ── SEARCH STATE ──────────────────────────────────────────────
+let searchQuery = '';
+
+function applySearch(q) {
+  searchQuery = q.toLowerCase().trim();
+  const clearBtn = document.getElementById('searchClear');
+  clearBtn.style.display = searchQuery ? 'block' : 'none';
+  renderIndiv();
+  renderGeo();
+  renderThemes();
+  updateSearchCount();
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  applySearch('');
+}
+
+function updateSearchCount() {
+  const el = document.getElementById('searchCount');
+  if (!searchQuery) { el.textContent = ''; return; }
+  const hits = [...indivRows, ...geoRows].filter(r => matchesSearch(r));
+  el.textContent = hits.length > 0 ? `${hits.length} ETF${hits.length===1?'':'s'} hittades` : 'Inga träffar';
+  el.style.color = hits.length > 0 ? 'var(--teal)' : 'var(--dn)';
+}
+
+function matchesSearch(r) {
+  if (!searchQuery) return true;
+  return r.ticker.toLowerCase().includes(searchQuery) ||
+    (r.name || '').toLowerCase().includes(searchQuery);
+}
+
+function hl(text) {
+  if (!searchQuery || !text) return text;
+  const escaped = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark class="hl">$1</mark>');
+}
 
 // THEME RULES
 const THEME_RULES = [
@@ -434,7 +503,6 @@ const THEME_RULES = [
   [['momentum'],'Momentum'],
 ];
 
-// GEO RULES — ex-China MUST come before China
 const GEO_RULES = [
   [['ex china','ex-china','emerging ex china','emerging ex'],'EM ex-China','EM ex-China'],
   [['korea'],'Asia','South Korea'],
@@ -627,7 +695,7 @@ function fAumBar(aum,maxAum) {
 function fFlow(r) {
   const sig=calcFlow(r);
   if(!sig)return '<span class="flow nd">— no flow data</span>';
-  return `<span class="flow ${sig.cls}" title="Investor Flow Signal: fund flows last month = ${sig.diff>=0?'+':''}${sig.diff.toFixed(2)}% of AUM. This measures net investor buying/selling (new money in or out), NOT price movement.">${sig.label}</span>`;
+  return `<span class="flow ${sig.cls}" title="Flow: ${sig.diff>=0?'+':''}${sig.diff.toFixed(2)}% of AUM">${sig.label}</span>`;
 }
 
 function fThemePill(t) {
@@ -677,21 +745,38 @@ function buildThemeData() {
 
 function renderThemes() {
   const tbody=document.getElementById('themeBody');
-  if(!themeData.length){tbody.innerHTML='<tr class="empty-row"><td colspan="17">No thematic data in CSV</td></tr>';return;}
-  const maxAum=Math.max(...themeData.map(td=>pf(td.aum)||0));
-  tbody.innerHTML=themeData.map((td,i)=>{
+  // Filter themes: if searching, only show themes that contain a matching ETF
+  let displayData = themeData;
+  if (searchQuery) {
+    displayData = themeData.filter(td =>
+      td.theme.toLowerCase().includes(searchQuery) ||
+      td.rows.some(r => matchesSearch(r))
+    );
+  }
+  if(!displayData.length){
+    tbody.innerHTML=searchQuery
+      ? `<tr class="empty-row"><td colspan="17">Inga teman matchar "${searchQuery}"</td></tr>`
+      : '<tr class="empty-row"><td colspan="17">No thematic data in CSV</td></tr>';
+    return;
+  }
+  const maxAum=Math.max(...displayData.map(td=>pf(td.aum)||0));
+  tbody.innerHTML=displayData.map((td,i)=>{
     const sig=calcFlow({aum:td.aum,fund_flows:td.fund_flows});
-    const tickers=td.rows.map((r,j)=>`<span class="t-chip${j<3?' best':''}">${r.ticker}</span>`).join('');
+    const tickers=td.rows.map((r,j)=>
+      `<span class="t-chip${j<3?' best':''}" title="${r.name}">${hl(r.ticker)}</span>`
+    ).join('');
+    const themeLabel = searchQuery ? hl(td.theme) : td.theme;
+    const c=TC[td.theme]||'#404080';
     return `<tr>
       <td style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px">${i+1}</td>
-      <td>${fThemePill(td.theme)}</td>
+      <td><span class="theme-pill" style="background:${c}">${themeLabel}</span></td>
       ${fHm(td.chg1d)}${fHm(td.chg1w)}${fHm(td.chg1m)}${fHm(td.chg3m,false,false,true)}${fHm(td.ytd,true)}${fHm(td.chg1y,false,true)}
       <td>${fScore(td.sc)}</td>
       <td>${fSparkline(getThemeHistory(td.theme,'score'))}</td>
       <td>${fRsi(td.rsi)}</td>
       <td>${fAumBar(td.aum,maxAum)}</td>
-      <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd" title="Fund flows data not available in CSV">— no flow data</span>'}</td>
-      <td title="AUM Growth vs Price: positive means AUM grew faster than price (net new money). Negative means price rose faster than AUM (redemptions or no new inflows).">${fFlowDiff(td.aum_perf_1m,td.chg1m)}</td>
+      <td>${sig?`<span class="flow ${sig.cls}">${sig.label}</span>`:'<span class="flow nd">— no flow data</span>'}</td>
+      <td>${fFlowDiff(td.aum_perf_1m,td.chg1m)}</td>
       <td>${fSparkline(getThemeHistory(td.theme,'aum_diff'))}</td>
       <td><div class="ticker-list">${tickers}</div></td>
     </tr>`;
@@ -699,21 +784,28 @@ function renderThemes() {
   document.getElementById('themeUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
   const legendEl=document.getElementById('themeLegend');legendEl.style.display='block';legendEl.innerHTML=`
     <span style="margin-right:16px">ℹ <strong>Investor Flows</strong>: fund flows ÷ AUM — are investors buying or selling?</span>
-    <span>ℹ <strong>AUM vs Price 1M</strong>: AUM growth % minus price % — if positive, new money is coming in beyond price appreciation. If negative, AUM grew slower than price (outflows or no new buyers).</span>
+    <span>ℹ <strong>AUM vs Price 1M</strong>: AUM growth % minus price % — if positive, new money is coming in beyond price appreciation.</span>
   `;
 }
 
 function renderIndiv() {
   const tbody=document.getElementById('indivBody');
-  if(!indivRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="14">No data in CSV</td></tr>';return;}
-  const maxAumIndiv=Math.max(...indivRows.map(r=>pf(r.aum)||0));
-  tbody.innerHTML=indivRows.map((r,i)=>{
+  // ── SEARCH FILTER ──
+  const filtered = searchQuery ? indivRows.filter(r => matchesSearch(r)) : indivRows;
+  if(!filtered.length){
+    tbody.innerHTML=searchQuery
+      ? `<tr class="empty-row"><td colspan="14">Inga ETFer matchar "${searchQuery}"</td></tr>`
+      : '<tr class="empty-row"><td colspan="14">No data in CSV</td></tr>';
+    return;
+  }
+  const maxAumIndiv=Math.max(...filtered.map(r=>pf(r.aum)||0));
+  tbody.innerHTML=filtered.map((r,i)=>{
     const sc=calcScore(r);
     const cat=r.theme?fThemePill(r.theme):r.geo?fGeoBadge(r.geo):'—';
     return `<tr>
       <td style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px">${i+1}</td>
-      <td><span class="sym">${r.ticker}</span></td>
-      <td><span class="etf-n">${r.name||r.ticker}</span></td>
+      <td><span class="sym">${hl(r.ticker)}</span></td>
+      <td><span class="etf-n">${hl(r.name||r.ticker)}</span></td>
       <td>${cat}</td>
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
       <td>${fScore(sc)}</td><td>${fRsi(r.rsi)}</td>
@@ -723,36 +815,10 @@ function renderIndiv() {
   document.getElementById('indivUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
-function makeEtfCard(r, flagEmoji, labelLine1, labelLine2, extraStyle='') {
-  const sc=calcScore(r);
-  const p1w=fPerfVal(r.chg1w),p1m=fPerfVal(r.chg1m),p3m=fPerfVal(r.chg3m),pYtd=fPerfVal(r.ytd);
-  const aum=pf(r.aum);
-  const aumFmt=!isNaN(aum)?(aum>=1e9?(aum/1e9).toFixed(1)+'B':aum>=1e6?(aum/1e6).toFixed(0)+'M':'—'):'—';
-  return `<div class="country-card" style="${extraStyle}">
-    <div class="country-card-header">
-      <span class="country-flag">${flagEmoji}</span>
-      <div><div class="country-name">${labelLine1}</div><div class="country-ticker">${labelLine2}</div></div>
-    </div>
-    <div class="country-perf-row">
-      <div class="country-perf-item"><span class="country-perf-label">1W</span>${p1w.html}</div>
-      <div class="country-perf-item"><span class="country-perf-label">1M</span>${p1m.html}</div>
-      <div class="country-perf-item"><span class="country-perf-label">3M</span>${p3m.html}</div>
-      <div class="country-perf-item"><span class="country-perf-label">YTD</span>${pYtd.html}</div>
-    </div>
-    <div class="country-score-row">
-      <span style="font-size:11px;color:var(--muted)">Score</span>
-      ${fScore(sc)}
-      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)">${aumFmt}</span>
-    </div>
-  </div>`;
-}
-
 function renderGeoPanels() {
   if(!geoRows.length&&!allRows.length)return;
   const rowMap={};
   allRows.forEach(r=>{rowMap[r.ticker]=r;});
-
-  // TOP 10 COUNTRIES — heatmap table style
   const singleCountryTypes=new Set(['South Korea','Japan','China','India','Taiwan','Australia',
     'Canada','Brazil','LatAm','Mexico','USA','DAX','MDAX','Euro Stoxx 50','Euro Stoxx 600','EM ex-China','EM Asia']);
   const countryMap={};
@@ -774,7 +840,7 @@ function renderGeoPanels() {
         <th>Score</th><th>AUM</th>
       </tr></thead>
       <tbody>${top10.map((r,i)=>{
-        const flag=COUNTRY_FLAGS[r.geo_type]||COUNTRY_FLAGS[r.geo]||'\u{1F3F3}';
+        const flag=COUNTRY_FLAGS[r.geo_type]||COUNTRY_FLAGS[r.geo]||'🏳';
         const gs=GEO_STYLES[r.geo];
         const sc=calcScore(r);
         const rankBadge=i<3?`<span style="font-size:9px;background:var(--accent);color:#fff;padding:2px 5px;border-radius:3px;margin-right:5px">#${i+1}</span>`:'';
@@ -792,8 +858,6 @@ function renderGeoPanels() {
       }).join('')}</tbody>
     </table></div>`;
   }
-
-  // WORLD INDEXES — heatmap table
   const indexesGrid=document.getElementById('indexesGrid');
   const indexRows=WORLD_INDEX_CONFIG.map(cfg=>({cfg,r:rowMap[cfg.ticker]}));
   const maxAumIdx=Math.max(...indexRows.map(({r})=>pf(r?.aum)||0));
@@ -815,13 +879,11 @@ function renderGeoPanels() {
       </tr>`;
     }).join('')}</tbody>
   </table></div>`;
-
-  // EUROPE CURATED — heatmap table: best DAX + best Euro Stoxx 600 + top 4 trending EU countries
   const europeCurated=[];
   const daxEtfs=geoRows.filter(r=>r.geo_type==='DAX').sort((a,b)=>(pf(b.aum)||0)-(pf(a.aum)||0));
-  if(daxEtfs.length)europeCurated.push({r:daxEtfs[0],label:'DAX',flag:'\u{1F1E9}\u{1F1EA}'});
+  if(daxEtfs.length)europeCurated.push({r:daxEtfs[0],label:'DAX',flag:'🇩🇪'});
   const stoxx=geoRows.filter(r=>r.geo_type==='Euro Stoxx 600').sort((a,b)=>(pf(b.aum)||0)-(pf(a.aum)||0));
-  if(stoxx.length)europeCurated.push({r:stoxx[0],label:'Euro Stoxx 600',flag:'\u{1F1EA}\u{1F1FA}'});
+  if(stoxx.length)europeCurated.push({r:stoxx[0],label:'Euro Stoxx 600',flag:'🇪🇺'});
   const euCMap={};
   geoRows.filter(r=>r.geo==='Europe'&&!['Europe','DAX','MDAX','Euro Stoxx 50','Euro Stoxx 600'].includes(r.geo_type))
     .forEach(r=>{
@@ -829,7 +891,7 @@ function renderGeoPanels() {
       if(!euCMap[r.geo_type]||sc>(calcScore(euCMap[r.geo_type])??-999))euCMap[r.geo_type]=r;
     });
   Object.values(euCMap).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999)).slice(0,4)
-    .forEach(r=>europeCurated.push({r,label:r.geo_type,flag:COUNTRY_FLAGS[r.geo_type]||'\u{1F1EA}\u{1F1FA}'}));
+    .forEach(r=>europeCurated.push({r,label:r.geo_type,flag:COUNTRY_FLAGS[r.geo_type]||'🇪🇺'}));
   const europeGrid=document.getElementById('europeGrid');
   if(!europeCurated.length){
     europeGrid.innerHTML='<div style="color:var(--muted);font-size:13px;padding:20px 0">No European data found</div>';
@@ -858,14 +920,21 @@ function renderGeoPanels() {
 function renderGeo() {
   renderGeoPanels();
   const tbody=document.getElementById('geoBody');
-  if(!geoRows.length){tbody.innerHTML='<tr class="empty-row"><td colspan="16">No geographic data in CSV</td></tr>';return;}
-  const maxAumGeo=Math.max(...geoRows.map(r=>pf(r.aum)||0));
-  tbody.innerHTML=geoRows.map((r,i)=>{
+  // ── SEARCH FILTER ──
+  const filtered = searchQuery ? geoRows.filter(r => matchesSearch(r)) : geoRows;
+  if(!filtered.length){
+    tbody.innerHTML=searchQuery
+      ? `<tr class="empty-row"><td colspan="15">Inga geo-ETFer matchar "${searchQuery}"</td></tr>`
+      : '<tr class="empty-row"><td colspan="15">No geographic data in CSV</td></tr>';
+    return;
+  }
+  const maxAumGeo=Math.max(...filtered.map(r=>pf(r.aum)||0));
+  tbody.innerHTML=filtered.map((r,i)=>{
     const sc=calcScore(r);
     return `<tr>
       <td style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px">${i+1}</td>
-      <td><span class="sym">${r.ticker}</span></td>
-      <td><span class="etf-n">${r.name||r.ticker}</span></td>
+      <td><span class="sym">${hl(r.ticker)}</span></td>
+      <td><span class="etf-n">${hl(r.name||r.ticker)}</span></td>
       <td>${fGeoBadge(r.geo)}</td>
       <td>${fGeoTypeBadge(r.geo,r.geo_type)}</td>
       ${fHm(r.chg1d)}${fHm(r.chg1w)}${fHm(r.chg1m)}${fHm(r.chg3m,false,false,true)}${fHm(r.ytd,true)}${fHm(r.chg1y,false,true)}
@@ -876,22 +945,25 @@ function renderGeo() {
   document.getElementById('geoUpdate').textContent=`Last updated: ${new Date().toLocaleString('sv-SE')}`;
 }
 
+// ── SORT — FIX: geo col 13 = AUM (was bbp) ───────────────────
 function sortT(tbl,col) {
   const s=sortState[tbl];
   if(s.col===col)s.dir*=-1;else{s.col=col;s.dir=-1;}
   const getV=(r,c,type)=>{
     if(type==='themes'){
       if(c===1)return r.theme;
-      const m={2:'chg1d',3:'chg1w',4:'chg1m',5:'chg3m',6:'ytd',7:'chg1y',8:'sc',9:'rsi',10:'bbp',11:'aum'};
+      const m={2:'chg1d',3:'chg1w',4:'chg1m',5:'chg3m',6:'ytd',7:'chg1y',8:'sc',9:'rsi',10:'aum'};
       if(m[c]!=null)return pf(r[m[c]])??-999;
       if(c===12){const sg=calcFlow({aum:r.aum,fund_flows:r.fund_flows});return sg?sg.diff:-999;}
+      if(c===13){const a=pf(r.aum_perf_1m),p=pf(r.chg1m);return(!isNaN(a)&&!isNaN(p))?a-p:-999;}
     }
     if(type==='indiv'){
       if(c===1)return r.ticker;if(c===2)return r.name||'';if(c===3)return r.theme||r.geo||'';
       const m={4:'chg1d',5:'chg1w',6:'chg1m',7:'chg3m',8:'ytd',9:'chg1y'};
       if(m[c])return pf(r[m[c]])||(-999);
-      if(c===10)return calcScore(r)??-999;if(c===11)return pf(r.rsi)||(-1);
-      if(c===12)return pf(r.bbp)||(-9999);if(c===13)return pf(r.aum)||(-1);
+      if(c===10)return calcScore(r)??-999;
+      if(c===11)return pf(r.rsi)||(-1);
+      if(c===12)return pf(r.aum)||(-1);   // ✅ AUM
       if(c===14){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     if(type==='geo'){
@@ -899,8 +971,9 @@ function sortT(tbl,col) {
       if(c===3)return r.geo||'';if(c===4)return r.geo_type||'';
       const m={5:'chg1d',6:'chg1w',7:'chg1m',8:'chg3m',9:'ytd',10:'chg1y'};
       if(m[c])return pf(r[m[c]])||(-999);
-      if(c===11)return calcScore(r)??-999;if(c===12)return pf(r.rsi)||(-1);
-      if(c===13)return pf(r.bbp)||(-9999);if(c===14)return pf(r.aum)||(-1);
+      if(c===11)return calcScore(r)??-999;
+      if(c===12)return pf(r.rsi)||(-1);
+      if(c===13)return pf(r.aum)||(-1);   // ✅ BUGFIX: was bbp, now aum
       if(c===15){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     return 0;
@@ -923,7 +996,6 @@ function parseCsvLine(line) {
   return result;
 }
 
-// Pending save state — populated after CSV parse, before date confirmed
 let _pendingSaveRows = null;
 
 document.getElementById('csvInput').addEventListener('change',function(e){
@@ -950,10 +1022,8 @@ document.getElementById('csvInput').addEventListener('change',function(e){
       document.getElementById('dataBadge').textContent=`${deduped.length} ETFs loaded`;
       document.getElementById('dataBadge').className='badge ok';
       showToast(`✓ ${deduped.length} ETFs loaded (${removed} duplicates removed)`);
-
       const ghS=ghSettings();
       if(ghS.token){
-        // Show date picker modal — pre-fill with yesterday
         _pendingSaveRows = deduped;
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate()-1);
@@ -1041,53 +1111,8 @@ function renderThemeChart(){
   wrap.innerHTML='<canvas id="themeChartCanvas"></canvas>';
   if(themeChart)themeChart.destroy();
   const ctx=document.getElementById('themeChartCanvas').getContext('2d');
-
-  // Custom plugin: draw labels at end of each line
-  const endLabelsPlugin = {
-    id:'endLabels',
-    afterDraw(chart) {
-      const ctx2=chart.ctx;
-      chart.data.datasets.forEach((ds,i)=>{
-        const meta=chart.getDatasetMeta(i);
-        if(meta.hidden)return;
-        // Find last non-null point
-        let lastPt=null;
-        for(let j=meta.data.length-1;j>=0;j--){
-          if(ds.data[j]!=null){lastPt=meta.data[j];break;}
-        }
-        if(!lastPt)return;
-        const x=lastPt.x+6;
-        const y=lastPt.y;
-        ctx2.save();
-        ctx2.font='bold 11px DM Mono, monospace';
-        ctx2.fillStyle=ds.borderColor;
-        ctx2.textAlign='left';
-        ctx2.textBaseline='middle';
-        // Small background for readability
-        const tw=ctx2.measureText(ds.label).width;
-        ctx2.fillStyle='rgba(13,13,13,0.7)';
-        ctx2.fillRect(x-2,y-8,tw+6,16);
-        ctx2.fillStyle=ds.borderColor;
-        ctx2.fillText(ds.label,x,y);
-        ctx2.restore();
-      });
-    }
-  };
-
-  themeChart=new Chart(ctx,{
-    type:'line',
-    data:{labels:dates,datasets},
-    options:{
-      ...chartDefaults(),
-      layout:{padding:{right:120}},
-      plugins:{
-        ...chartDefaults().plugins,
-        legend:{display:false},
-        title:{display:true,text:`Theme ${metric.toUpperCase()} %`,color:'#c8c8e8',font:{size:12}}
-      }
-    },
-    plugins:[endLabelsPlugin]
-  });
+  const endLabelsPlugin={id:'endLabels',afterDraw(chart){const ctx2=chart.ctx;chart.data.datasets.forEach((ds,i)=>{const meta=chart.getDatasetMeta(i);if(meta.hidden)return;let lastPt=null;for(let j=meta.data.length-1;j>=0;j--){if(ds.data[j]!=null){lastPt=meta.data[j];break;}}if(!lastPt)return;const x=lastPt.x+6,y=lastPt.y;ctx2.save();ctx2.font='bold 11px DM Mono, monospace';ctx2.fillStyle=ds.borderColor;ctx2.textAlign='left';ctx2.textBaseline='middle';const tw=ctx2.measureText(ds.label).width;ctx2.fillStyle='rgba(13,13,13,0.7)';ctx2.fillRect(x-2,y-8,tw+6,16);ctx2.fillStyle=ds.borderColor;ctx2.fillText(ds.label,x,y);ctx2.restore();});}};
+  themeChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets},options:{...chartDefaults(),layout:{padding:{right:120}},plugins:{...chartDefaults().plugins,legend:{display:false},title:{display:true,text:`Theme ${metric.toUpperCase()} %`,color:'#c8c8e8',font:{size:12}}}},plugins:[endLabelsPlugin]});
 }
 function renderAumChart(){const wrap=document.getElementById('aumChartWrap');if(!history.length){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Upload your CSV daily to start building charts</div>';return;}const sel=document.getElementById('themeAumSelect')?.value||'all';const dates=history.map(h=>h.date);let themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))];if(sel!=='all')themes=themes.filter(t=>t===sel);const datasets=themes.map((theme,i)=>({label:theme,data:history.map(h=>{const v=h.themes?.[theme]?.aum;return v!=null?parseFloat(v)/1e9:null;}),borderColor:CHART_COLORS[i%CHART_COLORS.length],backgroundColor:CHART_COLORS[i%CHART_COLORS.length]+'22',borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:true}));wrap.innerHTML='<canvas id="aumChartCanvas"></canvas>';if(aumChart)aumChart.destroy();const ctx=document.getElementById('aumChartCanvas').getContext('2d');aumChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:'AUM (EUR Billion)',color:'#c8c8e8',font:{size:12}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,ticks:{...chartDefaults().scales.y.ticks,callback:v=>v.toFixed(1)+'B'}}}}});}
 function renderEtfChart(){const wrap=document.getElementById('etfChartWrap');const ticker=document.getElementById('etfSelect')?.value;if(!history.length||!ticker){wrap.innerHTML='<div class="no-history"><strong>No history yet</strong>Select an ETF and upload daily to build history</div>';return;}const metric=chartMetric.etf;const dates=history.map(h=>h.date);const isAum=metric==='aum';const data=history.map(h=>{const v=h.etfs?.[ticker]?.[metric];return v!=null?(isAum?parseFloat(v)/1e9:parseFloat(v)):null;});wrap.innerHTML='<canvas id="etfChartCanvas"></canvas>';if(etfChart)etfChart.destroy();const ctx=document.getElementById('etfChartCanvas').getContext('2d');etfChart=new Chart(ctx,{type:'line',data:{labels:dates,datasets:[{label:`${ticker} ${metric.toUpperCase()}`,data,borderColor:'#7c5fff',backgroundColor:'rgba(124,95,255,.15)',borderWidth:2,pointRadius:4,pointHoverRadius:6,tension:.3,spanGaps:true,fill:true}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,title:{display:true,text:`${ticker} – ${metric.toUpperCase()}${isAum?' (EUR B)':' %'}`,color:'#c8c8e8',font:{size:12}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,ticks:{...chartDefaults().scales.y.ticks,callback:v=>isAum?v.toFixed(2)+'B':v.toFixed(2)+'%'}}}}});}
