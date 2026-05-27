@@ -490,15 +490,15 @@ function hl(text) {
 // NOTE: Order matters — more specific rules first to avoid misclassification.
 const THEME_RULES = [
   [['semiconductor','semi ','chip'],'Semiconductors'],
-  [['quantum computing','quantum technology','quantum tech'],'Quantum'],
+  [['quantum computing','quantum technology','quantum tech','quantum leaders','wisdomtree classiq quantum','marketvector global quantum'],'Quantum'],
   [['artificial intelligence','ai and big data','ai & big data','robotics','automation','information technology',' it ','tech select','technology select','nasdaq 100','nasdaq-100','yewno'],'AI & Tech'],
   [['defense','defence'],'Defense'],
   [['nuclear','uranium'],'Nuclear'],
   // Hydrogen before Clean Energy so "hydrogen" ETFs don't get absorbed into Clean Energy
-  [['hydrogen','fuel cell','electrolys'],'Hydrogen'],
+  [['hydrogen','fuel cell','electrolys','global hydrogen','bloomberg hydrogen'],'Hydrogen'],
   [['clean energy','renewable','solar','wind','low carbon','green'],'Clean Energy'],
   [['bitcoin','crypto','blockchain','digital asset','btc'],'Crypto'],
-  [['cybersecurity','cyber security','network security','information security'],'Cybersecurity'],
+  [['cybersecurity','cyber security','network security','information security','digital security','data privacy'],'Cybersecurity'],
   [['gold miner','gold bugs','gold producer','pure gold','lbma gold','gold price pm','physical gold'],'Gold'],
   [['silver miner','global silver','lbma silver','silver price'],'Silver'],
   [['copper','rare earth','strategic metal'],'Materials'],
@@ -511,8 +511,8 @@ const THEME_RULES = [
   [['consumer','retail'],'Consumer'],
   [['momentum'],'Momentum'],
   // Country themes — these also remain in Geography via GEO_RULES
-  [['taiwan','ftse taiwan','msci taiwan'],'Taiwan'],
-  [['korea','kospi','msci korea'],'South Korea'],
+  [['taiwan','ftse taiwan','msci taiwan','xtrackers msci taiwan','ishares msci taiwan'],'Taiwan'],
+  [['korea','kospi','msci korea','msci korea','amundi msci korea','xtrackers msci korea','ishares msci korea'],'South Korea'],
 ];
 
 const GEO_RULES = [
