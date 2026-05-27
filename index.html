@@ -406,6 +406,10 @@ Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
 const TC = {
   'Semiconductors':'#1a6abf','AI & Tech':'#5535ef','Defense':'#c04a00',
   'Clean Energy':'#1a8a40','Nuclear':'#7a2090','Cybersecurity':'#0a6090',
+  'Hydrogen':'#0077aa',
+  'Quantum':'#9b30d0',
+  'Taiwan':'#cc2a1a',
+  'South Korea':'#003c8a',
   'Crypto':'#c07000','Health & Biotech':'#0a8870','Materials':'#5a6a20',
   'Gold':'#a07800','Silver':'#607080','Financials':'#0a50a0',
   'EV & Mobility':'#186830','Momentum':'#404090','Consumer':'#a02860',
@@ -483,13 +487,18 @@ function hl(text) {
 }
 
 // THEME RULES
+// NOTE: Order matters — more specific rules first to avoid misclassification.
 const THEME_RULES = [
   [['semiconductor','semi ','chip'],'Semiconductors'],
+  [['quantum computing','quantum technology','quantum tech'],'Quantum'],
   [['artificial intelligence','ai and big data','ai & big data','robotics','automation','information technology',' it ','tech select','technology select','nasdaq 100','nasdaq-100','yewno'],'AI & Tech'],
   [['defense','defence'],'Defense'],
   [['nuclear','uranium'],'Nuclear'],
+  // Hydrogen before Clean Energy so "hydrogen" ETFs don't get absorbed into Clean Energy
+  [['hydrogen','fuel cell','electrolys'],'Hydrogen'],
   [['clean energy','renewable','solar','wind','low carbon','green'],'Clean Energy'],
   [['bitcoin','crypto','blockchain','digital asset','btc'],'Crypto'],
+  [['cybersecurity','cyber security','network security','information security'],'Cybersecurity'],
   [['gold miner','gold bugs','gold producer','pure gold','lbma gold','gold price pm','physical gold'],'Gold'],
   [['silver miner','global silver','lbma silver','silver price'],'Silver'],
   [['copper','rare earth','strategic metal'],'Materials'],
@@ -501,6 +510,9 @@ const THEME_RULES = [
   [['electric vehicle','ev ','mobility','automotive'],'EV & Mobility'],
   [['consumer','retail'],'Consumer'],
   [['momentum'],'Momentum'],
+  // Country themes — these also remain in Geography via GEO_RULES
+  [['taiwan','ftse taiwan','msci taiwan'],'Taiwan'],
+  [['korea','kospi','msci korea'],'South Korea'],
 ];
 
 const GEO_RULES = [
@@ -531,9 +543,15 @@ function classifyETF(r) {
   const name=(r['description']||r['name']||'').toLowerCase();
   const idx=(r['index tracked']||'').toLowerCase();
   const combined=name+' '+idx;
-  for(const [kw,theme] of THEME_RULES) if(kw.some(k=>combined.includes(k))) return {theme,geo:'',geo_type:''};
-  for(const [kw,geo,geo_type] of GEO_RULES) if(kw.some(k=>combined.includes(k))) return {theme:'',geo,geo_type};
-  return {theme:'',geo:'',geo_type:''};
+  // Check theme rules first
+  let theme='';
+  for(const [kw,t] of THEME_RULES) if(kw.some(k=>combined.includes(k))){theme=t;break;}
+  // Always check geo rules independently (allows Taiwan/Korea to appear in both tabs)
+  let geo='',geo_type='';
+  for(const [kw,g,gt] of GEO_RULES) if(kw.some(k=>combined.includes(k))){geo=g;geo_type=gt;break;}
+  // If we got a theme that is itself a geo-country, keep both; otherwise only return one
+  if(theme && !['Taiwan','South Korea'].includes(theme)) return {theme,geo:'',geo_type:''};
+  return {theme,geo,geo_type};
 }
 
 function parseRow(r) {
@@ -963,7 +981,7 @@ function sortT(tbl,col) {
       if(m[c])return pf(r[m[c]])||(-999);
       if(c===10)return calcScore(r)??-999;
       if(c===11)return pf(r.rsi)||(-1);
-      if(c===12)return pf(r.aum)||(-1);   // ✅ AUM
+      if(c===12)return pf(r.aum)||(-1);
       if(c===14){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     if(type==='geo'){
@@ -973,7 +991,7 @@ function sortT(tbl,col) {
       if(m[c])return pf(r[m[c]])||(-999);
       if(c===11)return calcScore(r)??-999;
       if(c===12)return pf(r.rsi)||(-1);
-      if(c===13)return pf(r.aum)||(-1);   // ✅ BUGFIX: was bbp, now aum
+      if(c===13)return pf(r.aum)||(-1);
       if(c===15){const sg=calcFlow(r);return sg?sg.diff:-999;}
     }
     return 0;
