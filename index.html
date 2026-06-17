@@ -1123,7 +1123,51 @@ async function loadHistoryFromGithub(){const s=ghSettings();if(!s.token){showToa
 async function saveLatestToGithub(rows, dateStr){const s=ghSettings();if(!s.token)return;const data=rows.map(r=>({ticker:r.ticker,name:r.name,theme:r.theme,geo:r.geo,geo_type:r.geo_type,chg1d:r.chg1d,chg1w:r.chg1w,chg1m:r.chg1m,chg3m:r.chg3m,chg6m:r.chg6m||'',ytd:r.ytd,chg1y:r.chg1y,aum:r.aum,aum_prev:r.aum_prev||'',rsi:r.rsi,bbp:r.bbp,fund_flows:r.fund_flows||'',_rawIdx:r._rawIdx||''}));const payload={date:dateStr,rows:data};let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update latest ${dateStr}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(payload)))),...(sha?{sha}:{})};try{await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});}catch(e){console.error('Could not save latest.json',e);}}
 async function loadPublicData(){const s=ghSettings();const repo=s.repo||'SerenityInvest/theme-tracker';try{const url=`https://raw.githubusercontent.com/${repo}/main/latest.json`;const r=await fetch(url);if(!r.ok)return false;const payload=await r.json();const rows=payload.rows;allRows=rows;indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));buildThemeData();renderThemes();renderIndiv();renderGeo();document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;document.getElementById('dataBadge').className='badge ok';document.getElementById('dateBadge').textContent=payload.date||'';return true;}catch(e){return false;}}
 async function loadLatestFromGithub(){const s=ghSettings();if(!s.token)return false;try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/latest.json`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(!r.ok)return false;const data=await r.json();const payload=JSON.parse(atob(data.content.split('\n').join('')));const rows=payload.rows;allRows=rows;indivRows=[...rows].sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));geoRows=rows.filter(r=>r.geo&&r.geo.trim()).sort((a,b)=>(calcScore(b)??-999)-(calcScore(a)??-999));buildThemeData();renderThemes();renderIndiv();renderGeo();document.getElementById('dataBadge').textContent=`${rows.length} ETFs loaded`;document.getElementById('dataBadge').className='badge ok';document.getElementById('dateBadge').textContent=payload.date||'';showToast(`✓ Loaded ${rows.length} ETFs from GitHub (${payload.date})`);return true;}catch(e){console.error('Could not load latest.json',e);return false;}}
-async function saveHistoryToGithub(dateStr){const s=ghSettings();if(!s.token){showToast('⚠ No GitHub token – go to Settings tab');return;}const existing=history.findIndex(h=>h.date===dateStr);const themesSnap={};themeData.forEach(t=>{themesSnap[t.theme]={ytd:t.ytd,chg1m:t.chg1m,chg3m:t.chg3m,chg1w:t.chg1w,score:t.sc,aum:t.aum,aum_perf_1m:t.aum_perf_1m};});const etfsSnap={};allRows.forEach(r=>{etfsSnap[r.ticker]={ytd:pf(r.ytd)||0,chg1m:pf(r.chg1m)||0,chg3m:pf(r.chg3m)||0,aum:pf(r.aum)||0,score:calcScore(r)||0};});const snap={date:dateStr,themes:themesSnap,etfs:etfsSnap};if(existing>=0)history[existing]=snap;else history.push(snap);history.sort((a,b)=>a.date.localeCompare(b.date));let sha='';try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}const body={message:`Update history ${dateStr}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(history,null,2)))),...(sha?{sha}:{})};try{const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(r.ok){showToast(`✓ Saved as ${dateStr} · ${history.length} days in history`);updateHistoryUI();renderAllCharts();}else{const err=await r.json();showToast('⚠ Save failed: '+(err.message||r.status));}}catch(e){showToast('⚠ Network error saving history');}}
+async function saveHistoryToGithub(dateStr){
+  const s=ghSettings();
+  if(!s.token){showToast('⚠ No GitHub token – go to Settings tab');return;}
+
+  // Always re-fetch the freshest copy of history.json right before merging,
+  // rather than trusting the in-memory `history` array. The initial page-load
+  // fetch (loadHistoryFromGithub) runs in the background and may not have
+  // finished yet if the user uploads a CSV right away — saving against a
+  // stale/empty in-memory copy would silently overwrite previously saved days.
+  let freshHistory=[];
+  let sha='';
+  try{
+    const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json'}});
+    if(r.ok){
+      const d=await r.json();
+      sha=d.sha;
+      try{ freshHistory=JSON.parse(atob(d.content.split('\n').join(''))); }
+      catch(parseErr){ freshHistory=[]; }
+    }
+    // r.status === 404 just means history.json doesn't exist yet — freshHistory stays []
+  }catch(e){
+    showToast('⚠ Network error saving history');
+    return;
+  }
+
+  const existing=freshHistory.findIndex(h=>h.date===dateStr);
+  const themesSnap={};themeData.forEach(t=>{themesSnap[t.theme]={ytd:t.ytd,chg1m:t.chg1m,chg3m:t.chg3m,chg1w:t.chg1w,score:t.sc,aum:t.aum,aum_perf_1m:t.aum_perf_1m};});
+  const etfsSnap={};allRows.forEach(r=>{etfsSnap[r.ticker]={ytd:pf(r.ytd)||0,chg1m:pf(r.chg1m)||0,chg3m:pf(r.chg3m)||0,aum:pf(r.aum)||0,score:calcScore(r)||0};});
+  const snap={date:dateStr,themes:themesSnap,etfs:etfsSnap};
+  if(existing>=0)freshHistory[existing]=snap;else freshHistory.push(snap);
+  freshHistory.sort((a,b)=>a.date.localeCompare(b.date));
+
+  const body={message:`Update history ${dateStr}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(freshHistory,null,2)))),...(sha?{sha}:{})};
+  try{
+    const r=await fetch(`https://api.github.com/repos/${s.repo}/contents/${s.file}`,{method:'PUT',headers:{'Authorization':`token ${s.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(r.ok){
+      history=freshHistory; // keep in-memory copy in sync with what's now on GitHub
+      showToast(`✓ Saved as ${dateStr} · ${history.length} days in history`);
+      updateHistoryUI();renderAllCharts();
+    }else{
+      const err=await r.json();
+      showToast('⚠ Save failed: '+(err.message||r.status));
+    }
+  }catch(e){showToast('⚠ Network error saving history');}
+}
 function clearHistory(){if(!confirm('Clear all history? This cannot be undone.'))return;history=[];updateHistoryUI();renderAllCharts();showToast('History cleared');}
 function updateHistoryUI(){const el=document.getElementById('historyStats');const badge=document.getElementById('historyInfoBadge');if(!history.length){el.textContent='No history loaded yet.';if(badge)badge.textContent='';return;}const dates=history.map(h=>h.date);el.innerHTML=`<span style="color:var(--teal)">${history.length} days</span> of history · <span style="color:var(--t2)">${dates[0]}</span> → <span style="color:var(--t2)">${dates[dates.length-1]}</span>`;if(badge)badge.textContent=`${history.length} days history`;const etfSel=document.getElementById('etfSelect');if(etfSel){const tickers=[...new Set(history.flatMap(h=>Object.keys(h.etfs||{})))].sort();etfSel.innerHTML='<option value="">— Select ETF —</option>'+tickers.map(t=>`<option value="${t}">${t}</option>`).join('');}const themeSel=document.getElementById('themeAumSelect');if(themeSel){const themes=[...new Set(history.flatMap(h=>Object.keys(h.themes||{})))].sort();themeSel.innerHTML='<option value="all">All Themes</option>'+themes.map(t=>`<option value="${t}">${t}</option>`).join('');}}
 
@@ -1166,7 +1210,7 @@ window.addEventListener('DOMContentLoaded',async()=>{
   if(s.token){
     const loaded=await loadLatestFromGithub();
     if(!loaded)showToast('Enter your GitHub token in Settings to load data');
-    loadHistoryFromGithub();
+    await loadHistoryFromGithub();
   } else {
     const loaded=await loadPublicData();
     if(loaded)showToast('✓ Data loaded (read-only mode)');
