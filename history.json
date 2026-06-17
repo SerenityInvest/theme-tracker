@@ -10005,5 +10005,4914 @@
         "score": 20.792290294688218
       }
     }
+  },
+  {
+    "date": "2026-06-16",
+    "themes": {
+      "Financials": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 10804271934.3014,
+        "aum_perf_1m": null
+      },
+      "Defense": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 13930955336.116062,
+        "aum_perf_1m": null
+      },
+      "Infrastructure": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 5223816459.297456,
+        "aum_perf_1m": null
+      },
+      "AI & Tech": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 46313024196.97117,
+        "aum_perf_1m": null
+      },
+      "Consumer": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 1938492961.3795483,
+        "aum_perf_1m": null
+      },
+      "Clean Energy": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 16897508179.80853,
+        "aum_perf_1m": null
+      },
+      "South Korea": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 1903860004.0058622,
+        "aum_perf_1m": null
+      },
+      "Gold": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 6869190132.277186,
+        "aum_perf_1m": null
+      },
+      "Health & Biotech": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 6104732461.628547,
+        "aum_perf_1m": null
+      },
+      "Silver": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 1200474631.8555565,
+        "aum_perf_1m": null
+      },
+      "Momentum": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 5895325199.597829,
+        "aum_perf_1m": null
+      },
+      "Hydrogen": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 836860011.0269258,
+        "aum_perf_1m": null
+      },
+      "Crypto": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 1453503076.1133113,
+        "aum_perf_1m": null
+      },
+      "Nuclear": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 2978509956.152377,
+        "aum_perf_1m": null
+      },
+      "Materials": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 3219764665.40351,
+        "aum_perf_1m": null
+      },
+      "EV & Mobility": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 949358253.4443842,
+        "aum_perf_1m": null
+      },
+      "Oil & Gas": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 3070432721.438855,
+        "aum_perf_1m": null
+      },
+      "Cybersecurity": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 5563103875.864116,
+        "aum_perf_1m": null
+      },
+      "Taiwan": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 1701126372.5613282,
+        "aum_perf_1m": null
+      },
+      "Semiconductors": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 14432752328.423946,
+        "aum_perf_1m": null
+      },
+      "Space": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 2154181649.4525123,
+        "aum_perf_1m": null
+      },
+      "Quantum": {
+        "ytd": null,
+        "chg1m": null,
+        "chg3m": null,
+        "chg1w": null,
+        "score": null,
+        "aum": 1030214801.9293659,
+        "aum_perf_1m": null
+      }
+    },
+    "etfs": {
+      "IBCJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 776662093.4827815,
+        "score": 0
+      },
+      "LYBK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5171662961.245,
+        "score": 0
+      },
+      "LEER": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 567528939.6933,
+        "score": 0
+      },
+      "S7XE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 155715783.3215,
+        "score": 0
+      },
+      "EXX1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2387102541.7708,
+        "score": 0
+      },
+      "SC0U": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 543291146.528,
+        "score": 0
+      },
+      "8RMY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 165932130,
+        "score": 0
+      },
+      "XS7R": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 141323675.304,
+        "score": 0
+      },
+      "EXV1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3245506431.2856,
+        "score": 0
+      },
+      "ESIF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1457611520,
+        "score": 0
+      },
+      "SXRY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 389152933.1976,
+        "score": 0
+      },
+      "ZPDU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 178685994.84006798,
+        "score": 0
+      },
+      "CNFY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 143295280.99194947,
+        "score": 0
+      },
+      "2B7A": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1082170277.7562063,
+        "score": 0
+      },
+      "EXH4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 568903853.2408,
+        "score": 0
+      },
+      "XESP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 177682790.2535,
+        "score": 0
+      },
+      "IS3U": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 202841060,
+        "score": 0
+      },
+      "ESIN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1226307680,
+        "score": 0
+      },
+      "DX2Z": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 130591130.9865134,
+        "score": 0
+      },
+      "XDWI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 832706421.2630616,
+        "score": 0
+      },
+      "H4ZT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 161886759.76978764,
+        "score": 0
+      },
+      "94VE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 612965989.7823008,
+        "score": 0
+      },
+      "EXH5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 461847786.503,
+        "score": 0
+      },
+      "4MMR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 509891781.21198004,
+        "score": 0
+      },
+      "XDWF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 758285670.2944095,
+        "score": 0
+      },
+      "LYM8": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1471151648.889,
+        "score": 0
+      },
+      "SPYQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1182999832.6,
+        "score": 0
+      },
+      "XDWU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 796681354.7726783,
+        "score": 0
+      },
+      "ZPDS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 239482145,
+        "score": 0
+      },
+      "IBCG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1218551784,
+        "score": 0
+      },
+      "GC40": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 767450497.4394,
+        "score": 0
+      },
+      "UIME": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 322874692.5381,
+        "score": 0
+      },
+      "DFNC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 355544800,
+        "score": 0
+      },
+      "UIMT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 588437229.7507184,
+        "score": 0
+      },
+      "WTDX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 101101895.51068659,
+        "score": 0
+      },
+      "BJL8": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 536106051.7764,
+        "score": 0
+      },
+      "IBC4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 225847978.42561674,
+        "score": 0
+      },
+      "2B7D": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 410803823.354301,
+        "score": 0
+      },
+      "WEL0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 328874069.7395128,
+        "score": 0
+      },
+      "TTPX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 189342635.4705,
+        "score": 0
+      },
+      "C030": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 209867509.0844271,
+        "score": 0
+      },
+      "EXH7": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 190250567.3064,
+        "score": 0
+      },
+      "XZMJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2592784459.1649194,
+        "score": 0
+      },
+      "EDFS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 563443843.392,
+        "score": 0
+      },
+      "18M2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 338135633.89,
+        "score": 0
+      },
+      "XUIN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 267256378.88328028,
+        "score": 0
+      },
+      "IUSS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 451803336.3028828,
+        "score": 0
+      },
+      "EL45": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 168297845.5512,
+        "score": 0
+      },
+      "IQQA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1547234069.7369,
+        "score": 0
+      },
+      "XMLC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 584708422.2148017,
+        "score": 0
+      },
+      "WEL3": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 235032992.5251816,
+        "score": 0
+      },
+      "G2X": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2860280698.57541,
+        "score": 0
+      },
+      "MWOH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 141177266.74328095,
+        "score": 0
+      },
+      "LGGE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 303579753.632,
+        "score": 0
+      },
+      "XMK9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 813394072.8496,
+        "score": 0
+      },
+      "D6RU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 236827008,
+        "score": 0
+      },
+      "EXSG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 574852495.99,
+        "score": 0
+      },
+      "LYPU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 136434822.7341,
+        "score": 0
+      },
+      "EUDF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4460106533,
+        "score": 0
+      },
+      "5J50": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1567151300.9413857,
+        "score": 0
+      },
+      "2B7C": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 619735618.1995461,
+        "score": 0
+      },
+      "PR1J": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2474101887.8812146,
+        "score": 0
+      },
+      "SMLN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 146826866.09037274,
+        "score": 0
+      },
+      "XUFN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 617094738.7547134,
+        "score": 0
+      },
+      "EJAP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1721112983.8026,
+        "score": 0
+      },
+      "QDVH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1885678259.6878154,
+        "score": 0
+      },
+      "DX2G": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 117689586.495,
+        "score": 0
+      },
+      "DBXJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5405971660.34575,
+        "score": 0
+      },
+      "ZPDF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 563977789.8578862,
+        "score": 0
+      },
+      "IUS4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 431321967.41209567,
+        "score": 0
+      },
+      "IQQH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3148439403.6450863,
+        "score": 0
+      },
+      "IUSZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 18306338145.965515,
+        "score": 0
+      },
+      "GRID": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2236169380.9997153,
+        "score": 0
+      },
+      "SXR1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3238318147.0813594,
+        "score": 0
+      },
+      "LYM9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 938242679.6516,
+        "score": 0
+      },
+      "U1FB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 104955089.9924,
+        "score": 0
+      },
+      "LYY4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 392335713.996,
+        "score": 0
+      },
+      "SPYF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 448740522.8093608,
+        "score": 0
+      },
+      "UFMB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 572324777.843,
+        "score": 0
+      },
+      "ETLR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 712975305.0630323,
+        "score": 0
+      },
+      "EUN1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 574516911.5994,
+        "score": 0
+      },
+      "FTGA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 116448593.3852778,
+        "score": 0
+      },
+      "ELFB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 596706922.5894,
+        "score": 0
+      },
+      "IQQQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1792588305.0602713,
+        "score": 0
+      },
+      "XDWS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 782274205.7601408,
+        "score": 0
+      },
+      "XDNY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 297101493.1248001,
+        "score": 0
+      },
+      "IBC6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 494645353.66553634,
+        "score": 0
+      },
+      "LCUK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 965431073.2767527,
+        "score": 0
+      },
+      "PAC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 288107995.5456,
+        "score": 0
+      },
+      "EXV8": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 865004434.7373,
+        "score": 0
+      },
+      "DXS6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 625045844.77984,
+        "score": 0
+      },
+      "18MM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 231692129.6334,
+        "score": 0
+      },
+      "AHYL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 119012858.32997641,
+        "score": 0
+      },
+      "EUNN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 6687698472.348632,
+        "score": 0
+      },
+      "LYMH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 407366211.4617,
+        "score": 0
+      },
+      "VJPN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2684987129.706971,
+        "score": 0
+      },
+      "EXXV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 213277957.919,
+        "score": 0
+      },
+      "CHSR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 272977462.92475843,
+        "score": 0
+      },
+      "H41V": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 158307694.33874348,
+        "score": 0
+      },
+      "APJX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 104050859.84485689,
+        "score": 0
+      },
+      "EXXX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 159048220,
+        "score": 0
+      },
+      "EXW1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 9098402021.3239,
+        "score": 0
+      },
+      "U5MD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 133259817.24521758,
+        "score": 0
+      },
+      "QDVX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 855445110.2428,
+        "score": 0
+      },
+      "DBX7": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 153133542.41981828,
+        "score": 0
+      },
+      "SXR6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 435870964.4327095,
+        "score": 0
+      },
+      "XMLH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 206853639.69273382,
+        "score": 0
+      },
+      "SPYG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 116461774.4376278,
+        "score": 0
+      },
+      "SXRU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1569728578.0935864,
+        "score": 0
+      },
+      "QDV5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4341437291.294557,
+        "score": 0
+      },
+      "CD91": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 626832921.3326085,
+        "score": 0
+      },
+      "SLVR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1200474631.8555565,
+        "score": 0
+      },
+      "LIGS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 363053299.4025,
+        "score": 0
+      },
+      "DXSA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 725689622.667,
+        "score": 0
+      },
+      "UET5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3590317154.281,
+        "score": 0
+      },
+      "WEL1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 252088654.00081494,
+        "score": 0
+      },
+      "XML4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 202770350.44657943,
+        "score": 0
+      },
+      "ASWC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2775397645.582822,
+        "score": 0
+      },
+      "EXSH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1227173921.916,
+        "score": 0
+      },
+      "D6RS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 225441455.5614,
+        "score": 0
+      },
+      "ETLK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 659797629.5425953,
+        "score": 0
+      },
+      "WTIZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 355935278.7934561,
+        "score": 0
+      },
+      "RENW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 695287126.8221549,
+        "score": 0
+      },
+      "J1GR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 386497853.6835,
+        "score": 0
+      },
+      "EXUS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5625720092.121095,
+        "score": 0
+      },
+      "LYP6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 19521761731.056,
+        "score": 0
+      },
+      "WMIN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1627114892.616465,
+        "score": 0
+      },
+      "VGEU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4559529308.3883,
+        "score": 0
+      },
+      "SGAJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2053154122.0056434,
+        "score": 0
+      },
+      "XASX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 782276493.3488234,
+        "score": 0
+      },
+      "PR1E": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 242790814.89,
+        "score": 0
+      },
+      "CEBP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 247002019.10382852,
+        "score": 0
+      },
+      "SLMA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1481172286.516,
+        "score": 0
+      },
+      "XCS4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 126147675.02912168,
+        "score": 0
+      },
+      "SXR8": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 127649854819.89594,
+        "score": 0
+      },
+      "FRCJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 293610873.8645666,
+        "score": 0
+      },
+      "UIMF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 133257203.1186,
+        "score": 0
+      },
+      "EXI1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 555372381.8566694,
+        "score": 0
+      },
+      "EUNK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 15448212963.9126,
+        "score": 0
+      },
+      "AME6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1735956052.7905,
+        "score": 0
+      },
+      "SXR7": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 6144992928.915,
+        "score": 0
+      },
+      "C025": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 536304745.51491106,
+        "score": 0
+      },
+      "XDWM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 654419020.0431433,
+        "score": 0
+      },
+      "ZPRX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 658650641,
+        "score": 0
+      },
+      "XSMI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1631398733.8998916,
+        "score": 0
+      },
+      "EMUX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1356063356.989,
+        "score": 0
+      },
+      "CBUH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 210289663.7415547,
+        "score": 0
+      },
+      "IS3H": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 564408459.0648,
+        "score": 0
+      },
+      "ZPAB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2717228967.3987,
+        "score": 0
+      },
+      "JARH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 204481624.794,
+        "score": 0
+      },
+      "EEUX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3320337333.6938,
+        "score": 0
+      },
+      "XUCD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 141852660.07869327,
+        "score": 0
+      },
+      "EDM4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3398528274.7818,
+        "score": 0
+      },
+      "LGQI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 128935126.2976,
+        "score": 0
+      },
+      "IQQI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2115805810.9217987,
+        "score": 0
+      },
+      "OP6E": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 198039746.583,
+        "score": 0
+      },
+      "IS0E": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3068427385.605688,
+        "score": 0
+      },
+      "18MN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 361767585.77963483,
+        "score": 0
+      },
+      "D6RR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 473509873.0582,
+        "score": 0
+      },
+      "EHF1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 439441625.1536,
+        "score": 0
+      },
+      "BCFD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 242918693.38359353,
+        "score": 0
+      },
+      "CEUG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2347971741.9168,
+        "score": 0
+      },
+      "E909": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 248646384.1136,
+        "score": 0
+      },
+      "FLPE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 281442061.00661814,
+        "score": 0
+      },
+      "ETLN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 970735913.744,
+        "score": 0
+      },
+      "IBC0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 600990898.4496,
+        "score": 0
+      },
+      "EMUS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 145111534.8613,
+        "score": 0
+      },
+      "ESGE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 195692650,
+        "score": 0
+      },
+      "SLMC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4794430808.3868,
+        "score": 0
+      },
+      "EDMJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1263537367.0839481,
+        "score": 0
+      },
+      "DX2E": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 595754054.1378685,
+        "score": 0
+      },
+      "EMNU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4879674403.593,
+        "score": 0
+      },
+      "LEAD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1052820604.4872,
+        "score": 0
+      },
+      "VERX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3317038912.0176,
+        "score": 0
+      },
+      "SPYW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1666282360,
+        "score": 0
+      },
+      "D5BH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1153998851.248997,
+        "score": 0
+      },
+      "E960": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 367007085.858,
+        "score": 0
+      },
+      "AMEQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 266436131.773,
+        "score": 0
+      },
+      "AMED": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1453714807.424,
+        "score": 0
+      },
+      "AW1H": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 234305904.3304,
+        "score": 0
+      },
+      "XDWC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 284018188.2923041,
+        "score": 0
+      },
+      "AMEE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 254711648.2699,
+        "score": 0
+      },
+      "CBUA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 177036028.7465,
+        "score": 0
+      },
+      "ISPA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4633847069.454,
+        "score": 0
+      },
+      "XU8Z": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 264279645.19996893,
+        "score": 0
+      },
+      "LGQG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1250160670.2019,
+        "score": 0
+      },
+      "IQQM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 514439575.475,
+        "score": 0
+      },
+      "CEMQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 738779842.216,
+        "score": 0
+      },
+      "ZPDM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 183205630,
+        "score": 0
+      },
+      "EHDV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 480191887.65296,
+        "score": 0
+      },
+      "2B7B": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 199723602.8060366,
+        "score": 0
+      },
+      "BATE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 826308434.0660782,
+        "score": 0
+      },
+      "ZPDX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 492601200,
+        "score": 0
+      },
+      "IS3G": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 161671809.5352,
+        "score": 0
+      },
+      "XZEU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1112028186.2004,
+        "score": 0
+      },
+      "IQQ5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 103434270.05945139,
+        "score": 0
+      },
+      "XDJP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1950148282.0470948,
+        "score": 0
+      },
+      "ZSRI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 104563837.9008,
+        "score": 0
+      },
+      "IRFT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 243062448.07537988,
+        "score": 0
+      },
+      "QDVK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 713253755.6194075,
+        "score": 0
+      },
+      "TSWE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1315288138.278,
+        "score": 0
+      },
+      "SXRD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 110643792.10428298,
+        "score": 0
+      },
+      "IUSK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3246412201.4888,
+        "score": 0
+      },
+      "MWEQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1361764826.1758692,
+        "score": 0
+      },
+      "IQQU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1463346690.1515,
+        "score": 0
+      },
+      "SXR2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2041627878.7267568,
+        "score": 0
+      },
+      "SPYD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3163845006.6729655,
+        "score": 0
+      },
+      "IBCZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 703275243.1666279,
+        "score": 0
+      },
+      "UIM9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 743654645.1859683,
+        "score": 0
+      },
+      "BNXG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 911825908.3810066,
+        "score": 0
+      },
+      "IQQD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1465411661.3819401,
+        "score": 0
+      },
+      "XUEK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 260672414.0948,
+        "score": 0
+      },
+      "VGWD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 8594890795.693872,
+        "score": 0
+      },
+      "OP4E": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 220651827.318,
+        "score": 0
+      },
+      "EXH3": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 283344615.8492,
+        "score": 0
+      },
+      "HTMW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 462005006.38520014,
+        "score": 0
+      },
+      "VDIV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 8081373840,
+        "score": 0
+      },
+      "UIQ4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 161894561.1206,
+        "score": 0
+      },
+      "LCEU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 442117557.7,
+        "score": 0
+      },
+      "CEMS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2554366100.7853,
+        "score": 0
+      },
+      "EXIA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 117442500,
+        "score": 0
+      },
+      "AE5B": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2476562434.6764,
+        "score": 0
+      },
+      "IBCK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1420424868.5045688,
+        "score": 0
+      },
+      "MEEQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 204671408.02695,
+        "score": 0
+      },
+      "EXXW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 577810570,
+        "score": 0
+      },
+      "EXS1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 8536905519.1895,
+        "score": 0
+      },
+      "LBRE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 563846184.2424,
+        "score": 0
+      },
+      "EXSI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2907282050.5369,
+        "score": 0
+      },
+      "AIAA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 150588560.13736808,
+        "score": 0
+      },
+      "V3DA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 118158179.9997,
+        "score": 0
+      },
+      "2B77": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 694037749.3981518,
+        "score": 0
+      },
+      "LI7U": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 125824347.93750356,
+        "score": 0
+      },
+      "EXSD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 573196729.9042,
+        "score": 0
+      },
+      "EXSC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 135432337.95,
+        "score": 0
+      },
+      "EUPC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1614039728.9370368,
+        "score": 0
+      },
+      "USCP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 772071786.558,
+        "score": 0
+      },
+      "EL4A": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1792101221.223,
+        "score": 0
+      },
+      "IS3T": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 394979783.0757682,
+        "score": 0
+      },
+      "DFEN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 6695451157.533242,
+        "score": 0
+      },
+      "WMSF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 525700602.5739409,
+        "score": 0
+      },
+      "XWEM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 266302139.35958165,
+        "score": 0
+      },
+      "XDND": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 126308159.76806192,
+        "score": 0
+      },
+      "UIMR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 786917557.392,
+        "score": 0
+      },
+      "36BZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2708663907.35506,
+        "score": 0
+      },
+      "540H": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 224932380.246,
+        "score": 0
+      },
+      "MIVB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 920851307.6604,
+        "score": 0
+      },
+      "EDEG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 829249183.758,
+        "score": 0
+      },
+      "XMGU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 129274868.933384,
+        "score": 0
+      },
+      "EXH9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 813938695.423,
+        "score": 0
+      },
+      "XDDX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 552041685.8112,
+        "score": 0
+      },
+      "OM3X": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 186960419.1,
+        "score": 0
+      },
+      "2B79": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 626728853.7702881,
+        "score": 0
+      },
+      "V3PA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 280867264.2841242,
+        "score": 0
+      },
+      "EUNL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 120750325940.91273,
+        "score": 0
+      },
+      "IBCH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5222643252,
+        "score": 0
+      },
+      "EXS3": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1614143726.5823,
+        "score": 0
+      },
+      "F50B": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2526146758.7279067,
+        "score": 0
+      },
+      "OSX6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 190452810.24,
+        "score": 0
+      },
+      "C006": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 100011721.4292,
+        "score": 0
+      },
+      "VGER": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 258188966.2842,
+        "score": 0
+      },
+      "URNU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 568962485.6407843,
+        "score": 0
+      },
+      "DAVV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 541677167.7323048,
+        "score": 0
+      },
+      "ESP0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 508394199.8222498,
+        "score": 0
+      },
+      "FGEQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 748735868.4303625,
+        "score": 0
+      },
+      "ASRY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 505231124.72,
+        "score": 0
+      },
+      "UBUS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 137843043.50875378,
+        "score": 0
+      },
+      "IUS2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 840001403.6504362,
+        "score": 0
+      },
+      "WTEM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 627246968.8259861,
+        "score": 0
+      },
+      "SXR0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 157315720.3233,
+        "score": 0
+      },
+      "D6RT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 122762549.486,
+        "score": 0
+      },
+      "CEMR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 795753358.0362,
+        "score": 0
+      },
+      "EUN0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 871594166.733,
+        "score": 0
+      },
+      "ETLQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1385333763.746732,
+        "score": 0
+      },
+      "WTEE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 164980967.6531,
+        "score": 0
+      },
+      "CEBS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 461154860.5627605,
+        "score": 0
+      },
+      "JPGL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 232065247.89314285,
+        "score": 0
+      },
+      "PABX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1234096167.0148685,
+        "score": 0
+      },
+      "EESM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 269202499.4272,
+        "score": 0
+      },
+      "EXSB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 566394336,
+        "score": 0
+      },
+      "XDWY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 136225093.72481513,
+        "score": 0
+      },
+      "MWOR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1775803485.3618047,
+        "score": 0
+      },
+      "HPAW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 438985755.23163605,
+        "score": 0
+      },
+      "XNJP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 176986534.13062048,
+        "score": 0
+      },
+      "VGVF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5443577286.293391,
+        "score": 0
+      },
+      "SNAW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5146508267.308639,
+        "score": 0
+      },
+      "FTGE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 104955658.008,
+        "score": 0
+      },
+      "QYLE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 648540679.0203843,
+        "score": 0
+      },
+      "EDMW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4294322372.097538,
+        "score": 0
+      },
+      "CSY5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 704526186.6109256,
+        "score": 0
+      },
+      "MVEW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 188445720.06540516,
+        "score": 0
+      },
+      "H41G": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 130858978.7994098,
+        "score": 0
+      },
+      "IS3Q": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4696358485.844702,
+        "score": 0
+      },
+      "JPCT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 268831115.25070536,
+        "score": 0
+      },
+      "BCFJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 309629011.0466,
+        "score": 0
+      },
+      "ELCR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 184473079.7502869,
+        "score": 0
+      },
+      "FUSD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1253590316.0674071,
+        "score": 0
+      },
+      "XAM0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3487363943.053875,
+        "score": 0
+      },
+      "WEBJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4290868370.651059,
+        "score": 0
+      },
+      "WMMX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 450998460.0320665,
+        "score": 0
+      },
+      "SPYI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5783348247.812379,
+        "score": 0
+      },
+      "IQQ0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2260146847.8855495,
+        "score": 0
+      },
+      "WTDM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 573192757.0391655,
+        "score": 0
+      },
+      "XD9U": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 10884517965.627777,
+        "score": 0
+      },
+      "EMEC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 341814040.9705,
+        "score": 0
+      },
+      "IUSQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 28688275547.140205,
+        "score": 0
+      },
+      "5ESG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2952494563.519281,
+        "score": 0
+      },
+      "EUPE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 150987960.673,
+        "score": 0
+      },
+      "LWCU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1139099302.8594809,
+        "score": 0
+      },
+      "WEL9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 856921262.4905483,
+        "score": 0
+      },
+      "FTGU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 118808243.16222723,
+        "score": 0
+      },
+      "MWOK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 323498748.10960627,
+        "score": 0
+      },
+      "SC00": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 250962687.5895,
+        "score": 0
+      },
+      "ACM9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 924129709.335,
+        "score": 0
+      },
+      "SPP1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1563907479.575,
+        "score": 0
+      },
+      "ESIS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 442965000,
+        "score": 0
+      },
+      "XZW0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5157385767.513655,
+        "score": 0
+      },
+      "UBUJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 684888491.8542,
+        "score": 0
+      },
+      "IM2A": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 144233688.0768,
+        "score": 0
+      },
+      "EL4X": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 267618470.973,
+        "score": 0
+      },
+      "WEB2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3341871017.518093,
+        "score": 0
+      },
+      "CE8G": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 781258897.393,
+        "score": 0
+      },
+      "UBUT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 843776637.7822647,
+        "score": 0
+      },
+      "MWOX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 226199177.08407527,
+        "score": 0
+      },
+      "ESGW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 246186370.18629253,
+        "score": 0
+      },
+      "2B7K": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 6816509105.7929,
+        "score": 0
+      },
+      "WELF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2280797273.096337,
+        "score": 0
+      },
+      "EXH1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 541921277.484,
+        "score": 0
+      },
+      "ZPRA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 215145528,
+        "score": 0
+      },
+      "DX2D": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 280608764.0745,
+        "score": 0
+      },
+      "UBUM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 127382348.37764144,
+        "score": 0
+      },
+      "IQQG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 300863088,
+        "score": 0
+      },
+      "UBUD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 357517465.6811024,
+        "score": 0
+      },
+      "SPPY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4654511661.618907,
+        "score": 0
+      },
+      "SGAS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 15295065253.02719,
+        "score": 0
+      },
+      "OM3L": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 14708233708.816235,
+        "score": 0
+      },
+      "XZEW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1282225510.1809428,
+        "score": 0
+      },
+      "D5BK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 688418002.8701,
+        "score": 0
+      },
+      "SP3C": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 181044653.29657528,
+        "score": 0
+      },
+      "IQQN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1208159516.469502,
+        "score": 0
+      },
+      "VWCE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 41140351354.59476,
+        "score": 0
+      },
+      "WEBE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1997419478.6226459,
+        "score": 0
+      },
+      "VMID": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1727251545.8241732,
+        "score": 0
+      },
+      "ETLX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 573340168.7798228,
+        "score": 0
+      },
+      "VNRT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2837805797.6676764,
+        "score": 0
+      },
+      "XWEQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 176769199.16215822,
+        "score": 0
+      },
+      "PSWD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 217401310.00146687,
+        "score": 0
+      },
+      "XRSM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 756906882.0097849,
+        "score": 0
+      },
+      "QDVR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2757862545.97068,
+        "score": 0
+      },
+      "SPPE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2418880521.506,
+        "score": 0
+      },
+      "CBUF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 511507110.2353032,
+        "score": 0
+      },
+      "XNZW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 117726512.7747146,
+        "score": 0
+      },
+      "EL4Z": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 416768818.01868963,
+        "score": 0
+      },
+      "XMAW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5768323989.2608,
+        "score": 0
+      },
+      "IS20": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 479004788.71010333,
+        "score": 0
+      },
+      "CSY2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2322223194.71409,
+        "score": 0
+      },
+      "ENOA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1133771240.6944,
+        "score": 0
+      },
+      "XDEW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 9536310585.794052,
+        "score": 0
+      },
+      "LDGL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 177430537.4210694,
+        "score": 0
+      },
+      "IQQS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 401441342.3565,
+        "score": 0
+      },
+      "IQQ7": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 581123322.0611253,
+        "score": 0
+      },
+      "G2XJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 940482048.0960886,
+        "score": 0
+      },
+      "EXX5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 397442219.84934384,
+        "score": 0
+      },
+      "ZPDH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 428205440,
+        "score": 0
+      },
+      "EL4I": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 122648085.25191341,
+        "score": 0
+      },
+      "WELB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 111266903.9350086,
+        "score": 0
+      },
+      "UBU5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 559970489.5707247,
+        "score": 0
+      },
+      "UQAB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 325422646.4761461,
+        "score": 0
+      },
+      "SPY4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5249557268.0969515,
+        "score": 0
+      },
+      "SPYN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 700101913.5,
+        "score": 0
+      },
+      "ETLZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 180869293.65708023,
+        "score": 0
+      },
+      "ACU2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 556520834.857,
+        "score": 0
+      },
+      "IG3A": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2659812068.0282674,
+        "score": 0
+      },
+      "VVMX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1315428015.4970534,
+        "score": 0
+      },
+      "ETLS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1294116485.758415,
+        "score": 0
+      },
+      "WMFT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 461343621.9766018,
+        "score": 0
+      },
+      "EXI2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2705892423.776,
+        "score": 0
+      },
+      "F500": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4093036233.76,
+        "score": 0
+      },
+      "XZEA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 262521881.874,
+        "score": 0
+      },
+      "XDWH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2968206821.199037,
+        "score": 0
+      },
+      "QDVW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1357446738.7453082,
+        "score": 0
+      },
+      "IUS3": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2658402728.958608,
+        "score": 0
+      },
+      "BBCK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 136635667.33970127,
+        "score": 0
+      },
+      "GERD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1245302461.6572185,
+        "score": 0
+      },
+      "EMWE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 898088982.4998,
+        "score": 0
+      },
+      "ZPRP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 134231452.6588,
+        "score": 0
+      },
+      "C007": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 198289838.4894,
+        "score": 0
+      },
+      "XCHA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1715420371.1226735,
+        "score": 0
+      },
+      "D6RP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1746809311.3388,
+        "score": 0
+      },
+      "XUHC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 729616999.4460407,
+        "score": 0
+      },
+      "6PSA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 818100679.9245856,
+        "score": 0
+      },
+      "XZME": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 256987600.6016,
+        "score": 0
+      },
+      "USUE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 111570106.57848188,
+        "score": 0
+      },
+      "MWOT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 546875777.124722,
+        "score": 0
+      },
+      "XWTS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 424981330.7760607,
+        "score": 0
+      },
+      "CSY9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 239652722.37598476,
+        "score": 0
+      },
+      "LOGS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 203384854.842,
+        "score": 0
+      },
+      "AW1R": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 797727664.9752,
+        "score": 0
+      },
+      "IQQP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 886565790.0678,
+        "score": 0
+      },
+      "XWEV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 273734515.89932096,
+        "score": 0
+      },
+      "H41D": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 262741067.1654026,
+        "score": 0
+      },
+      "SPFS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 478867843.68891996,
+        "score": 0
+      },
+      "IUSN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 7335371851.621755,
+        "score": 0
+      },
+      "VGEJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1847993743.6957366,
+        "score": 0
+      },
+      "QDVG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2279604377.938961,
+        "score": 0
+      },
+      "V3YA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 240473138.87465164,
+        "score": 0
+      },
+      "ESIH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 792662000,
+        "score": 0
+      },
+      "XFVT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 319214783.8906578,
+        "score": 0
+      },
+      "QDVB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1507144942.1520712,
+        "score": 0
+      },
+      "EL4C": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 158494258.7971,
+        "score": 0
+      },
+      "X026": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 200661264.3555,
+        "score": 0
+      },
+      "CEBT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 874159353.8867749,
+        "score": 0
+      },
+      "HDLV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 373639596.80049706,
+        "score": 0
+      },
+      "W1TA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 171047247.1217416,
+        "score": 0
+      },
+      "XZMU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 7595616666.842691,
+        "score": 0
+      },
+      "AYEU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 369114335.6630685,
+        "score": 0
+      },
+      "AW1P": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 701719205.9019958,
+        "score": 0
+      },
+      "CSY8": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 280581041.59181315,
+        "score": 0
+      },
+      "H4ZL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1817293863.0793061,
+        "score": 0
+      },
+      "XXSC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3018071403.783835,
+        "score": 0
+      },
+      "V3AA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 946075939.1839024,
+        "score": 0
+      },
+      "FTGD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 320715777.69753134,
+        "score": 0
+      },
+      "WMMT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 474852646.7104319,
+        "score": 0
+      },
+      "WEL5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 235088640.27166343,
+        "score": 0
+      },
+      "MWON": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 120962007.09697738,
+        "score": 0
+      },
+      "IQQ6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1055878465.3148164,
+        "score": 0
+      },
+      "FCSYZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 181339967.62738043,
+        "score": 0
+      },
+      "ESGU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2600946621.085484,
+        "score": 0
+      },
+      "V9N": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 399839186.13568115,
+        "score": 0
+      },
+      "IS3R": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4573871238.987687,
+        "score": 0
+      },
+      "SPYJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 309196690.0292511,
+        "score": 0
+      },
+      "ZPDK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 259043039.70041332,
+        "score": 0
+      },
+      "ESIE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 254688733.3575,
+        "score": 0
+      },
+      "WNUC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 294578531.4902539,
+        "score": 0
+      },
+      "ZPRG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1377769500,
+        "score": 0
+      },
+      "H41C": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 391066721.43097514,
+        "score": 0
+      },
+      "XUCM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 740070159.5143796,
+        "score": 0
+      },
+      "QDVD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 624342904.4839636,
+        "score": 0
+      },
+      "OP7E": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 354327925.95,
+        "score": 0
+      },
+      "NUKL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2106840530.4893308,
+        "score": 0
+      },
+      "AW1B": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 249851204.6292,
+        "score": 0
+      },
+      "IQQL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 682173038.6088892,
+        "score": 0
+      },
+      "LGWU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 457582916.622,
+        "score": 0
+      },
+      "DXSE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 324115189.012,
+        "score": 0
+      },
+      "XDN0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1035441854.797,
+        "score": 0
+      },
+      "EUNZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 359199537.5044222,
+        "score": 0
+      },
+      "QUS5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 741607646.708602,
+        "score": 0
+      },
+      "DELG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 173016737.2374518,
+        "score": 0
+      },
+      "XU61": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 454322928.006,
+        "score": 0
+      },
+      "CBUI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 514706841.65566516,
+        "score": 0
+      },
+      "IU5C": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1096701353.835003,
+        "score": 0
+      },
+      "UIMP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 729578256.4716592,
+        "score": 0
+      },
+      "4UB1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 214445940.324,
+        "score": 0
+      },
+      "LHTC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 771539116.3701,
+        "score": 0
+      },
+      "GLUX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 388624594.4555,
+        "score": 0
+      },
+      "GMVM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 305989464.4197665,
+        "score": 0
+      },
+      "ZPRV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 876626362.2479357,
+        "score": 0
+      },
+      "QDVC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 252861518.8147688,
+        "score": 0
+      },
+      "GACA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 133243081.98079263,
+        "score": 0
+      },
+      "UIMM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4144505745.452184,
+        "score": 0
+      },
+      "UET1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 249914061.5996,
+        "score": 0
+      },
+      "WEBD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 423486682.1236,
+        "score": 0
+      },
+      "DRUP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 155833511.0895395,
+        "score": 0
+      },
+      "IUSL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1776884299.1379979,
+        "score": 0
+      },
+      "IROB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1455904433.1837125,
+        "score": 0
+      },
+      "SPYH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 533925193.75,
+        "score": 0
+      },
+      "SXRJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 944712670.3328,
+        "score": 0
+      },
+      "D6RQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 652687980.672,
+        "score": 0
+      },
+      "LOWD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 131639947.1464,
+        "score": 0
+      },
+      "PABV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 416996047.30208033,
+        "score": 0
+      },
+      "EBUY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 105721158.39921306,
+        "score": 0
+      },
+      "ZPRR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4845637027.257902,
+        "score": 0
+      },
+      "XDW0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1675712531.5321894,
+        "score": 0
+      },
+      "PAUM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 109882736.66226606,
+        "score": 0
+      },
+      "SXRG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2459161494.6814733,
+        "score": 0
+      },
+      "H4Z2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 494263574.7836366,
+        "score": 0
+      },
+      "IS3S": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 6326755553.613074,
+        "score": 0
+      },
+      "TRET": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 390512234.5812,
+        "score": 0
+      },
+      "ZSRN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 125213441.2569,
+        "score": 0
+      },
+      "UEF5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2475494443.313401,
+        "score": 0
+      },
+      "EXSE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 610567642.096,
+        "score": 0
+      },
+      "84X0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4958823042.354586,
+        "score": 0
+      },
+      "L0CK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1466834401.217675,
+        "score": 0
+      },
+      "EXV5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 203669648.9754,
+        "score": 0
+      },
+      "IUSD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1225138845.2598517,
+        "score": 0
+      },
+      "EXXT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5310666274.063145,
+        "score": 0
+      },
+      "ELFC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 442491150.1414,
+        "score": 0
+      },
+      "H412": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 707885316.5804665,
+        "score": 0
+      },
+      "2B70": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 757479288.1048899,
+        "score": 0
+      },
+      "D5BI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 294548201.53952354,
+        "score": 0
+      },
+      "XUEN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 107194651.64160044,
+        "score": 0
+      },
+      "UDIV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 758840358.374089,
+        "score": 0
+      },
+      "IQQ4": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 167768523.18656,
+        "score": 0
+      },
+      "VVGM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 148433330.74473867,
+        "score": 0
+      },
+      "WTEI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 154124875.85617766,
+        "score": 0
+      },
+      "SXRV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 23442334395.340874,
+        "score": 0
+      },
+      "GOAI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1168632564.3551,
+        "score": 0
+      },
+      "ZPDE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 864694820,
+        "score": 0
+      },
+      "ZPRU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 200324760.77071092,
+        "score": 0
+      },
+      "HDR0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 120143356.37182574,
+        "score": 0
+      },
+      "LYMS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5417016047.298,
+        "score": 0
+      },
+      "QDVF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1663816623.954855,
+        "score": 0
+      },
+      "QDVA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 524147866.61144334,
+        "score": 0
+      },
+      "BATI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 129880367.74455748,
+        "score": 0
+      },
+      "N1ES": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2330072045.1968627,
+        "score": 0
+      },
+      "CBUV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 102435515.88724083,
+        "score": 0
+      },
+      "AMEI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1767679891.138809,
+        "score": 0
+      },
+      "XZEM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1359969142.9163108,
+        "score": 0
+      },
+      "SPYV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 151742745.46348786,
+        "score": 0
+      },
+      "XMME": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 11534499620.398989,
+        "score": 0
+      },
+      "QDVI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4056351435.9430685,
+        "score": 0
+      },
+      "UIQI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 906038419.8372637,
+        "score": 0
+      },
+      "CEBG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 120260449.49177258,
+        "score": 0
+      },
+      "EXS2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 649852894.8056,
+        "score": 0
+      },
+      "UIMS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 655864296.8434677,
+        "score": 0
+      },
+      "PRAM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 794077607.1721328,
+        "score": 0
+      },
+      "VFEM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3108063766.5964293,
+        "score": 0
+      },
+      "5MVL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1573672698.0922058,
+        "score": 0
+      },
+      "RARE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 860930465.0841725,
+        "score": 0
+      },
+      "IS3N": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 36583290311.63936,
+        "score": 0
+      },
+      "MWOB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1031140784.4546599,
+        "score": 0
+      },
+      "4COP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1043406184.8222842,
+        "score": 0
+      },
+      "AYEM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5758662353.067744,
+        "score": 0
+      },
+      "U3O8": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 302706940.0222619,
+        "score": 0
+      },
+      "SBIN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1932173370.0095928,
+        "score": 0
+      },
+      "XAXJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 312170595.35606116,
+        "score": 0
+      },
+      "EMKX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1805290271.099,
+        "score": 0
+      },
+      "T3KE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 105465913.9715082,
+        "score": 0
+      },
+      "CBRS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1223194759.0052893,
+        "score": 0
+      },
+      "CEBL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 7212292338.090825,
+        "score": 0
+      },
+      "QDVS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3031504102.9225235,
+        "score": 0
+      },
+      "FYEQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 150436695.91778624,
+        "score": 0
+      },
+      "XB0T": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 117158097.51590863,
+        "score": 0
+      },
+      "XUTC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1751503717.9135928,
+        "score": 0
+      },
+      "XMAS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 412347958.75324655,
+        "score": 0
+      },
+      "CBUK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2038800617.811257,
+        "score": 0
+      },
+      "EDM2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 7998451159.097616,
+        "score": 0
+      },
+      "USPY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2873074715.641152,
+        "score": 0
+      },
+      "SPFT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1052809943.2674968,
+        "score": 0
+      },
+      "SKYE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 320674684.94041914,
+        "score": 0
+      },
+      "LYPG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2715700170.16,
+        "score": 0
+      },
+      "EMXU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 911190162.22878,
+        "score": 0
+      },
+      "G1CE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 124160841.80752936,
+        "score": 0
+      },
+      "AYEW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 890755194.6193471,
+        "score": 0
+      },
+      "XEMC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 158893332.85228616,
+        "score": 0
+      },
+      "SMLD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 261435924.46541205,
+        "score": 0
+      },
+      "XDWT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5329610012.42629,
+        "score": 0
+      },
+      "IQQF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1723979104.0304418,
+        "score": 0
+      },
+      "IQQK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1141302067.3379757,
+        "score": 0
+      },
+      "H4Z1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 200064690.0843882,
+        "score": 0
+      },
+      "IS0D": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 394908915.98284626,
+        "score": 0
+      },
+      "QDVE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 15388247512.10168,
+        "score": 0
+      },
+      "RCRS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 103040067.5560215,
+        "score": 0
+      },
+      "UETC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 198240720.6264399,
+        "score": 0
+      },
+      "DBX5": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 321334770.2757716,
+        "score": 0
+      },
+      "ZPDT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1698581892.348977,
+        "score": 0
+      },
+      "LCUA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 674552967.3778399,
+        "score": 0
+      },
+      "SADM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1084858438.7222698,
+        "score": 0
+      },
+      "IQQT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1379791602.2855566,
+        "score": 0
+      },
+      "XMLD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1705045135.3778055,
+        "score": 0
+      },
+      "XAIX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 7482442289.528616,
+        "score": 0
+      },
+      "ICNT": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 141466913.4460235,
+        "score": 0
+      },
+      "IUSC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1808563795.9151976,
+        "score": 0
+      },
+      "XMOV": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 186539420.00750694,
+        "score": 0
+      },
+      "IVDF": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 152561759.55407143,
+        "score": 0
+      },
+      "DBX3": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 114234373.72058709,
+        "score": 0
+      },
+      "W1TB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 338347086.0776751,
+        "score": 0
+      },
+      "SADA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 227611240.43600565,
+        "score": 0
+      },
+      "DBX8": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 433683866.9283736,
+        "score": 0
+      },
+      "SPYX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 512738119.64484483,
+        "score": 0
+      },
+      "2B76": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4186105797.351868,
+        "score": 0
+      },
+      "AMEL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 971707941.5646,
+        "score": 0
+      },
+      "EHDL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 247722079.74942404,
+        "score": 0
+      },
+      "B41J": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 577695945,
+        "score": 0
+      },
+      "V0IH": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 292371608.2938573,
+        "score": 0
+      },
+      "SPYK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 209447616,
+        "score": 0
+      },
+      "EUNY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1273246353.0176973,
+        "score": 0
+      },
+      "IEVD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 578345753.6865903,
+        "score": 0
+      },
+      "EXV3": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 222009246.06,
+        "score": 0
+      },
+      "WTI2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1256350877.3963916,
+        "score": 0
+      },
+      "ASWD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 109129542.21204042,
+        "score": 0
+      },
+      "ICGA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2681315279.0173697,
+        "score": 0
+      },
+      "IQQ9": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 103064559.56511611,
+        "score": 0
+      },
+      "LSMC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1930825551.138,
+        "score": 0
+      },
+      "LCHI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 391218759.1239,
+        "score": 0
+      },
+      "4BRZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4047673697.89452,
+        "score": 0
+      },
+      "INDB": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 205857939.0036,
+        "score": 0
+      },
+      "9W1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 121381578.7028,
+        "score": 0
+      },
+      "IQQC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 764177730.5878699,
+        "score": 0
+      },
+      "AIFS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 871841267.3759416,
+        "score": 0
+      },
+      "SEC0": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 4795004788.900106,
+        "score": 0
+      },
+      "JEDI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2154181649.4525123,
+        "score": 0
+      },
+      "C005": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 160387524.179,
+        "score": 0
+      },
+      "S0LR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 218456679.8684994,
+        "score": 0
+      },
+      "PAIW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 146290216.97445056,
+        "score": 0
+      },
+      "UIC2": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 220292613.5206613,
+        "score": 0
+      },
+      "VVSM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 7706921988.3858385,
+        "score": 0
+      },
+      "WQTM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 292247331.9354922,
+        "score": 0
+      },
+      "H4ZX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1311799480.574668,
+        "score": 0
+      },
+      "QUTM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 737967469.9938737,
+        "score": 0
+      },
+      "KWBE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 429238847.8314221,
+        "score": 0
+      },
+      "JJEJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 233185997.89673245,
+        "score": 0
+      },
+      "GQJY": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 389490031.7025187,
+        "score": 0
+      },
+      "JREJ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 422851806.92474955,
+        "score": 0
+      },
+      "IQHE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 259311500,
+        "score": 0
+      },
+      "FEPX": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 430718943.3356631,
+        "score": 0
+      },
+      "JEQP": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2822877036.905594,
+        "score": 0
+      },
+      "JGPI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1218051183.975995,
+        "score": 0
+      },
+      "FJPR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 321438401.2958975,
+        "score": 0
+      },
+      "LM9F": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 111915513.19163874,
+        "score": 0
+      },
+      "LM9C": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 396377882.7541,
+        "score": 0
+      },
+      "JREE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2760068146.9098,
+        "score": 0
+      },
+      "EUEE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 548265520,
+        "score": 0
+      },
+      "LM9E": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 111915498.1446,
+        "score": 0
+      },
+      "JRED": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 120574282.8884,
+        "score": 0
+      },
+      "JREZ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 506340366.9472,
+        "score": 0
+      },
+      "EDEQ": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 138084424.3002,
+        "score": 0
+      },
+      "FFLC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 128177819.1952922,
+        "score": 0
+      },
+      "GQEU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 490476875,
+        "score": 0
+      },
+      "BJL6": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 615744318.735,
+        "score": 0
+      },
+      "ARXK": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 249894324.7346,
+        "score": 0
+      },
+      "JRGE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 865995945.5592,
+        "score": 0
+      },
+      "USEE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1314927869.5796986,
+        "score": 0
+      },
+      "FCRN": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 218803896.6978161,
+        "score": 0
+      },
+      "JREG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 5464079943.995928,
+        "score": 0
+      },
+      "JEQA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 113878086.11046396,
+        "score": 0
+      },
+      "IQSE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 378051561.279,
+        "score": 0
+      },
+      "IQSD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 152916591,
+        "score": 0
+      },
+      "JRGD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1658522500.6795063,
+        "score": 0
+      },
+      "JUHE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1029380478.651,
+        "score": 0
+      },
+      "JEGS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 288793002.0438,
+        "score": 0
+      },
+      "IQSA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2055825788.6869786,
+        "score": 0
+      },
+      "WOEE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1864420113.920168,
+        "score": 0
+      },
+      "JGSC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 489906545.5825632,
+        "score": 0
+      },
+      "GQWD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 423215271.8455817,
+        "score": 0
+      },
+      "IQGA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 627434961.3678135,
+        "score": 0
+      },
+      "H416": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 558547832.9148439,
+        "score": 0
+      },
+      "SAHE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 939349686.2199156,
+        "score": 0
+      },
+      "JRUD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1111152374.8008938,
+        "score": 0
+      },
+      "LNXC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 166313066.4,
+        "score": 0
+      },
+      "JREU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 10437122511.725817,
+        "score": 0
+      },
+      "JRWA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 214219924.75076148,
+        "score": 0
+      },
+      "FRPG": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 690954531.3349383,
+        "score": 0
+      },
+      "LM9D": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 409202420.6655,
+        "score": 0
+      },
+      "3DGL": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 975560325.9385812,
+        "score": 0
+      },
+      "XEEW": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 412519936.97393286,
+        "score": 0
+      },
+      "H415": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 121484685.59930281,
+        "score": 0
+      },
+      "XEEU": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 475206268.49766594,
+        "score": 0
+      },
+      "GQUS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 268315321.89174497,
+        "score": 0
+      },
+      "FUSE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 119274537.9096,
+        "score": 0
+      },
+      "AAKI": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 282896310.7025446,
+        "score": 0
+      },
+      "JPGR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 327896074.7685365,
+        "score": 0
+      },
+      "LVLD": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 212007736.12459767,
+        "score": 0
+      },
+      "3DUS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 240512631.13389078,
+        "score": 0
+      },
+      "JSHE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 141891098.0696,
+        "score": 0
+      },
+      "WINC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 387488442.07467234,
+        "score": 0
+      },
+      "FGLR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 251240363.95640805,
+        "score": 0
+      },
+      "JSUE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 509428796.6788331,
+        "score": 0
+      },
+      "FUSR": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1362860636.7614956,
+        "score": 0
+      },
+      "FYER": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 3812403605.049485,
+        "score": 0
+      },
+      "AVWC": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 536297898.9240075,
+        "score": 0
+      },
+      "GQEM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 311901063.912402,
+        "score": 0
+      },
+      "AVWS": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 907288228.8889751,
+        "score": 0
+      },
+      "JREA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 174845929.02453125,
+        "score": 0
+      },
+      "JMES": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 173289042.19512826,
+        "score": 0
+      },
+      "REM3": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 542353091.1703037,
+        "score": 0
+      },
+      "MHQA": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 111534456.7834123,
+        "score": 0
+      },
+      "H414": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 131369193.99791187,
+        "score": 0
+      },
+      "IART": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 248452883.26300985,
+        "score": 0
+      },
+      "JREM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 2003512405.6072412,
+        "score": 0
+      },
+      "AVEM": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 181429090.62669876,
+        "score": 0
+      },
+      "EGEE": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 1241480745.8595428,
+        "score": 0
+      },
+      "UIC1": {
+        "ytd": 0,
+        "chg1m": 0,
+        "chg3m": 0,
+        "aum": 134720306.037,
+        "score": 0
+      }
+    }
   }
 ]
