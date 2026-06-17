@@ -206,6 +206,7 @@ mark.hl{background:rgba(124,95,255,.4);color:inherit;border-radius:2px;padding:0
     <div class="example">Symbol, Description, Price, Assets under management, Price Change % 1 day,
 Performance % 1 week/1 month/3 months/Year to date/1 year,
 Relative Strength Index (14) 1 day, Bull Bear Power (13) 1 day, Niche</div>
+    <p style="margin-top:8px;font-size:11px;color:var(--muted)">Note: TradingView sometimes formats these headers with commas instead of parentheses (e.g. "Relative strength index, 14, 1 day") — the tracker now matches either style automatically.</p>
     <table>
       <tr><th>Column</th><th>Description</th></tr>
       <tr><td><code>Symbol</code></td><td>Xetra ticker (SXRV, VVSM…)</td></tr>
@@ -554,9 +555,26 @@ function classifyETF(r) {
   return {theme,geo,geo_type};
 }
 
+// ── HEADER NORMALIZATION ──────────────────────────────────────
+// TradingView has used different punctuation styles for the same
+// columns over time, e.g.:
+//   "Relative Strength Index (14) 1 day"   (older export, parentheses)
+//   "Relative strength index, 14, 1 day"   (newer export, commas)
+// Both should match the same field. We normalize by stripping
+// commas/parentheses and collapsing whitespace before lowercasing,
+// so the lookup keys below work regardless of which style TradingView
+// happens to use in a given export.
+function normHeader(h) {
+  return (h || '')
+    .toLowerCase()
+    .replace(/[(),]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function parseRow(r) {
   const n={};
-  for(const [k,v] of Object.entries(r)) n[k.toLowerCase()]=v;
+  for(const [k,v] of Object.entries(r)) n[normHeader(k)]=v;
   if(n['ticker']&&!n['symbol']) return {
     ticker:n.ticker,name:n.name||n.ticker,
     theme:n.theme||'',geo:n.geo||'',geo_type:n.geo_type||'',
@@ -578,8 +596,8 @@ function parseRow(r) {
     chg1y:n['performance % 1 year']||'',
     aum:n['assets under management']||'',
     aum_prev:'',
-    rsi:n['relative strength index (14) 1 day']||n['rsi']||'',
-    bbp:n['bull bear power (13) 1 day']||n['bbp']||'',
+    rsi:n['relative strength index 14 1 day']||n['rsi']||'',
+    bbp:n['bull bear power 13 1 day']||n['bbp']||'',
     fund_flows:n['fund flows 1 month']||n['fund_flows']||'',
     aum_perf_1m:n['aum performance % 1 month']||n['aum_perf_1m']||'',
     aum_perf_3m:n['aum performance % 3 months']||n['aum_perf_3m']||'',
